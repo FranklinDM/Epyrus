@@ -279,7 +279,7 @@
 @RESPATH@/defaults/pref/mdn.js
 @RESPATH@/defaults/pref/smime.js
 @RESPATH@/defaults/pref/thunderbird-branding.js
-@RESPATH@/greprefs.js
+@RESPATH@/goanna.js
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ; App extensions to Mail
