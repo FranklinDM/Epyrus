@@ -493,7 +493,7 @@ nsresult nsMessengerWinIntegration::ShowNewAlertNotification(bool aUserInitiated
 
   // check if we are allowed to show a notification
   if (showAlert && mSHQueryUserNotificationState) {
-    MOZ_QUERY_USER_NOTIFICATION_STATE qstate;
+    QUERY_USER_NOTIFICATION_STATE qstate;
     if (SUCCEEDED(mSHQueryUserNotificationState(&qstate))) {
       if (qstate != QUNS_ACCEPTS_NOTIFICATIONS) {
         showAlert = false;
