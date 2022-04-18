@@ -22,7 +22,7 @@ if test "$OS_ARCH" != "WINNT"; then
 fi
 
 dnl Get other versions (for the calendar plugin)
-SEAMONKEY_VERSION=`cat ${_topsrcdir}/../suite/config/version.txt`
+SEAMONKEY_VERSION=`cat ${_topsrcdir}/../mail/config/suite_version.txt`
 AC_SUBST(SEAMONKEY_VERSION)
 
 dnl =========================================================
