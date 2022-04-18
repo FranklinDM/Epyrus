@@ -914,7 +914,6 @@ var MessageWindowController =
       case "cmd_viewAllHeader":
       case "cmd_viewNormalHeader":
       case "cmd_stop":
-      case "cmd_chat":
         return true;
       case "cmd_synchronizeOffline":
       case "cmd_downloadFlagged":
@@ -1076,8 +1075,6 @@ var MessageWindowController =
       case "cmd_runJunkControls":
       case "cmd_deleteJunk":
         return false;
-      case "cmd_chat":
-        return true;
       default:
         return false;
     }
@@ -1327,18 +1324,6 @@ var MessageWindowController =
         break;
       case "cmd_stop":
         msgWindow.StopUrls();
-        break;
-      case "cmd_chat":
-        let win = Services.wm.getMostRecentWindow("mail:3pane");
-        if (win) {
-          win.focus();
-          win.showChatTab();
-        }
-        else {
-          window.openDialog("chrome://messenger/content/", "_blank",
-                            "chrome,extrachrome,menubar,resizable,scrollbars,status,toolbar",
-                            null, {tabType: "chat", tabParams: {}});
-        }
         break;
       }
   },
