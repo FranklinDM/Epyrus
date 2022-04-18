@@ -7,9 +7,9 @@
 
 # BrandFullNameInternal is used for some registry and file system values
 # instead of BrandFullName and typically should not be modified.
-!define BrandFullNameInternal "Earlybird"
-!define CompanyName           "mozilla.org"
-!define URLInfoAbout          "http://www.mozilla.org/"
+!define BrandFullNameInternal "Hermopolis"
+!define CompanyName           "athenian200"
+!define URLInfoAbout          "https://repo.palemoon.org/athenian200"
 !define URLUpdateInfo         "http://www.mozilla.org/products/thunderbird/"
 !define URLSystemRequirements "https://www.mozilla.org/thunderbird/system-requirements/"
 !define SurveyURL             "http://live.mozillamessaging.com/survey/uninstall/?locale=${AB_CD}&version=${AppVersion}"
