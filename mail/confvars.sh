@@ -17,11 +17,6 @@ MOZ_MAILNEWS=1
 MOZ_SECURITY_SQLSTORE=1
 NSS_DISABLE_DBM=1
 
-if test "$OS_ARCH" = "WINNT" -o \
-        "$OS_ARCH" = "Linux"; then
-  MOZ_BUNDLED_FONTS=1
-fi
-
 if test "$OS_ARCH" = "WINNT"; then
   if ! test "$HAVE_64BIT_BUILD"; then
     MOZ_VERIFY_MAR_SIGNATURE=1

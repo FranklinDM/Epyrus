@@ -51,9 +51,7 @@
 @RESPATH@/chrome/@AB_CD@.manifest
 @RESPATH@/@PREF_DIR@/all-l10n.js
 @RESPATH@/dictionaries/*
-#ifdef MOZ_BUNDLED_FONTS
 @RESPATH@/fonts/*
-#endif
 @RESPATH@/hyphenation/*
 #ifdef HAVE_MAKENSISU
 @BINPATH@/uninstall/helper.exe
