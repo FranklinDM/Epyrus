@@ -5,7 +5,7 @@
 
 DIRS += ['/mail/components']
 
-include('/mozilla/toolkit/toolkit.mozbuild')
+include('/platform/toolkit/toolkit.mozbuild')
 
 if CONFIG['MOZ_EXTENSIONS']:
     DIRS += ['/extensions']

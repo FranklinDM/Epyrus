@@ -44,7 +44,7 @@
 #if !defined(MOZ_WIDGET_COCOA) && !defined(MOZ_WIDGET_ANDROID) \
   && !(defined(XP_LINUX) && defined(MOZ_SANDBOX))
 #define MOZ_BROWSER_CAN_BE_CONTENTPROC
-#include "../../mozilla/ipc/contentproc/plugin-container.cpp"
+#include "../../platform/ipc/contentproc/plugin-container.cpp"
 #endif
 
 using namespace mozilla;

@@ -468,7 +468,7 @@ pref("mail.tabs.loadInBackground", true);
 pref("mail.tabs.tabMinWidth", 100);
 pref("mail.tabs.tabMaxWidth", 210);
 pref("mail.tabs.tabClipWidth", 140);
-pref("mail.tabs.autoHide", false);
+pref("mail.tabs.autoHide", true);
 pref("mail.tabs.closeWindowWithLastTab", true);
 
 // Where to show tab close buttons:
@@ -478,12 +478,9 @@ pref("mail.tabs.closeWindowWithLastTab", true);
 // 3 - at the end of the tabstrip
 pref("mail.tabs.closeButtons", 1);
 
-// Allow the tabs to be in the titlebar on supported systems
-#ifdef UNIX_BUT_NOT_MAC
+// Allow the tabs to be in the titlebar
 pref("mail.tabs.drawInTitlebar", false);
-#else
-pref("mail.tabs.drawInTitlebar", true);
-#endif
+
 
 // The breakpad report server to link to in about:crashes
 pref("breakpad.reportURL", "https://crash-stats.mozilla.com/report/index/");
@@ -853,7 +850,7 @@ pref("mail.pgpmime.addon_url", "https://addons.mozilla.org/thunderbird/addon/eni
 
 // If set to true, Thunderbird will collapse the main menu for new profiles
 // (or, more precisely, profiles that start with no accounts created).
-pref("mail.main_menu.collapse_by_default", true);
+pref("mail.main_menu.collapse_by_default", false);
 
 // If set to true, when saving a message to a file, use underscore
 // instead of space in the file name.

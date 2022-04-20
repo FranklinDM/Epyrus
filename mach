@@ -1,6 +1,6 @@
 #!/bin/sh
 
-MCP_MACH=./mozilla/mach
+MCP_MACH=./platform/mach
 MCP_GIT=`which git 2>/dev/null`
 
 if [ ! -f "$MCP_MACH" ]; then
