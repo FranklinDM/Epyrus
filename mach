@@ -9,7 +9,7 @@ if [ ! -f "$MCP_MACH" ]; then
   exit 1
 fi
 
-MCP_APP=mailnews
+MCP_APP=mail
 MCP_VERSION=`cat ./$MCP_APP/config/version.txt`
 
 MCP_XZ=`which xz 2>/dev/null`
