@@ -51,7 +51,6 @@
 @RESPATH@/chrome/@AB_CD@.manifest
 @RESPATH@/@PREF_DIR@/all-l10n.js
 @RESPATH@/dictionaries/*
-@RESPATH@/fonts/*
 @RESPATH@/hyphenation/*
 #ifdef HAVE_MAKENSISU
 @BINPATH@/uninstall/helper.exe
@@ -217,9 +216,6 @@
 @RESPATH@/components/glautocomp.js
 @RESPATH@/components/gloda.manifest
 @RESPATH@/components/jsmimeemitter.js
-
-; OAuth2 for mail
-@RESPATH@/components/msgOAuth2Module.js
 
 ; New message notification
 @RESPATH@/components/newMailNotificationService.js
