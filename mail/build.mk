@@ -7,13 +7,13 @@ installer:
 	@$(MAKE) -C mail/installer installer
 
 package:
-	@$(MAKE) -C mail/installer
+	@$(MAKE) -C mail/installer make-archive
 
 package-compare:
 	@$(MAKE) -C mail/installer package-compare
 
 stage-package:
-	@$(MAKE) -C mail/installer stage-package
+	@$(MAKE) -C mail/installer stage-package make-buildinfo-file
 
 install::
 	@$(MAKE) -C mail/installer install

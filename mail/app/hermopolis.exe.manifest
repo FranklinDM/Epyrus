@@ -3,10 +3,10 @@
 <assemblyIdentity
         version="1.0.0.0"
         processorArchitecture="*"
-        name="Mozilla.Thunderbird"
+        name="Hermopolis"
         type="win32"
 />
-<description>Mozilla Thunderbird</description>
+<description>Hermopolis</description>
 <dependency>
         <dependentAssembly>
                 <assemblyIdentity
