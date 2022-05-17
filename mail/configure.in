@@ -5,8 +5,11 @@ dnl License, v. 2.0. If a copy of the MPL was not distributed with this
 dnl file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
 dnl Things we need to carry from confvars.sh
+dnl We need HYPE_ICEDOVE for now to use Thunderbird account creation instead of SeaMonkey.
 AC_DEFINE(MOZ_THUNDERBIRD)
+AC_DEFINE(HYPE_ICEDOVE)
 AC_SUBST(MOZ_THUNDERBIRD)
+AC_SUBST(HYPE_ICEDOVE)
 AC_SUBST(MOZ_COMPOSER)
 AC_SUBST(THUNDERBIRD_VERSION)
 AC_DEFINE(MOZ_SEPARATE_MANIFEST_FOR_THEME_OVERRIDES)

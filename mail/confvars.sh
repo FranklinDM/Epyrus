@@ -7,6 +7,8 @@ MOZ_APP_BASENAME=Hermopolis
 MOZ_APP_NAME=hermopolis
 MOZ_UPDATER=1
 MOZ_THUNDERBIRD=1
+# Disables SeaMonkey Account Creation tool, even though we are not IceDove-UXP.
+HYPE_ICEDOVE=1
 MOZ_APP_STATIC_INI=1
 MOZ_DISABLE_EXPORT_JS=1
 MOZ_NO_ACTIVEX_SUPPORT=1
