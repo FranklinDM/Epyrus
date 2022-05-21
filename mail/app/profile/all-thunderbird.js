@@ -329,6 +329,9 @@ pref("mail.forward_message_mode", 2);
 // 0=ask, 1=plain, 2=html, 3=both
 pref("mail.default_html_action", 3);
 
+// Don't use an autoconfig server by default.
+pref("mailnews.auto_config_url", "");
+
 /////////////////////////////////////////////////////////////////
 // End core mailnews.js pref overrides
 /////////////////////////////////////////////////////////////////
