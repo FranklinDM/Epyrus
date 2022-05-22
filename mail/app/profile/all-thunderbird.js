@@ -332,6 +332,9 @@ pref("mail.default_html_action", 3);
 // Don't use an autoconfig server by default.
 pref("mailnews.auto_config_url", "");
 
+// Don't use an MX service by default.
+pref("mailnews.mx_service_url", "");
+
 /////////////////////////////////////////////////////////////////
 // End core mailnews.js pref overrides
 /////////////////////////////////////////////////////////////////
