@@ -3,8 +3,8 @@
 # License, v. 2.0. If a copy of the MPL was not distributed with this
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 
-MOZ_APP_BASENAME=Hermopolis
-MOZ_APP_NAME=hermopolis
+MOZ_APP_BASENAME=Epyrus
+MOZ_APP_NAME=epyrus
 MOZ_UPDATER=1
 MOZ_THUNDERBIRD=1
 # Disables SeaMonkey Account Creation tool, even though we are not IceDove-UXP.
