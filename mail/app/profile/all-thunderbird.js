@@ -77,11 +77,11 @@ pref("app.update.cert.maxErrors", 5);
 // If these conditions aren't met it will be treated the same as when there is
 // no update available.
 
-pref("app.update.certs.1.issuerName", "CN=DigiCert SHA2 Secure Server CA,O=DigiCert Inc,C=US");
-pref("app.update.certs.1.commonName", "aus5.mozilla.org");
+pref("app.update.certs.1.issuerName", "");
+pref("app.update.certs.1.commonName", "");
 
-pref("app.update.certs.2.issuerName", "CN=thawte SSL CA - G2,O=\"thawte, Inc.\",C=US");
-pref("app.update.certs.2.commonName", "aus5.mozilla.org");
+pref("app.update.certs.2.issuerName", "");
+pref("app.update.certs.2.commonName", "");
 
 // Whether or not app updates are enabled
 pref("app.update.enabled", true);
@@ -99,14 +99,14 @@ pref("app.update.silent", false);
 pref("app.update.staging.enabled", true);
 
 // Update service URL:
-pref("app.update.url", "https://aus5.mozilla.org/update/6/%PRODUCT%/%VERSION%/%BUILD_ID%/%BUILD_TARGET%/%LOCALE%/%CHANNEL%/%OS_VERSION%/%SYSTEM_CAPABILITIES%/%DISTRIBUTION%/%DISTRIBUTION_VERSION%/update.xml");
+pref("app.update.url", "");
 
 // URL user can browse to manually if for some reason all update installation
 // attempts fail.
-pref("app.update.url.manual", "http://www.getthunderbird.com");
+pref("app.update.url.manual", "");
 // A default value for the "More information about this update" link
 // supplied in the "An update is available" page of the update wizard.
-pref("app.update.url.details", "https://www.mozilla.org/%LOCALE%/%APP%/releases/");
+pref("app.update.url.details", "");
 
 // app.update.promptWaitTime is in branding section
 
@@ -119,14 +119,14 @@ pref("app.update.service.enabled", true);
 #endif
 
 // Release notes URL
-pref("app.releaseNotesURL", "https://live.mozillamessaging.com/%APP%/releasenotes?locale=%LOCALE%&version=%VERSION%&os=%OS%&buildid=%APPBUILDID%");
+pref("app.releaseNotesURL", "");
 
 // URL for "Learn More" for Crash Reporter.
 pref("toolkit.crashreporter.infoURL",
-     "https://www.mozilla.org/thunderbird/legal/privacy/#crash-reporter");");
+     "");");
 
 // Base URL for web-based support pages.
-pref("app.support.baseURL", "https://support.live.mozillamessaging.com/%LOCALE%/%APP%/%APPBUILDID%/");
+pref("app.support.baseURL", "");
 
 // Show error messages in error console.
 pref("javascript.options.showInConsole", true);
@@ -144,7 +144,7 @@ pref("extensions.minCompatibleAppVersion", "5.0");
 pref("extensions.update.autoUpdateDefault", true);
 
 pref("extensions.hotfix.id", "thunderbird-hotfix@mozilla.org");
-pref("extensions.hotfix.cert.checkAttributes", true);
+pref("extensions.hotfix.cert.checkAttributes", false);
 pref("extensions.hotfix.certs.1.sha1Fingerprint", "91:53:98:0C:C1:86:DF:47:8F:35:22:9E:11:C9:A7:31:04:49:A1:AA");
 pref("extensions.hotfix.certs.2.sha1Fingerprint", "39:E7:2B:7A:5B:CF:37:78:F9:5D:4A:E0:53:2D:2F:3D:68:53:C5:60");
 
@@ -156,24 +156,24 @@ pref("extensions.autoDisableScopes", 15);
 // Preferences for AMO integration
 pref("extensions.getAddons.cache.enabled", true);
 pref("extensions.getAddons.maxResults", 15);
-pref("extensions.getAddons.get.url", "https://services.addons.mozilla.org/%LOCALE%/%APP%/api/%API_VERSION%/search/guid:%IDS%?src=thunderbird&appOS=%OS%&appVersion=%VERSION%");
-pref("extensions.getAddons.getWithPerformance.url", "https://services.addons.mozilla.org/%LOCALE%/%APP%/api/%API_VERSION%/search/guid:%IDS%?src=thunderbird&appOS=%OS%&appVersion=%VERSION%&tMain=%TIME_MAIN%&tFirstPaint=%TIME_FIRST_PAINT%&tSessionRestored=%TIME_SESSION_RESTORED%");
-pref("extensions.getAddons.link.url", "https://addons.mozilla.org/%LOCALE%/%APP%/");
-pref("extensions.getAddons.recommended.url", "https://services.addons.mozilla.org/%LOCALE%/%APP%/api/%API_VERSION%/list/recommended/all/%MAX_RESULTS%/%OS%/%VERSION%?src=thunderbird");
-pref("extensions.getAddons.search.browseURL", "https://addons.mozilla.org/%LOCALE%/%APP%/search?q=%TERMS%");
-pref("extensions.getAddons.search.url", "https://services.addons.mozilla.org/%LOCALE%/%APP%/api/%API_VERSION%/search/%TERMS%/all/%MAX_RESULTS%/%OS%/%VERSION%/%COMPATIBILITY_MODE%?src=thunderbird");
-pref("extensions.webservice.discoverURL", "https://services.addons.mozilla.org/%LOCALE%/%APP%/discovery/pane/%VERSION%/%OS%");
+pref("extensions.getAddons.get.url", "");
+pref("extensions.getAddons.getWithPerformance.url", "");
+pref("extensions.getAddons.link.url", "");
+pref("extensions.getAddons.recommended.url", "");
+pref("extensions.getAddons.search.browseURL", "");
+pref("extensions.getAddons.search.url", "");
+pref("extensions.webservice.discoverURL", "");
 
 // Blocklist preferences
-pref("extensions.blocklist.enabled", true);
+pref("extensions.blocklist.enabled", false);
 pref("extensions.blocklist.interval", 86400);
-pref("extensions.blocklist.url", "https://blocklist.addons.mozilla.org/blocklist/3/%APP_ID%/%APP_VERSION%/%PRODUCT%/%BUILD_ID%/%BUILD_TARGET%/%LOCALE%/%CHANNEL%/%OS_VERSION%/%DISTRIBUTION%/%DISTRIBUTION_VERSION%/%PING_COUNT%/%TOTAL_PING_COUNT%/%DAYS_SINCE_LAST_PING%/");
-pref("extensions.blocklist.detailsURL", "https://addons.mozilla.org/%LOCALE%/%APP%/blocked/");
-pref("extensions.blocklist.itemURL", "https://blocklist.addons.mozilla.org/%LOCALE%/%APP%/blocked/%blockID%");
+pref("extensions.blocklist.url", "");
+pref("extensions.blocklist.detailsURL", "");
+pref("extensions.blocklist.itemURL", "");
 
 // Kinto blocklist preferences
-pref("services.kinto.base", "https://firefox.settings.services.mozilla.com/v1");
-pref("services.kinto.changes.path", "/buckets/monitor/collections/changes/records");
+pref("services.kinto.base", "");
+pref("services.kinto.changes.path", "");
 pref("services.kinto.bucket", "blocklists");
 pref("services.kinto.onecrl.collection", "certificates");
 pref("services.kinto.onecrl.checked", 0);
@@ -202,9 +202,9 @@ pref("extensions.logging.enabled", false);
 //  .. etc ..
 //
 pref("extensions.update.enabled", true);
-pref("extensions.update.url", "https://versioncheck.addons.mozilla.org/update/VersionCheck.php?reqVersion=%REQ_VERSION%&id=%ITEM_ID%&version=%ITEM_VERSION%&maxAppVersion=%ITEM_MAXAPPVERSION%&status=%ITEM_STATUS%&appID=%APP_ID%&appVersion=%APP_VERSION%&appOS=%APP_OS%&appABI=%APP_ABI%&locale=%APP_LOCALE%&currentAppVersion=%CURRENT_APP_VERSION%&updateType=%UPDATE_TYPE%&compatMode=%COMPATIBILITY_MODE%");
+pref("extensions.update.url", "");
 
-pref("extensions.update.background.url", "https://versioncheck-bg.addons.mozilla.org/update/VersionCheck.php?reqVersion=%REQ_VERSION%&id=%ITEM_ID%&version=%ITEM_VERSION%&maxAppVersion=%ITEM_MAXAPPVERSION%&status=%ITEM_STATUS%&appID=%APP_ID%&appVersion=%APP_VERSION%&appOS=%APP_OS%&appABI=%APP_ABI%&locale=%APP_LOCALE%&currentAppVersion=%CURRENT_APP_VERSION%&updateType=%UPDATE_TYPE%&compatMode=%COMPATIBILITY_MODE%");
+pref("extensions.update.background.url", "");
 
 pref("extensions.update.interval", 86400);  // Check for updates to Extensions and
                                             // Themes every day
@@ -217,7 +217,7 @@ pref("extensions.{972ce4c6-7e08-4474-a285-3208198ce6fd}.description", "chrome://
 
 pref("lightweightThemes.update.enabled", true);
 
-pref("xpinstall.whitelist.add", "addons.mozilla.org");
+pref("xpinstall.whitelist.add", "addons.thunderbird.net");
 
 pref("general.smoothScroll", true);
 #ifdef UNIX_BUT_NOT_MAC
@@ -402,7 +402,7 @@ pref("browser.display.auto_quality_min_font_size", 0);
 
 pref("view_source.syntax_highlight", false);
 
-pref("toolkit.telemetry.infoURL", "https://www.mozilla.org/thunderbird/legal/privacy/#telemetry");
+pref("toolkit.telemetry.infoURL", "");
 
 pref("mousewheel.withcontrolkey.action", 3);
 /////////////////////////////////////////////////////////////////
@@ -435,7 +435,7 @@ pref("browser.helperApps.deleteTempFileOnExit", true);
 
 pref("spellchecker.dictionary", "");
 // Dictionary download preference
-pref("spellchecker.dictionaries.download.url", "https://addons.mozilla.org/%LOCALE%/%APP%/dictionaries/");
+pref("spellchecker.dictionaries.download.url", "");
 
 // profile.force.migration can be used to bypass the migration wizard, forcing migration from a particular
 // mail application without any user intervention. Possible values are:
@@ -455,7 +455,7 @@ pref("mail.phishing.detection.ipaddresses", true);
 pref("mail.phishing.detection.mismatched_hosts", true);
 pref("mail.phishing.detection.disallow_form_actions", true);
 
-pref("browser.safebrowsing.reportPhishURL", "https://%LOCALE%.phish-report.mozilla.com/?hl=%LOCALE%");
+pref("browser.safebrowsing.reportPhishURL", "");
 
 // prevent status-bar spoofing even if people are foolish enough to turn on JS
 pref("dom.disable_window_status_change",          true);
@@ -489,7 +489,7 @@ pref("mail.tabs.drawInTitlebar", false);
 
 
 // The breakpad report server to link to in about:crashes
-pref("breakpad.reportURL", "https://crash-stats.mozilla.com/report/index/");
+pref("breakpad.reportURL", "");
 
 // OS Integrated Search and Indexing
 #ifdef XP_WIN
@@ -549,7 +549,7 @@ pref("mail.compose.big_attachments.insert_notification", true);
 // has opted out, or an enterprise wants to disable it from the get go.
 pref("mail.instrumentation.askUser", true);
 pref("mail.instrumentation.userOptedIn", false);
-pref("mail.instrumentation.postUrl", "https://www.mozilla.org/instrumentation");
+pref("mail.instrumentation.postUrl", "");
 // not sure how this will be formatted - would be nice to make it extensible.
 pref("mail.instrumentation.lastNotificationSent", "");
 
@@ -745,9 +745,7 @@ pref("dom.ipc.plugins.nativeCursorSupport", true);
 #endif
 
 // plugin finder service url
-pref("pfs.datasource.url", "https://pfs.mozilla.org/plugins/PluginFinderService.
-php?mimetype=%PLUGIN_MIMETYPE%&appID=%APP_ID%&appVersion=%APP_VERSION%&clientOS=
-%CLIENT_OS%&chromeLocale=%CHROME_LOCALE%&appRelease=%APP_RELEASE%");
+pref("pfs.datasource.url", "");
 
 // By default we show an infobar message when pages require plugins that are
 // outdated.
@@ -758,9 +756,9 @@ pref("plugins.use_layers", false);
 pref("plugins.hide_infobar_for_carbon_failure_plugin", false);
 #endif
 
-pref("plugins.update.url", "https://www.mozilla.org/%LOCALE%/plugincheck/");
+pref("plugins.update.url", "");
 pref("plugins.update.notifyUser", false);
-pref("plugins.crash.supportUrl", "https://live.mozillamessaging.com/%APP%/plugin-crashed?locale=%LOCALE%&version=%VERSION%&os=%OS%&buildid=%APPBUILDID%");
+pref("plugins.crash.supportUrl", "");
 
 // Click-to-play has not been ported for TB yet, see bug 814168.
 // The default plugin state should be changed to "ask to activate" when this
@@ -790,8 +788,8 @@ pref("gfx.direct2d.disabled", true);
 #endif
 
 // Account provisioner.
-pref("mail.provider.providerList", "https://broker-live.mozillamessaging.com/provider/list");
-pref("mail.provider.suggestFromName", "https://broker-live.mozillamessaging.com/provider/suggest");
+pref("mail.provider.providerList", "");
+pref("mail.provider.suggestFromName", "");
 pref("mail.provider.enabled", true);
 
 // Pointer to the default engine name.
@@ -828,12 +826,12 @@ pref("mail.chat.play_sound.type", 0);
 pref("mail.chat.play_sound.url", "");
 
 // BigFiles
-pref("mail.cloud_files.enabled", true);
-pref("mail.cloud_files.inserted_urls.footer.link", "http://www.getthunderbird.com");
-pref("mail.cloud_files.learn_more_url", "https://support.mozillamessaging.com/kb/filelink-large-attachments");
+pref("mail.cloud_files.enabled", false);
+pref("mail.cloud_files.inserted_urls.footer.link", "");
+pref("mail.cloud_files.learn_more_url", "");
 
 // Ignore threads
-pref("mail.ignore_thread.learn_more_url", "https://support.mozillamessaging.com/kb/ignore-threads");
+pref("mail.ignore_thread.learn_more_url", "");
 
 // Sanitize dialog window
 pref("privacy.cpd.history", true);
@@ -852,7 +850,7 @@ pref("privacy.sanitize.timeSpan", 1);
 pref("privacy.userContext.enabled", false);
 
 // PgpMime Proxy
-pref("mail.pgpmime.addon_url", "https://addons.mozilla.org/thunderbird/addon/enigmail/");
+pref("mail.pgpmime.addon_url", "");
 
 // If set to true, Thunderbird will collapse the main menu for new profiles
 // (or, more precisely, profiles that start with no accounts created).
