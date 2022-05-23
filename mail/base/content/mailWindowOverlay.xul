@@ -2089,6 +2089,7 @@
                   label="&devtoolsMenu.label;"
                   accesskey="&devtoolsMenu.accesskey;">
               <menupopup id="appmenu_devtoolsPopup">
+#ifdef MOZ_DEVTOOLS
                 <menuitem id="appmenu_devtoolsToolbox"
                           label="&devToolboxCmd.label;"
                           accesskey="&devToolboxCmd.accesskey;"
@@ -2103,16 +2104,19 @@
                           accesskey="&tabsDebugCmd.accesskey;"
                           oncommand="openAboutDebugging('tabs')"/>
                 <menuseparator id="appmenu_debuggingSeparator"/>
+#endif
                 <menuitem id="appmenu_javascriptConsole"
                           label="&errorConsoleCmd.label;"
                           accesskey="&errorConsoleCmd.accesskey;"
                           key="key_errorConsole"
                           oncommand="toJavaScriptConsole();"/>
+#ifdef MOZ_DEVTOOLS
                 <menuitem id="appmenu_openScratchpad"
                           label="&scratchpadCmd.label;"
                           accesskey="&scratchpadCmd.accesskey;"
                           key="key_scratchpad"
                           oncommand="ScratchpadManager.openScratchpad({ executionContext: 2 });"/>
+#endif
               </menupopup>
             </menu>
             <menuitem id="appmenu_sanitizeHistory"
@@ -2967,6 +2971,7 @@
                   oncommand="toImport();"/>
         <menu id="devtoolsMenu" label="&devtoolsMenu.label;" accesskey="&devtoolsMenu.accesskey;">
           <menupopup id="devtoolsPopup">
+#ifdef MOZ_DEVTOOLS
             <menuitem id="devtoolsToolbox"
                       label="&devToolboxCmd.label;"
                       accesskey="&devToolboxCmd.accesskey;"
@@ -2981,16 +2986,19 @@
                       accesskey="&tabsDebugCmd.accesskey;"
                       oncommand="openAboutDebugging('tabs')"/>
             <menuseparator id="debuggingSeparator"/>
+#endif
             <menuitem id="javascriptConsole"
                       label="&errorConsoleCmd.label;"
                       accesskey="&errorConsoleCmd.accesskey;"
                       key="key_errorConsole"
                       oncommand="toJavaScriptConsole();"/>
+#ifdef MOZ_DEVTOOLS
             <menuitem id="openScratchpad"
                       label="&scratchpadCmd.label;"
                       accesskey="&scratchpadCmd.accesskey;"
                       key="key_scratchpad"
                       oncommand="ScratchpadManager.openScratchpad({ executionContext: 2 });"/>
+#endif
           </menupopup>
         </menu>
         <menuitem id="sanitizeHistory"
