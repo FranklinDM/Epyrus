@@ -5,6 +5,7 @@
 
 MOZ_APP_BASENAME=Epyrus
 MOZ_APP_NAME=epyrus
+MOZ_APP_VENDOR=athenian200
 MOZ_UPDATER=1
 MOZ_THUNDERBIRD=1
 # Disables SeaMonkey Account Creation tool, even though we are not IceDove-UXP.
