@@ -50,7 +50,7 @@ Var PageName
 !define NONADMIN_ELEVATE
 
 ; Disabled until a survey url is provided
-!define AbortSurveyURL "http://live.mozillamessaging.com/survey/cancel/?page="
+!define AbortSurveyURL ""
 
 ; Other included files may depend upon these includes!
 ; The following includes are provided by NSIS.
