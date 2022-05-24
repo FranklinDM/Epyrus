@@ -6,7 +6,7 @@
   background-image: url("chrome://branding/content/about-background.png");
   background-repeat: no-repeat;
   background-color: #3465a4;
-  color: #fff;
+  color: #113;
 }
 
 .text-link {
@@ -14,7 +14,7 @@
 }
 
 .bottom-link {
-  color: #fff !important;
+  color: #113 !important;
 }
 
 #rightBox {
