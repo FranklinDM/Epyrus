@@ -536,7 +536,7 @@ pref("mail.compose.attachment_reminder_keywords", "chrome://messenger/locale/mes
 pref("mail.compose.attachment_reminder_aggressive", true);
 
 // True if the user should be notified when attaching big files
-pref("mail.compose.big_attachments.notify", true);
+pref("mail.compose.big_attachments.notify", false);
 // Size (in kB) to automatically prompt for conversion of attachments to
 // cloud links
 pref("mail.compose.big_attachments.threshold_kb", 5120);
