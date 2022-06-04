@@ -1960,7 +1960,7 @@ function MsgForwardAsInline(event)
 
 function MsgEditMessageAsNew(aEvent)
 {
-  composeMsgByType(Components.interfaces.nsIMsgCompType.Template, aEvent);
+  composeMsgByType(Components.interfaces.nsIMsgCompType.EditAsNew, aEvent);
 }
 
 function MsgEditDraftMessage(aEvent)

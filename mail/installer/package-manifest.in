@@ -179,6 +179,7 @@
 @RESPATH@/components/msgimap.xpt
 @RESPATH@/components/msglocal.xpt
 @RESPATH@/components/msgnews.xpt
+@RESPATH@/components/msgOAuth2Module.js
 @RESPATH@/components/msgsearch.xpt
 @RESPATH@/components/import.xpt
 @RESPATH@/components/mailcompsbase.xpt

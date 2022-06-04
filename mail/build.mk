@@ -9,6 +9,9 @@ installer:
 package:
 	@$(MAKE) -C mail/installer make-archive
 
+l10n-package:
+	@$(MAKE) -C mail/installer make-langpack
+
 package-compare:
 	@$(MAKE) -C mail/installer package-compare
 
