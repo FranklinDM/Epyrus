@@ -156,13 +156,13 @@ pref("extensions.autoDisableScopes", 0);
 // Preferences for AMO integration
 pref("extensions.getAddons.cache.enabled", true);
 pref("extensions.getAddons.maxResults", 15);
-pref("extensions.getAddons.get.url", "");
-pref("extensions.getAddons.getWithPerformance.url", "");
-pref("extensions.getAddons.link.url", "");
-pref("extensions.getAddons.recommended.url", "");
-pref("extensions.getAddons.search.browseURL", "");
-pref("extensions.getAddons.search.url", "");
-pref("extensions.webservice.discoverURL", "");
+pref("extensions.getAddons.get.url", "http://localhost");
+pref("extensions.getAddons.getWithPerformance.url", "http://localhost");
+pref("extensions.getAddons.link.url", "http://localhost");
+pref("extensions.getAddons.recommended.url", "http://localhost");
+pref("extensions.getAddons.search.browseURL", "http://localhost");
+pref("extensions.getAddons.search.url", "http://localhost");
+pref("extensions.webservice.discoverURL", "http://localhost");
 
 // Blocklist preferences
 pref("extensions.blocklist.enabled", false);
