@@ -7,7 +7,7 @@
 
 # BrandFullNameInternal is used for some registry and file system values
 # instead of BrandFullName and typically should not be modified.
-!define BrandFullNameInternal "Hermopolis"
+!define BrandFullNameInternal "Epyrus"
 !define CompanyName           "athenian200"
 !define URLInfoAbout          "https://repo.palemoon.org/athenian200"
 !define URLUpdateInfo         ""

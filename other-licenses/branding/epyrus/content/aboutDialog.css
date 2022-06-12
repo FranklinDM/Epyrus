@@ -5,25 +5,28 @@
 #aboutDialogContainer {
   background-image: url("chrome://branding/content/about-background.png");
   background-repeat: no-repeat;
-  background-color: #3465a4;
-  color: #113;
+  background-color: #1a1a1a;
+  color: #ffffff;
+  min-width: 640px;
+  min-height: 280px;
 }
 
 .text-link {
-  color: #113 !important;
+  color: #e8d84f !important;
 }
 
 .bottom-link {
-  color: #FFF !important;
-}  
+  color: #0000ff !important;
+}
 
 #rightBox {
   /* this margin prevents text from overlapping the egg image */
-  margin-left: 280px;
+  margin-left: 320px;
   margin-right: 20px;
 }
 
 #bottomBox {
-  background-color: #2a3569;
-  color: #ffffff
+  margin-top: 130px;
+  background-color: #e8d84f;
+  color: #000000;
 }

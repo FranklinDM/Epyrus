@@ -1,10 +1,10 @@
 def test(mod, path, entity=None):
   import re
-  # ignore anything but Thunderbird
+  # ignore anything but Epyrus
   if mod not in ("netwerk", "dom", "toolkit", "security/manager",
                  "devtools/shared", "devtools/client",
                  "mail", "editor/ui", "extensions/spellcheck",
-                 "other-licenses/branding/thunderbird"):
+                 "other-licenses/branding/epyrus"):
     return "ignore"
 
   # ignore MOZ_LANGPACK_CONTRIBUTORS
