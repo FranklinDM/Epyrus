@@ -185,10 +185,6 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
   z-index: 1;
 }
 
-#messengerWindow:not([tabsintitlebar]) #titlebar {
-  visibility: collapse;
-}
-
 #titlebar-spacer {
   pointer-events: none;
 }
@@ -200,6 +196,12 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
 
 #messengerWindow[sizemode="maximized"] #titlebar-buttonbox {
   -moz-appearance: -moz-window-button-box-maximized;
+}
+
+@media (-moz-windows-classic) {
+  #messengerWindow[sizemode="normal"] > #titlebar > #titlebar-content > #appmenu-button-container {
+    margin-top: 4px;
+  }
 }
 
 #titlebar-min {
@@ -222,6 +224,10 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
 
 #titlebar-close {
   -moz-appearance: -moz-window-button-close;
+}
+
+#messengerWindow[tabsintitlebar] .titlebar-placeholder[type="appmenu-button"] {
+  margin-right: 4px;
 }
 
 #messengerWindow[tabsintitlebar] .titlebar-placeholder[type="caption-buttons"] {
@@ -254,6 +260,10 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
     }
   }
 
+  #messengerWindow[chromemargin^="0,"][sizemode=normal] #navigation-toolbox {
+    margin-top: -7px;
+  }
+
   /* Artificially draw window borders that are covered by lwtheme,
      see bug 591930. Vista/win7 are using different colors than win8 */
   @media (-moz-os-version: windows-win7) {
@@ -266,6 +276,10 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
     #messengerWindow[sizemode="normal"] > #titlebar >
     #titlebar-content:-moz-lwtheme:-moz-window-inactive {
       -moz-border-top-colors: rgb(102, 102, 102) rgba(255, 255, 255, 0.6);
+    }
+
+    #messengerWindow[sizemode="normal"]:-moz-lwtheme > #titlebar > #titlebar-content > #appmenu-button-container {
+      margin-top: -1px;
     }
   }
 
@@ -422,6 +436,13 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
       background-color: hsl(0, 0%, 95%);
     }
 
+    /* If we don't have [chromemargin], it means the menubar is active; set the
+       window background to transparent in that case to match it with the DWM
+       color and prevent a drawing delay between title bar and UI region */
+    #messengerWindow:not([chromemargin]):not(:-moz-lwtheme) {
+      background-color: transparent;
+    }
+
     #titlebar-buttonbox,
     .titlebar-button {
       -moz-appearance: none !important;
@@ -446,6 +467,10 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
 
     .titlebar-button:not(:hover) > .toolbarbutton-icon:-moz-window-inactive {
       opacity: 0.5;
+    }
+
+    #messengerWindow[chromemargin^="0,"][sizemode=normal] #navigation-toolbox {
+      margin-top: -4px;
     }
 
     #messengerWindow[sizemode="maximized"] #titlebar-close {
@@ -618,10 +643,6 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
 
   #messengerWindow[sizemode="normal"] #titlebar-buttonbox:-moz-lwtheme {
     margin-top: -2px;
-  }
-
-  #mail-toolbar-menubar2 > .titlebar-placeholder {
-    display: none;
   }
 
   #tabs-toolbar:not(:-moz-lwtheme),

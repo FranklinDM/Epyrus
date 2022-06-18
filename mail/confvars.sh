@@ -23,6 +23,11 @@ MOZ_SECURITY_SQLSTORE=1
 NSS_DISABLE_DBM=1
 MOZ_CHROME_FILE_FORMAT=omni
 
+if test "$OS_ARCH" = "WINNT"; then
+  # Platform Feature: Enable drawing in the titlebar on Windows
+  MOZ_CAN_DRAW_IN_TITLEBAR=1
+fi
+
 MOZ_SAFE_BROWSING=1
 MOZ_MORK=1
 

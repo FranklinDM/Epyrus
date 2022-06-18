@@ -10,6 +10,7 @@
 <?xml-stylesheet href="chrome://messenger/content/tabmail.css" type="text/css"?>
 <?xml-stylesheet href="chrome://messenger/skin/tabmail.css" type="text/css"?>
 <?xml-stylesheet href="chrome://messenger/skin/messengerLWTheme.css" type="text/css"?>
+<?xml-stylesheet href="chrome://messenger/content/messenger-title.css" type="text/css"?>
 
 <?xul-overlay href="chrome://communicator/content/utilityOverlay.xul"?>
 <?xul-overlay href="chrome://messenger/content/msgHdrViewOverlay.xul"?>
@@ -223,6 +224,16 @@
 #ifdef CAN_DRAW_IN_TITLEBAR
 <vbox id="titlebar">
   <hbox id="titlebar-content">
+#ifdef MENUBAR_CAN_AUTOHIDE
+    <hbox id="appmenu-button-container">
+      <button id="appmenu-button"
+              type="menu"
+              label="&brandShortName;"
+              tooltiptext="&appMenuButton.tooltip;"
+              style="-moz-user-focus: ignore;">
+      </button>
+    </hbox>
+#endif
     <spacer id="titlebar-spacer" flex="1"/>
     <hbox id="titlebar-buttonbox-container" align="start">
       <hbox id="titlebar-buttonbox">
@@ -238,10 +249,23 @@
 </vbox>
 #endif
 
+#if defined(MENUBAR_CAN_AUTOHIDE) && !defined(MOZ_CAN_DRAW_IN_TITLEBAR)
+#define APPMENU_ON_TABBAR
+#endif
+
   <!-- navigation-toolbox is augmented by mailWindowOverlay.xul -->
   <toolbox id="navigation-toolbox" class="toolbox-top">
 
     <toolbar id="tabs-toolbar" class="toolbar-primary">
+
+#ifdef APPMENU_ON_TABBAR
+      <toolbarbutton id="appmenu-toolbar-button"
+                     class="chromeclass-toolbar-additional"
+                     type="menu"
+                     label="&brandShortName;"
+                     tooltiptext="&appMenuButton.tooltip;">
+      </toolbarbutton>
+#endif
 
       <tabs flex="1"
             id="tabcontainer"
@@ -279,6 +303,11 @@
                    tabcontainer="tabcontainer"/>
       </toolbarbutton>
 #ifdef CAN_DRAW_IN_TITLEBAR
+#ifdef MENUBAR_CAN_AUTOHIDE
+      <hbox class="titlebar-placeholder" type="appmenu-button"
+            id="titlebar-placeholder-on-TabsToolbar-for-appmenu-button" ordinal="0" persist="width"
+            />
+#endif
       <hbox class="titlebar-placeholder" type="caption-buttons"
             id="titlebar-placeholder-on-TabsToolbar-for-captions-buttons" persist="width"
 #ifndef XP_MACOSX

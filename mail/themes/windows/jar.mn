@@ -34,6 +34,7 @@ classic.jar:
   skin/classic/messenger/accountCreation.css                  (mail/accountCreation.css)
   skin/classic/messenger/accountManage.css                    (mail/accountManage.css)
   skin/classic/messenger/accountWizard.css                    (mail/accountWizard.css)
+  skin/classic/messenger/appmenu-dropmarker.png               (mail/appmenu-dropmarker.png)
   skin/classic/messenger/userIcon.png                         (mail/userIcon.png)
   skin/classic/messenger/browserRequest.css                   (mail/browserRequest.css)
   skin/classic/messenger/section_collapsed.png                (mail/section_collapsed.png)

@@ -349,6 +349,22 @@ treechildren::-moz-tree-cell-text {
   padding-inline-start: 5px;
 }
 
+/* ::::: App Menu on Tabbar ::::: */
+
+#appmenu-toolbar-button:not(:hover):not([open]):not(:-moz-lwtheme) {
+  color: inherit;
+}
+
+#appmenu-toolbar-button > .toolbarbutton-text,
+#appmenu-toolbar-button > .toolbarbutton-menu-dropmarker {
+  margin-top: -2px !important;
+  margin-bottom: -2px !important;
+}
+
+#wrapper-appmenu-toolbar-button {
+  opacity: .3;
+}
+
 /* ::::: Notifications ::::: */
 
 notification[type="critical"] .messageCloseButton:not(:hover):not(:active) {

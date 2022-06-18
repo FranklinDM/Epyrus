@@ -2850,4 +2850,25 @@
       <handler event="keypress" key=" " action="this._setupAppmenu(event);"/>
     </handlers>
   </binding>
+
+  <binding id="appmenu-primary" extends="chrome://global/content/bindings/button.xml#menu">
+    <implementation>
+      <method name="_setupAppmenu">
+        <parameter name="event"/>
+        <body><![CDATA[
+          if (event.target == this) {
+              let appmenuPopup = document.getElementById("appmenu-popup");
+              if (this.lastChild != appmenuPopup) {
+                this.appendChild(appmenuPopup);
+              }
+          }
+        ]]></body>
+      </method>
+    </implementation>
+    <handlers>
+      <!-- See comment for the appmenu-vertical binding. -->
+      <handler event="mousedown" button="0" action="this._setupAppmenu(event);"/>
+      <handler event="keypress" key=" " action="this._setupAppmenu(event);"/>
+    </handlers>
+  </binding>
 </bindings>
