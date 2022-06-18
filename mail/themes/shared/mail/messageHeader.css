@@ -28,6 +28,11 @@
   display: block;
 }
 
+#attachment-view-toolbox,
+#header-view-toolbox {
+  border: none;
+}
+
 /* ::::: expanded header pane ::::: */
 
 #expandedsubjectBox > .headerValue {

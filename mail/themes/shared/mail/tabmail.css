@@ -3,63 +3,70 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
 #tabs-toolbar {
-  --tabHeight: 31px;
-  --tabCurveWidth: 30px;
-  --tabCurveWidthNegative: -30px;
-  --tabCurveHalfWidth: 15px;
-  --tabCurveHalfWidthNegative: -15px;
-  --tabBackgroundImage: url("chrome://messenger/skin/tabs/background-start.png"),
-                        url("chrome://messenger/skin/tabs/background-middle.png"),
-                        url("chrome://messenger/skin/tabs/background-end.png");
-  --tab-stroke-background-size: auto 100%;
-  --tab-separator-opacity: 0.2;
+  --tab-height: 25px;
+  --tab-border-radius: 6px;
+
+  --tab-background: linear-gradient(transparent, hsla(0,0%,45%,.1) 1px, hsla(0,0%,32%,.2) 80%, hsla(0,0%,0%,.2));
+  --tab-background-hover: linear-gradient(hsla(0,0%,100%,.3) 1px, hsla(0,0%,75%,.2) 80%, hsla(0,0%,60%,.2));
+  --tab-background-shadow: linear-gradient(to top, rgba(10%,10%,10%,.4) 1px, transparent 1px);
+
+  --tab-box-shadow: inset 0.5px 1px 1px var(--tab-selected-highlight);
+  --tab-selected-highlight: rgba(255,255,255,.7);
 }
 
 #tabs-toolbar[brighttext] {
-  --tab-separator-opacity: 0.4;
-}
-
-/* image preloading hack */
-#tabs-toolbar::before {
-  /* Because of bug 853415, we need to ordinal this to the first position: */
-  -moz-box-ordinal-group: 0;
-  content: '';
-  display: block;
-  background-image: var(--tabBackgroundImage);
 }
 
 .tabmail-tab {
   -moz-appearance: none;
-  -moz-box-align: stretch;
-  background-color: transparent;
-  border-radius: 0;
-  border-width: 0;
-  margin: 0;
-  padding: 0;
+  background: var(--tab-background-shadow), var(--tab-background),
+              linear-gradient(var(--toolbar-custom-color), var(--toolbar-custom-color));
+  background-clip: padding-box;
+  padding: 3px 1px 4px;
+  /* Setting a transparent outer border allows us to have a 1px gap
+     between the tabs and the top edge of the screen, even when the
+     tabs have a top margin of 0, which is important for Fitts' law
+     compliance */
+  border: 1.6px solid;
+  border-bottom: none;
+  border-radius: var(--tab-border-radius) var(--tab-border-radius) 0px 0px;
+  -moz-border-top-colors: transparent #929292;
+  -moz-border-left-colors: transparent #929292;
+  -moz-border-right-colors: transparent #929292;
+  /* Hide the transparent top border by default */
+  margin-top: -1px;
+  /* Reduce the gap between the tabs */
+  margin-inline-start: -1px;
+  box-shadow: var(--tab-box-shadow);
+  padding-inline-end: 3px;
+  min-height: var(--tab-height);
 }
 
-/* The selected tab should appear above adjacent tabs and the highlight
-   of #tabs-toolbar */
+@media (min-resolution: 1.25dppx) {
+  /* XXX: At 120 DPI and higher, we restore the gap between tabs and adjust to
+     the platform's handling of rounding fractional units. See UXP#1930. */
+  .tabmail-tab {
+    margin-inline-start: 0;
+  }
+}
+
+.tabmail-tab:hover {
+  background-image: var(--tab-background-shadow), var(--tab-background-hover),
+                    linear-gradient(var(--toolbar-custom-color), var(--toolbar-custom-color));
+}
+
 .tabmail-tab[selected=true] {
-  position: relative;
-  z-index: 2;
+  background-image: linear-gradient(var(--tab-selected-highlight), var(--toolbar-highlight-top) 50%),
+                    linear-gradient(var(--toolbar-custom-color), var(--toolbar-custom-color));
 }
 
 .tabmail-tab[type="preferencesTab"] {
   list-style-image: url("chrome://mozapps/skin/extensions/utilities.svg#utilities");
 }
 
-.tab-background-middle {
-  -moz-box-flex: 1;
-  background-clip: padding-box;
-  border-left: var(--tabCurveHalfWidth) solid transparent;
-  border-right: var(--tabCurveHalfWidth) solid transparent;
-  margin: 0 var(--tabCurveHalfWidthNegative);
-}
-
 .tab-content {
-  padding-inline-end: 9px;
-  padding-inline-start: 9px;
+  padding-inline-end: 1px;
+  padding-inline-start: 1px;
 }
 
 .tab-throbber,
@@ -90,175 +97,8 @@
   padding: 0;
 }
 
-.tab-background {
-  /* overlap the tab curves */
-  margin-inline-end: var(--tabCurveHalfWidthNegative);
-  margin-inline-start: var(--tabCurveHalfWidthNegative);
-}
-
-.tabmail-arrowscrollbox > scrollbox {
-  padding-inline-end: var(--tabCurveHalfWidth);
-  padding-inline-start: var(--tabCurveHalfWidth);
-}
-
-.tab-background-start[selected=true]::after,
-.tab-background-start[selected=true]::before,
-.tab-background-start,
-.tab-background-end,
-.tab-background-end[selected=true]::after,
-.tab-background-end[selected=true]::before {
-  min-height: var(--tabHeight);
-  width: var(--tabCurveWidth);
-}
-
 .tabmail-tab:-moz-lwtheme {
   color: inherit;
-}
-
-/* Selected tab */
-
-/*
- Tab background pseudo-elements which are positioned above
- .tab-background-start/end:
-   - ::before - provides the fill of the tab curve and is clipped to the tab
-                shape. This is where pointer events go for the curve.
-   - ::after  - provides the border/stroke of the tab curve and is overlayed
-                above ::before.  Pointer events go through to ::before to get
-                the proper shape.
- */
-
-
-.tab-background-start[selected=true]::after,
-.tab-background-end[selected=true]::after {
-  /* position ::after on top of its parent */
-  margin-inline-start: var(--tabCurveWidthNegative);
-  background-size: 100% 100%;
-  content: '';
-  display: -moz-box;
-  position: relative;
-}
-
-.tab-background-start[selected=true]::before,
-.tab-background-end[selected=true]::before {
-  /* all ::before pseudo elements */
-  content: '';
-  display: -moz-box;
-}
-
-.tab-background-start[selected=true]:-moz-locale-dir(ltr):not(:-moz-lwtheme)::before,
-.tab-background-end[selected=true]:-moz-locale-dir(rtl):not(:-moz-lwtheme)::before {
-  background-image: url("chrome://messenger/skin/tabs/selected-start.svg");
-  background-size: 100% 100%;
-}
-
-.tab-background-end[selected=true]:-moz-locale-dir(ltr):not(:-moz-lwtheme)::before,
-.tab-background-start[selected=true]:-moz-locale-dir(rtl):not(:-moz-lwtheme)::before {
-  background-image: url("chrome://messenger/skin/tabs/selected-end.svg");
-  background-size: 100% 100%;
-}
-
-/* For lightweight themes, clip the header image on start, middle, and end. */
-.tab-background-start[selected=true]:-moz-locale-dir(ltr):-moz-lwtheme::before,
-.tab-background-end[selected=true]:-moz-locale-dir(rtl):-moz-lwtheme::before {
-  clip-path: url(chrome://messenger/content/messenger.xul#tab-curve-clip-path-start);
-}
-
-.tab-background-end[selected=true]:-moz-locale-dir(ltr):-moz-lwtheme::before,
-.tab-background-start[selected=true]:-moz-locale-dir(rtl):-moz-lwtheme::before {
-  clip-path: url(chrome://messenger/content/messenger.xul#tab-curve-clip-path-end);
-}
-
-.tab-background-start[selected=true]:-moz-locale-dir(ltr)::after,
-.tab-background-end[selected=true]:-moz-locale-dir(rtl)::after {
-  background-image: url("chrome://messenger/skin/tabs/stroke-start.png");
-}
-
-.tab-background-end[selected=true]:-moz-locale-dir(ltr)::after,
-.tab-background-start[selected=true]:-moz-locale-dir(rtl)::after {
-  background-image: url("chrome://messenger/skin/tabs/stroke-end.png");
-}
-
-.tab-background-middle[selected=true] {
-  background-clip: padding-box, padding-box, content-box;
-  background-color: var(--fgTabBackgroundColor);
-  background-image: url("chrome://messenger/skin/tabs/active-middle.png"),
-                    var(--fgTabTexture),
-                    none;
-  background-repeat: repeat-x;
-  background-size: var(--tab-stroke-background-size), auto 100%;
-  /* The padding-top combined with background-clip: content-box
-     (the bottom-most) ensure the background-color doesn't extend
-     above the top border. */
-  padding-top: 2px;
-}
-
-.tab-background-start[selected=true]:-moz-lwtheme::before,
-.tab-background-end[selected=true]:-moz-lwtheme::before,
-.tab-background-middle[selected=true]:-moz-lwtheme {
-  background-color: transparent;
-}
-
-@media (min-resolution: 1.1dppx) {
-  #tabs-toolbar {
-    --tabBackgroundImage: url(chrome://messenger/skin/tabs/background-start@2x.png),
-                          url(chrome://messenger/skin/tabs/background-middle@2x.png),
-                          url(chrome://messenger/skin/tabs/background-end@2x.png);
-  }
-
-  .tab-background-middle[selected=true] {
-    background-image: url(chrome://messenger/skin/tabs/active-middle@2x.png),
-                      var(--fgTabTexture),
-                      none;
-  }
-
-  .tab-background-start[selected=true]:-moz-locale-dir(ltr)::after,
-  .tab-background-end[selected=true]:-moz-locale-dir(rtl)::after {
-    background-image: url(chrome://messenger/skin/tabs/stroke-start@2x.png);
-  }
-
-  .tab-background-end[selected=true]:-moz-locale-dir(ltr)::after,
-  .tab-background-start[selected=true]:-moz-locale-dir(rtl)::after {
-    background-image: url(chrome://messenger/skin/tabs/stroke-end@2x.png);
-  }
-}
-
-/* End selected tab */
-
-/* new tab button border and gradient on hover */
-.tabmail-tab:hover > .tab-stack > .tab-background:not([selected=true]) {
-  background-image: var(--tabBackgroundImage);
-  background-position: left bottom, var(--tabCurveWidth) bottom, right bottom;
-  background-repeat: no-repeat;
-  background-size: var(--tabCurveWidth) 100%,
-                   calc(100% - (2 * var(--tabCurveWidth))) 100%,
-                   var(--tabCurveWidth) 100%;
-}
-
-/* Tab pointer-events */
-.tabmail-tab {
-  pointer-events: none;
-}
-
-.tab-background-middle,
-.tab-close-button {
-  pointer-events: auto;
-}
-
-/* Tab separators */
-.tabmail-tab::before {
-  margin-top: 5px;
-  margin-bottom: 4px;
-  margin-inline-start: -1px;
-  border-left: 1px solid currentColor;
-  opacity: 0;
-  content: '';
-  display: -moz-box;
-}
-
-.tabmail-tab:not([selected]):not(:hover) +
-.tabmail-tab:not([selected]):not(:hover)::before {
-  opacity: var(--tab-separator-opacity);
-  transition: opacity 100ms ease;
 }
 
 /* Tab Overflow */

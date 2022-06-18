@@ -10,31 +10,9 @@
       stroke-width: 1;
     }
     .normal {
-      fill: #505050;
-      fill-opacity: 0.8;
-      stroke: #404040;
-    }
-    @media (-moz-windows-default-theme) and (-moz-os-version: windows-win8) {
-      .normal {
-        fill: #797c80;
-        fill-opacity: 1;
-        stroke: none;
-      }
-    }
-    @media (-moz-windows-default-theme) and (-moz-os-version: windows-win10) {
-      .normal {
-        fill: #4c4c4c;
-        fill-opacity: 1;
-        stroke: none;
-      }
-    }
-    @media (-moz-windows-default-theme) and (-moz-os-version: windows-vista),
-       (-moz-windows-default-theme) and (-moz-os-version: windows-win7) {
-      .normal {
-        fill: url(#win1);
-        fill-opacity: 1;
-        stroke: url(#win2);
-      }
+      fill: url(#win1);
+      fill-opacity: 1;
+      stroke: url(#win2);
     }
     @media (-moz-mac-yosemite-theme) {
       .normal {

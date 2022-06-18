@@ -156,52 +156,6 @@ toolbar[brighttext] #button-print {
   list-style-image: url("chrome://messenger/skin/messengercompose/compose-toolbar.svg#print-inverted");
 }
 
-/* ::::: menulists on toolbar ::::: */
-
-menulist {
-  -moz-appearance: none;
-  min-height: 24px;
-  color: inherit;
-  margin: 1px 4px;
-  padding: 1px 6px;
-  border: 1px solid;
-  background: var(--toolbarbutton-hover-background);
-  border-color: var(--toolbarbutton-hover-bordercolor);
-  box-shadow: var(--toolbarbutton-hover-boxshadow);
-  transition: background-color 150ms;
-}
-
-menulist:not([disabled="true"]):not([open="true"]):hover {
-  background: var(--toolbarbutton-active-background);
-  border-color: var(--toolbarbutton-active-bordercolor);
-}
-
-menulist[open="true"] {
-  background: var(--toolbarbutton-active-background);
-  border-color: var(--toolbarbutton-active-bordercolor);
-  box-shadow: var(--toolbarbutton-active-boxshadow);
-}
-
-menulist[disabled="true"] {
-  opacity: .6;
-}
-
-menulist > .menulist-label-box {
-  -moz-appearance: none;
-  padding-inline-end: 12px;
-  background-repeat: no-repeat;
-  background-position: right;
-  background-image: url("chrome://messenger/skin/icons/toolbarbutton-arrow.png");
-}
-
-menulist:-moz-locale-dir(rtl) > .menulist-label-box {
-  background-position: left;
-}
-
-toolbar[brighttext] menulist > .menulist-label-box {
-  background-image: url("chrome://messenger/skin/icons/toolbarbutton-arrow-inverted.png");
-}
-
 /* ::::: special toolbar colors ::::: */
 
 #attachmentbucket-sizer {
@@ -257,31 +211,6 @@ toolbar[brighttext] menulist > .menulist-label-box {
   margin-inline-start: -2px;
 }
 
-#msgSubject {
-  -moz-appearance: none;
-  margin-top: 0;
-  margin-inline-start: 6px;
-  margin-inline-end: 5px;
-  background-color: inherit;
-  border-color: transparent;
-  -moz-border-top-colors: none;
-  -moz-border-left-colors: none;
-  -moz-border-right-colors: none;
-  -moz-border-bottom-colors: ThreeDShadow ThreeDHighlight;
-  padding: 2px;
-  padding-inline-start: 5px !important;
-  transition: border .2s, background-color .2s;
-}
-
-#msgSubject:hover,
-#msgSubject[focused="true"] {
-  background-color: -moz-field;
-  -moz-border-top-colors: ThreeDShadow ThreeDHighlight;
-  -moz-border-right-colors: ThreeDShadow ThreeDHighlight;
-  -moz-border-bottom-colors: ThreeDShadow ThreeDHighlight;
-  -moz-border-left-colors: ThreeDShadow ThreeDHighlight;
-}
-
 /* ::::: autocomplete icons ::::: */
 
 treechildren::-moz-tree-image(local-abook) {
@@ -319,46 +248,34 @@ treechildren::-moz-tree-image(subscribed-news) {
   -moz-user-focus: none;
   -moz-appearance: none;
   width: 0;
-  margin-top: 0;
-  margin-bottom: 0;
   border: none;
   background-color: transparent;
 }
 
 #addressingWidget listboxbody {
   margin: 1px 0;
-  background-color: transparent;
+}
+
+#textcol-addressingWidget {
+  border: 1px solid threedshadow;
+  background-color: -moz-field;
 }
 
 .addressingWidgetItem,
 .dummy-row {
+  border: none !important;
   background-color: transparent !important;
   color: inherit !important;
 }
 
-.textbox-addressingWidget,
-.dummy-row-cell:not(:first-child) {
-  padding: 2px !important;
-  border: solid 2px transparent !important;
-  -moz-border-top-colors: none !important;
-  -moz-border-left-colors: none !important;
-  -moz-border-right-colors: none !important;
-  -moz-border-bottom-colors: ThreeDShadow ThreeDHighlight !important;
-  transition: border .2s, background-color .2s;
- }
+.addressingWidgetCell {
+  border-bottom: 1px solid #CACAFF;
+  padding: 0px;
+}
 
 .addressingWidgetCell:first-child,
 .dummy-row-cell:first-child {
   border-bottom-color: transparent;
-}
-
-.textbox-addressingWidget[focused="true"],
-.textbox-addressingWidget:hover {
-  background-color: -moz-field;
-  -moz-border-top-colors: ThreeDShadow ThreeDHighlight !important;
-  -moz-border-right-colors: ThreeDShadow ThreeDHighlight !important;
-  -moz-border-bottom-colors: ThreeDShadow ThreeDHighlight !important;
-  -moz-border-left-colors: ThreeDShadow ThreeDHighlight !important;
 }
 
 .aw-menulist {
@@ -404,36 +321,8 @@ treechildren::-moz-tree-image(subscribed-news) {
   height: 11px;
 }
 
-#composeContentBox {
-  background-color: -moz-dialog;
-  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.4) inset;
-
-  /*
-   * In order to remove the shadow border on left/right edges elegantly,
-   * use left/right margins of -3px. We make up for this by adding 3px
-   * of padding instead.
-   */
-
-  margin-right: -3px;
-  margin-left: -3px;
-  padding-right: 3px;
-  padding-left: 3px;
-}
-
-#composeContentBox:-moz-window-inactive {
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.3) inset;
-}
-
 #headers-box {
   background-color: transparent;
-}
-
-#MsgHeadersToolbar {
-  -moz-appearance: none !important;
-  color: WindowText;
-  text-shadow: none;
-  background-image: url("chrome://messenger/skin/messengercompose/linux-noise.png");
-  padding-top: 3px;
 }
 
 #identityLabel {
@@ -453,48 +342,6 @@ treechildren::-moz-tree-image(subscribed-news) {
   background-color: rgba(125, 125, 125, .4);
 }
 
-#msgIdentity {
-  -moz-appearance: none;
-  -moz-box-align: center;
-  margin-right: 5px;
-  margin-bottom: 0;
-  padding-top: 1px;
-  padding-bottom: 1px;
-  padding-inline-start: 2px;
-  background: transparent;
-  height: 22px;
-  line-height: 1;
-  border: 2px solid transparent;
-  -moz-border-bottom-colors: ThreeDShadow ThreeDHighlight;
-  transition: border .2s, background-color .2s;
-}
-
-#msgIdentity:hover,
-#msgIdentity[focused="true"] {
-  background-color: -moz-field;
-  -moz-border-top-colors: ThreeDShadow ThreeDHighlight;
-  -moz-border-right-colors: ThreeDShadow ThreeDHighlight;
-  -moz-border-bottom-colors: ThreeDShadow ThreeDHighlight;
-  -moz-border-left-colors: ThreeDShadow ThreeDHighlight;
-}
-
-#msgIdentity > .menulist-editable-box {
-  -moz-appearance: none;
-  padding-top: 0;
-  padding-bottom: 0;
-  padding-inline-start: 3px;
-  height: 1.4em;
-}
-
-#msgIdentity[editable="true"] > .menulist-dropmarker {
-  -moz-appearance: none;
-  display: -moz-box;
-  margin-inline-start: 4px;
-  border: none;
-  background: transparent;
-  list-style-image: url("chrome://messenger/skin/icons/toolbarbutton-arrow.png");
-}
-
 /* ::::: format toolbar ::::: */
 
 #FormatToolbar {
@@ -502,7 +349,6 @@ treechildren::-moz-tree-image(subscribed-news) {
   color: WindowText;
   margin-left: 3px;
   margin-right: 3px;
-  background-image: url("chrome://messenger/skin/messengercompose/linux-noise.png");
 }
 
 #FontFaceSelect {

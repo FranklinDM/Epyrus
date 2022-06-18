@@ -4,6 +4,20 @@
 
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
+:root {
+  --toolbar-custom-color: -moz-Dialog;
+  --toolbar-highlight-top: rgba(255, 255, 255, .5);
+  --toolbar-highlight-bottom: transparent;
+  --toolbar-shadow-color: rgba(10%, 10%, 10%, .4);
+  --toolbox-after-color: ThreeDShadow;
+}
+
+:-moz-any(#mail-bar3, #calendar-toolbar2, #task-toolbar2, #event-tab-toolbar, .glodaTabToolbar),
+:-moz-any(#mail-bar3, #calendar-toolbar2, #task-toolbar2, #event-tab-toolbar, .glodaTabToolbar)[collapsed=true]:not([customizing]) + toolbar,
+:-moz-any(#mail-bar3, #calendar-toolbar2, #task-toolbar2, #event-tab-toolbar, .glodaTabToolbar)[collapsed=true]:not([customizing]) + #customToolbars {
+  background-image: linear-gradient(var(--toolbar-highlight-top), var(--toolbar-highlight-bottom));
+}
+
 description.error {
   color: #FF0000;
 }
