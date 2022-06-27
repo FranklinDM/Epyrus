@@ -76,16 +76,6 @@
   }
 }
 
-#messengerWindow[tabsintitlebar]
-.tabmail-tab:not([selected]):not(:-moz-lwtheme) {
-  color: CaptionText;
-}
-
-#messengerWindow[tabsintitlebar]
-.tabmail-tab:not([selected]):not(:-moz-lwtheme):-moz-window-inactive {
-  color: InactiveCaptionText;
-}
-
 .tabmail-tab[busy],
 .tabmail-tab[thinking] {
   list-style-image: url("chrome://global/skin/icons/loading.png") !important;

@@ -16,6 +16,10 @@
 @import url("chrome://messenger/skin/messageIcons.css");
 @import url("chrome://messenger/skin/shared/mailWindow1.css");
 
+:root {
+  --window-text-color: currentColor;  
+}
+
 /* Don't use the listbox appearance as that gives us a blue-grey top border
    that collides with the primary toolbar border */
 #threadTree, #folderTree {
@@ -270,27 +274,152 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
     #titlebar-content:-moz-lwtheme {
       border-top: 1px solid hsla(209, 67%, 12%, 0.35);
     }
+
+    /* Use a light text styling on dark window frames */
+    :root[darkwindowframe="true"]:not(:-moz-lwtheme):not(:-moz-window-inactive) {
+      --window-text-color: white;
+    }
   }
 
   @media (-moz-os-version: windows-win10) {
+    /* Draw XUL caption buttons and background on Win10 */
+    @media (-moz-windows-accent-color-applies: 0) {
+      /* Default styling for when no accent color is applied */
+      #messengerWindow:not(:-moz-window-inactive):not(:-moz-lwtheme) {
+        background-color: white;
+      }
+      
+      :root:not(:-moz-window-inactive):not(:-moz-lwtheme) {
+        --window-text-color: black;
+      }
+      
+      #titlebar-min:not(:-moz-window-inactive):not(:-moz-lwtheme),
+      #minimize-button:not(:-moz-lwtheme) {
+        list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#minimize);
+      }
+
+      #titlebar-max:not(:-moz-window-inactive):not(:-moz-lwtheme) {
+        list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#maximize);
+      }
+
+      #messengerWindow[sizemode="maximized"] #titlebar-max:not(:-moz-window-inactive):not(:-moz-lwtheme),
+      #restore-button:not(:-moz-lwtheme) {
+        list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#restore);
+      }
+      
+      #titlebar-close:not(:-moz-window-inactive):not(:-moz-lwtheme),
+      #close-button:not(:-moz-lwtheme) {
+        list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#close);
+      }
+
+      .titlebar-button:not(#titlebar-close):not(:-moz-window-inactive):not(:-moz-lwtheme):hover {
+        background-color: hsla(0, 0%, 0%, .17);
+      }
+
+      .titlebar-button:not(#titlebar-close):not(:-moz-window-inactive):not(:-moz-lwtheme):hover:active {
+        background-color: hsla(0, 0%, 0%, .27);
+        transition: none;
+      }
+      
+      #titlebar-close:not(:-moz-window-inactive):not(:-moz-lwtheme):hover,
+      #close-button:not(:-moz-lwtheme):hover {
+        list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#close-highlight);
+        background-color: hsla(0, 86%, 49%, 1);
+      }
+
+      #titlebar-close:not(:-moz-window-inactive):not(:-moz-lwtheme):hover:active,
+      #close-button:not(:-moz-lwtheme):hover:active	{
+        background-color: hsla(0, 60%, 49%, 0.6);
+        transition: none;
+      }
+    }
+    
+    @media (-moz-windows-accent-color-applies) {
+      /* Styling for when an accent color is applied to the titlebar */
+      #messengerWindow:not(:-moz-window-inactive):not(:-moz-lwtheme) {
+        background-color: -moz-win-accentcolor;
+      }
+      
+      :root:not(:-moz-window-inactive):not(:-moz-lwtheme) {
+        --window-text-color: -moz-win-accentcolortext;
+      }
+
+      #titlebar-min,
+      #minimize-button {
+        list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#minimize);
+      }
+
+      #titlebar-max {
+        list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#maximize);
+      }
+
+      #messengerWindow[sizemode="maximized"] #titlebar-max,
+      #restore-button {
+        list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#restore);
+      }
+
+      #titlebar-close,
+      #close-button {
+        list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#close);
+      }
+      
+      .titlebar-button:hover {
+        background-color: hsla(0, 0%, 0%, .17);
+      }
+
+      .titlebar-button:hover:active {
+        background-color: hsla(0, 0%, 0%, .27);
+        transition: none;
+      }
+      
+      @media (-moz-windows-accent-color-is-dark) {
+        /* dark accent color */
+        #titlebar-min,
+        #minimize-button {
+          list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#minimize-highlight);
+        }
+
+        #titlebar-max {
+          list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#maximize-highlight);
+        }
+
+        #messengerWindow[sizemode="maximized"] #titlebar-max,
+        #restore-button {
+          list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#restore-highlight);
+        }
+
+        #titlebar-close {
+          list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#close-highlight);
+        }
+      
+        .titlebar-button:not(#titlebar-close):not(:-moz-window-inactive):not(:-moz-lwtheme):hover {
+          background-color: hsla(0, 0%, 100%, .17);
+        }
+
+        .titlebar-button:not(#titlebar-close):not(:-moz-window-inactive):not(:-moz-lwtheme):hover:active {
+          background-color: hsla(0, 0%, 100%, .27);
+          transition: none;
+        }
+      
+        #titlebar-close:not(:-moz-window-inactive):not(:-moz-lwtheme):hover,
+        #close-button:not(:-moz-lwtheme):hover {
+          background-color: hsla(0, 86%, 49%, 1);
+        }
+
+        #titlebar-close:not(:-moz-window-inactive):not(:-moz-lwtheme):hover:active,
+        #close-button:not(:-moz-lwtheme):hover:active {
+          background-color: hsla(0, 60%, 39%, 1);
+          transition: none;
+        }
+      }
+    }
+
     #messengerWindow {
       -moz-appearance: -moz-win-glass;
     }
-
-    @media (-moz-windows-default-theme) {
-      #messengerWindow {
-        background-color: #FFFFFF;
-      }
-
-      #messengerWindow:-moz-window-inactive {
-        background-color: #d1d1d1;
-      }
-    }
-
-    @media not all and (-moz-windows-default-theme) {
-      #messengerWindow {
-        background-color: transparent;
-      }
+    
+    #messengerWindow:-moz-window-inactive:not(:-moz-lwtheme) {
+      background-color: hsl(0, 0%, 95%);
     }
 
     #titlebar-buttonbox,
@@ -301,7 +430,8 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
     .titlebar-button {
       border: none;
       margin: 0 !important;
-      padding: 10px 17px;
+      padding: 9px 17px;
+      transition: background-color linear 120ms;
     }
 
     #messengerWindow[sizemode=maximized] .titlebar-button {
@@ -314,36 +444,124 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
       height: 12px;
     }
 
-    #titlebar-min {
-      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#minimize);
+    .titlebar-button:not(:hover) > .toolbarbutton-icon:-moz-window-inactive {
+      opacity: 0.5;
     }
 
-    #titlebar-max {
-      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#maximize);
+    #messengerWindow[sizemode="maximized"] #titlebar-close {
+      padding-right: 19px;
+    }
+    
+    #titlebar-close:hover,
+    #close-button:hover {
+      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#close-highlight);
+      background-color: hsla(0, 86%, 49%, 1);
+      transition: background-color linear 160ms;
     }
 
-    #messengerWindow[sizemode="maximized"] #titlebar-max {
-      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#restore);
+    #titlebar-close:hover:active,
+    #close-button:hover:active {
+      background-color: hsla(0, 86%, 49%, 0.6); 
+      transition: none;
+    }
+    
+    /* inactive window */
+
+    #titlebar-min:-moz-window-inactive:not(:-moz-lwtheme) {
+      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#minimize-inactive);
     }
 
-    #titlebar-close {
-      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#close);
-    }
-    #titlebar-close:hover {
-      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#close-white);
+    #titlebar-max:-moz-window-inactive:not(:-moz-lwtheme) {
+      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#maximize-inactive);
     }
 
-    #titlebar-min:-moz-lwtheme {
-      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#minimize-themes);
+    #messengerWindow[sizemode="maximized"] #titlebar-max:-moz-window-inactive:not(:-moz-lwtheme) {
+      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#restore-inactive);
     }
-    #titlebar-max:-moz-lwtheme {
-      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#maximize-themes);
+
+    #titlebar-close:-moz-window-inactive:not(:-moz-lwtheme):not(:hover) {
+      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#close-inactive);
     }
-    #messengerWindow[sizemode="maximized"] #titlebar-max:-moz-lwtheme {
-      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#restore-themes);
+    
+    .titlebar-button:-moz-window-inactive:not(:-moz-lwtheme):hover {
+      background-color: hsla(0, 0%, 0%, .17);
     }
-    #titlebar-close:-moz-lwtheme {
-      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#close-themes);
+
+    .titlebar-button:-moz-window-inactive:not(:-moz-lwtheme):hover:active {
+      background-color: hsla(0, 0%, 0%, .27);
+      transition: none;
+    }
+    
+    /* light persona */
+    
+    .titlebar-button:-moz-lwtheme-darktext:hover,
+    #window-controls > toolbarbutton:not(#close-button):-moz-lwtheme-darktext:hover {
+      background-color: hsla(0, 0%, 0%, .17);
+    }
+
+    .titlebar-button:-moz-lwtheme-darktext:hover:active,
+    #window-controls > toolbarbutton:not(#close-button):-moz-lwtheme-darktext:hover:active {
+      background-color: hsla(0, 0%, 0%, .27);
+      transition: none;
+    }
+    
+    #titlebar-min:-moz-lwtheme-darktext,
+    #minimize-button:-moz-lwtheme-darktext {
+      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#minimize-outline);
+    }
+
+    #titlebar-max:-moz-lwtheme-darktext {
+      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#maximize-outline);
+    }
+
+    #messengerWindow[sizemode="maximized"]:-moz-lwtheme-darktext #titlebar-max:-moz-lwtheme-darktext,
+    #restore-button:-moz-lwtheme-darktext {
+      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#restore-outline);
+    }
+
+    #titlebar-close:-moz-lwtheme-darktext,
+    #close-button:-moz-lwtheme-darktext {
+      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#close-outline);
+    }
+    #titlebar-close:hover:-moz-lwtheme-darktext,
+    #close-button:hover:-moz-lwtheme-darktext {
+      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#close-outline);
+    }
+        
+    /* dark persona */
+    
+    .titlebar-button:-moz-lwtheme-brighttext:hover,
+    #window-controls > toolbarbutton:not(#close-button):-moz-lwtheme-brighttext:hover {
+      background-color: hsla(0, 0%, 100%, .27);
+    }
+
+    .titlebar-button:-moz-lwtheme-brighttext:hover:active,
+    #window-controls > toolbarbutton:not(#close-button):-moz-lwtheme-brighttext:hover:active {
+      background-color: hsla(0, 0%, 100%, .37);
+      transition: none;
+    }
+    
+    #titlebar-min:-moz-lwtheme-brighttext,
+    #minimize-button:-moz-lwtheme-brighttext {
+      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#minimize-outline-inverted);
+    }
+
+    #titlebar-max:-moz-lwtheme-brighttext {
+      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#maximize-outline-inverted);
+    }
+
+    #messengerWindow[sizemode="maximized"]:-moz-lwtheme-brighttext #titlebar-max:-moz-lwtheme-brighttext,
+    #restore-button:-moz-lwtheme-brighttext {
+      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#restore-outline-inverted);
+    }
+
+    #titlebar-close:-moz-lwtheme-brighttext,
+    #close-button:-moz-lwtheme-brighttext {
+      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#close-outline-inverted);
+    }
+    #titlebar-close:hover:-moz-lwtheme-brighttext,
+    #close-button:hover:-moz-lwtheme-brighttext {
+      list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#close-outline-inverted);
     }
 
     /* the 12px image renders a 10px icon, and the 10px upscaled gets rounded to 12.5, which
@@ -383,71 +601,18 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
 
     /* 275% dpi should result in the same device pixel sizes as 250% dpi. */
     @media (min-resolution: 2.70dppx) and (max-resolution: 2.95dppx) {
-      /* NB: todo: this should also change padding on the buttons
-       * themselves, but without a device to test this on, it's
-       * impossible to know by how much. */
       .titlebar-button > .toolbarbutton-icon {
         width: 10.8px;
         height: 10.8px;
       }
     }
+  }
 
-    @media (-moz-windows-default-theme) {
-      .titlebar-button:hover {
-        background-color: hsla(0, 0%, 0%, .12);
-      }
-
-      .titlebar-button:hover:active {
-        background-color: hsla(0, 0%, 0%, .22);
-      }
-
-      .titlebar-button:not(:hover) > .toolbarbutton-icon:-moz-window-inactive {
-        opacity: 0.5;
-      }
-
-      #titlebar-close:hover {
-        background-color: hsl(355, 86%, 49%);
-      }
-
-      #titlebar-close:hover:active {
-        background-color: hsl(355, 82%, 69%);
-      }
-    }
-    @media not all and (-moz-windows-default-theme) {
-      .titlebar-button {
-        background-color: -moz-field;
-      }
-      .titlebar-button:hover {
-        background-color: Highlight;
-      }
-
-      #titlebar-min {
-        list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#minimize-highcontrast);
-      }
-      #titlebar-min:hover {
-        list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#minimize-highcontrast-hover);
-      }
-
-      #titlebar-max {
-        list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#maximize-highcontrast);
-      }
-      #titlebar-max:hover {
-        list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#maximize-highcontrast-hover);
-      }
-
-      #messengerWindow[sizemode="maximized"] #titlebar-max {
-        list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#restore-highcontrast);
-      }
-      #messengerWindow[sizemode="maximized"] #titlebar-max:hover {
-        list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#restore-highcontrast-hover);
-      }
-
-      #titlebar-close {
-        list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#close-highcontrast);
-      }
-      #titlebar-close:hover {
-        list-style-image: url(chrome://messenger/skin/icons/caption-buttons.svg#close-highcontrast-hover);
-      }
+  @media (-moz-os-version: windows-win8),
+         (-moz-os-version: windows-win10) {
+    /* Fade text stylings on window inactivity */
+    :root:not(:-moz-lwtheme):-moz-window-inactive {
+      --window-text-color: rgba(0, 0, 0, 0.5);
     }
   }
 
@@ -646,7 +811,6 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
     #mail-menubar:not(:-moz-lwtheme):not(:-moz-window-inactive) {
       background-color: rgba(255, 255, 255, 0.7);
       border-radius: var(--toolbarbutton-border-radius);
-      color: black;
     }
 
     #mail-menubar > menu:not(:-moz-lwtheme):-moz-window-inactive {
