@@ -188,7 +188,7 @@
              mode="full"
              iconsize="small"
 #endif
-             defaultset="calendar-synchronize-button,calendar-newevent-button,calendar-newtask-button,calendar-edit-button,calendar-delete-button,spring,calendar-appmenu-button"/>
+             defaultset="calendar-synchronize-button,calendar-newevent-button,calendar-newtask-button,calendar-edit-button,calendar-delete-button,spring"/>
     <toolbarset id="calendarToolbars" context="calendar-toolbar-context"/>
   </toolbox>
 
@@ -257,7 +257,7 @@
              mode="full"
              iconsize="small"
 #endif
-             defaultset="task-synchronize-button,task-newevent-button,task-newtask-button,task-edit-button,task-delete-button,spring,task-appmenu-button"/>
+             defaultset="task-synchronize-button,task-newevent-button,task-newtask-button,task-edit-button,task-delete-button,spring"/>
     <toolbarset id="taskToolbars" context="task-toolbar-context"/>
   </toolbox>
 </overlay>
