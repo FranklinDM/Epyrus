@@ -12,6 +12,9 @@ package:
 l10n-package:
 	@$(MAKE) -C mail/installer make-langpack
 
+mozpackage:
+	@$(MAKE) -C mail/installer
+
 package-compare:
 	@$(MAKE) -C mail/installer package-compare
 
