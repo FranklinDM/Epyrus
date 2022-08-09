@@ -207,7 +207,7 @@ pref("extensions.logging.enabled", false);
 //  .. etc ..
 //
 pref("extensions.update.enabled", true);
-pref("extensions.update.url", "");
+pref("extensions.update.url", "https://@AM_DOMAIN@/?component=aus&@AM_AUS_ARGS@");
 
 pref("extensions.update.background.url", "");
 
