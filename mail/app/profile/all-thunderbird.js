@@ -881,3 +881,8 @@ pref("mail.calendar-integration.opt-out", false);
 
 // Prompt for master password on application startup?
 pref("signon.startup.prompt", false);
+
+// On GTK, we now default to showing the menubar only when alt is pressed:
+#ifdef MOZ_WIDGET_GTK
+pref("ui.key.menuAccessKeyFocuses", true);
+#endif
