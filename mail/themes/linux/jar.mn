@@ -21,6 +21,7 @@ classic.jar:
   skin/classic/messenger/messageQuotes.css                    (mail/messageQuotes.css)
   skin/classic/messenger/messenger.css                        (mail/messenger.css)
   skin/classic/messenger/messengerLWTheme.css                 (../shared/mail/messengerLWTheme.css)
+  skin/classic/messenger/extensionsOverlay.css                (../shared/mail/extensionsOverlay.css)
   skin/classic/messenger/attachmentList.css                   (mail/attachmentList.css)
   skin/classic/messenger/imageFilters.svg                     (mail/imageFilters.svg)
   skin/classic/messenger/mailWindow1.css                      (mail/mailWindow1.css)
@@ -251,3 +252,5 @@ classic.jar:
   skin/classic/messenger/shared/addressbook.css               (../shared/mail/addressbook.css)
 [extensions/{972ce4c6-7e08-4474-a285-3208198ce6fd}] chrome.jar:
 % override chrome://global/skin/icons/close.png               chrome://global/skin/icons/close.svg
+% style about:addons chrome://messenger/skin/messenger.css
+% style about:addons chrome://messenger/skin/extensionsOverlay.css
