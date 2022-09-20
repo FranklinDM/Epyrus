@@ -84,6 +84,9 @@ pref("calendar.itip.useInvitationSubjectPrefixes", true);
 // whether CalDAV (experimental) scheduling is enabled or not.
 pref("calendar.caldav.sched.enabled", false);
 
+// whether the calendar/tasks tab buttons will be shown on the tab bar.
+pref("calendar.ui.hideTabButtons", false);
+
 // 0=Sunday, 1=Monday, 2=Tuesday, etc.  One day we might want to move this to
 // a locale specific file.
 pref("calendar.week.start", 0);
