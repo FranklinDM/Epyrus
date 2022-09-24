@@ -52,6 +52,7 @@
 @RESPATH@/@PREF_DIR@/all-l10n.js
 @RESPATH@/dictionaries/*
 @RESPATH@/hyphenation/*
+@RESPATH@/searchplugins/*
 #ifndef XP_MACOSX
 @RESPATH@/fonts/*
 #endif
