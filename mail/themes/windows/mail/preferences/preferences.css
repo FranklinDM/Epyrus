@@ -42,6 +42,12 @@ radio[pane=paneAdvanced] {
   list-style-image: url("chrome://messenger/skin/preferences/advanced.png");
 }
 
+/* Limit the size of search engine icons */
+#defaultWebSearch > .menulist-label-box > .menulist-icon {
+  width: 16px;
+  height: 16px;
+}
+
 /* Attachments Pane */
 #MailPreferences[animated="true"] #handlersView {
   height: 25em;
