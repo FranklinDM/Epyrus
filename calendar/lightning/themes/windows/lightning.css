@@ -114,13 +114,13 @@ radio[pane=paneLightning] {
 }
 
 .icon-holder[type="calendar"],
-.tabmail-tab[type="calendar"] {
+.tabmail-tab[type="calendar"] .tab-icon-image {
   list-style-image: url(chrome://lightning/skin/mode-switch-icons-aero.png);
   -moz-image-region: rect(16px 16px 32px 0);
 }
 
 .icon-holder[type="tasks"],
-.tabmail-tab[type="tasks"] {
+.tabmail-tab[type="tasks"] .tab-icon-image {
   list-style-image: url(chrome://lightning/skin/mode-switch-icons-aero.png);
   -moz-image-region: rect(16px 32px 32px 16px);
 }
