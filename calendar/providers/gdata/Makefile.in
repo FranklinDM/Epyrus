@@ -13,6 +13,7 @@ DEFINES += -DLIGHTNING_VERSION=$(LIGHTNING_VERSION) \
            -DMOZ_APP_VERSION=$(MOZ_APP_VERSION) \
            -DCOMM_BUILD=$(COMM_BUILD) \
            -DGDATA_VERSION=$(GDATA_VERSION) \
+           -DXPI_EM_ID='$(XPI_EM_ID)' \
            $(NULL)
 
 ifeq (cocoa,$(MOZ_WIDGET_TOOLKIT))

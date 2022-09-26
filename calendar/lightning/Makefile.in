@@ -56,7 +56,7 @@ DEFINES += -DMOZ_APP_VERSION=$(MOZ_APP_VERSION) \
            -DSEAMONKEY_MAXVERSION=$(SEAMONKEY_MAXVERSION) \
            -DLIGHTNING_VERSION=$(LIGHTNING_VERSION) \
            -DTARGET_PLATFORM=$(OS_TARGET)_$(TARGET_XPCOM_ABI) \
-           -DXPI_EM_ID="$(XPI_EM_ID)" \
+           -DXPI_EM_ID='$(XPI_EM_ID)' \
            $(NULL)
 
 MOZ_BUILDID = $(shell $(PYTHON) $(MOZILLA_SRCDIR)/config/printconfigsetting.py $(DIST)/bin/application.ini App BuildID)
