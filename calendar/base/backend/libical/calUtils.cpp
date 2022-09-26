@@ -65,8 +65,14 @@ void logMissingTimezone(char const* tzid) {
     logError(msg);
 }
 
+void logCorruptedTimezone() {
+    nsString msg(NS_LITERAL_STRING("Timezone data corrupted, falling back to floating!"));
+    logError(msg);
+}
+
 icaltimezone * getIcalTimezone(calITimezone * tz) {
     icaltimezone * icaltz = nullptr;
+    // If tz isn't set, we don't have a timezone. Return nullptr early.
     if (!tz) {
         NS_ASSERTION(false, "No Timezone passed to getIcalTimezone");
         return nullptr;
@@ -81,6 +87,12 @@ icaltimezone * getIcalTimezone(calITimezone * tz) {
         tz->GetIcalComponent(getter_AddRefs(tzComp));
         if (tzComp) {
             nsCOMPtr<calIIcalComponentLibical> tzCompLibical = do_QueryInterface(tzComp);
+            if (tzCompLibical == nullptr) {
+	        // If tzCompLibical is nullptr, we don't have a timezone. 
+		// Return nullptr early here, too.
+                logCorruptedTimezone();
+                return nullptr;
+            }
             icaltz = tzCompLibical->GetLibicalTimezone();
         } // else floating or phantom timezone
     }
