@@ -1068,10 +1068,11 @@
             this.currentTabInfo = this.tabInfo[0];
 
           let tab = this.currentTabInfo;
-
-          let browserFunc = tab.mode.getBrowser || tab.mode.tabType.getBrowser;
-          if (browserFunc)
-            return browserFunc.call(tab.mode.tabType, tab);
+          if (tab) {
+            let browserFunc = tab.mode.getBrowser || tab.mode.tabType.getBrowser;
+            if (browserFunc)
+              return browserFunc.call(tab.mode.tabType, tab);
+          }
 
           return null;
         ]]></body>
