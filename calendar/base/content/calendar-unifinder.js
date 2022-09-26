@@ -285,7 +285,8 @@ function unifinderItemSelect(aEvent) {
  * @return              The passed date's formatted in the default timezone.
  */
 function formatUnifinderEventDateTime(aDatetime) {
-    return cal.getDateFormatter().formatDateTime(aDatetime.getInTimezone(cal.dtz.defaultTimezone));
+    let defaultTimezone = calendarDefaultTimezone();
+    return cal.getDateFormatter().formatDateTime(aDatetime.getInTimezone(defaultTimezone));
 }
 
 /**

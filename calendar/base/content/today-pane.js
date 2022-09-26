@@ -59,7 +59,7 @@ var TodayPane = {
      * React if the default timezone changes.
      */
     observe: function() {
-        this.setDay(cal.dtz.now());
+        this.setDay(cal.now());
     },
 
     /**

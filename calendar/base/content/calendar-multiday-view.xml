@@ -2741,7 +2741,7 @@
       <field name="mTimezoneObserver"><![CDATA[
         ({
             observe: () => {
-                this.timezone = cal.dtz.defaultTimezone;
+                this.timezone = calendarDefaultTimezone();
                 this.refreshView();
                 this.updateTimeIndicatorPosition(true);
             }
