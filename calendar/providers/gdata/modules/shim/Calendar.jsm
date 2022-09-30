@@ -6,6 +6,7 @@ var EXPORTED_SYMBOLS = ["calendarShim", "gdataRegisterCalendar", "promisifyCalen
 
 Components.utils.import("resource://gdata-provider/modules/shim/Loader.jsm");
 CuImport("resource://calendar/modules/calUtils.jsm", this);
+CuImport("resource://gre/modules/Preferences.jsm", this);
 CuImport("resource://gre/modules/PromiseUtils.jsm", this);
 CuImport("resource://gre/modules/XPCOMUtils.jsm", this);
 
@@ -175,8 +176,8 @@ function gdataRegisterCalendar(calendar) {
     }
     let branch = "calendar.registry." + calendar.id + ".";
 
-    cal.setPref(branch + "type", calendar.type);
-    cal.setPref(branch + "uri", calendar.uri.spec);
+    Preferences.set(branch + "type", calendar.type);
+    Preferences.set(branch + "uri", calendar.uri.spec);
 
     let calmgr = cal.getCalendarManager().wrappedJSObject;
     let calCachedCalendar = Components.utils.getGlobalForObject(calmgr).calCachedCalendar;
