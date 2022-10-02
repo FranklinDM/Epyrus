@@ -353,3 +353,7 @@ toolbar[mode="text"] .button-appmenu .toolbarbutton-icon {
 #appmenu_addons {
   list-style-image: url("chrome://messenger/skin/icons/extensionGeneric.svg");
 }
+
+#appmenu_configedit {
+  list-style-image: url("chrome://messenger/skin/icons/config-editor.svg");
+}

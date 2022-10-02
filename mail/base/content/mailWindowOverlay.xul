@@ -25,6 +25,8 @@
 <?xul-overlay href="chrome://messenger/content/baseMenuOverlay.xul"?>
 
 <!DOCTYPE overlay [
+  <!ENTITY % advancedDTD SYSTEM "chrome://messenger/locale/preferences/advanced.dtd">
+  %advancedDTD;
   <!ENTITY % messengerDTD SYSTEM "chrome://messenger/locale/messenger.dtd">
   %messengerDTD;
   <!ENTITY % msgViewPickerDTD SYSTEM "chrome://messenger/locale/msgViewPickerOverlay.dtd" >
@@ -1313,7 +1315,11 @@
         <menuitem id="appmenu_addons"
                   class="menuitem-iconic"
                   label="&addons.label;"
-                  oncommand="openAddonsMgr();"/>
+		  oncommand="openAddonsMgr();"/>
+	<menuitem id="appmenu_configedit"
+		  class="menuitem-iconic"
+		  label="&configEdit.label;"
+		  oncommand="openConfigEdit();"/>
         <splitmenu id="appmenu_customize"
 #ifdef XP_WIN
                    label="&preferencesCmd2.label;"
@@ -2930,7 +2936,10 @@
                   oncommand="openAddonsMgr();"/>
         <menuitem id="activityManager" label="&activitymanager.label;"
                   accesskey="&activitymanager.accesskey;"
-                  oncommand="openActivityMgr();"/>
+		  oncommand="openActivityMgr();"/>
+        <menuitem id="configEditor" label="&configEdit.label;"
+		  accesskey="&configEdit.accesskey;"
+		  oncommand="openConfigEdit();"/>
         <menuseparator id="devToolsSeparator"/>
         <menuitem id="filtersCmd" label="&filtersCmd2.label;"
                   accesskey="&filtersCmd2.accesskey;"

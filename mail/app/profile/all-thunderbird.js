@@ -13,6 +13,7 @@
 
 pref("general.useragent.locale", "@AB_CD@");
 pref("general.skins.selectedSkin", "classic/1.0");
+pref("general.warnOnAboutConfig", false);
 
 #ifdef XP_MACOSX
 pref("browser.chromeURL", "chrome://messenger/content/messengercompose/messengercompose.xul");
