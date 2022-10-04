@@ -114,8 +114,9 @@ messenger.jar:
 *   content/messenger/toolbarIconColor.js           (content/toolbarIconColor.js)
 # the following files are mail-specific overrides
 *   content/messenger/license.html                  (/platform/toolkit/content/license.html)
+*   content/messenger/extensions.css                (content/extensions.css)
 % override chrome://global/content/license.html chrome://messenger/content/license.html
-
+% override chrome://mozapps/content/extensions/extensions.css chrome://messenger/content/extensions.css
 comm.jar:
 % content communicator %content/communicator/
    content/communicator/charsetOverlay.xul          (content/charsetOverlay.xul)

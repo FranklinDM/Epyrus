@@ -29,14 +29,16 @@ MOZ_MORK=1
 MOZ_APP_VERSION_TXT=${_topsrcdir}/$MOZ_BUILD_APP/config/version.txt
 MOZ_APP_VERSION=`cat $MOZ_APP_VERSION_TXT`
 MOZ_APP_VERSION_DISPLAY_TXT=${_topsrcdir}/$MOZ_BUILD_APP/config/version_display.txt
-MOZ_APP_VERSION_DISPLAY=`cat $MOZ_APP_VERSION_DISPLAY_TXT`
-THUNDERBIRD_VERSION=$MOZ_APP_VERSION
+# This is no longer used in Epyrus after 1.3.0, 
+# so just set it equal to MOZ_APP_VERSION.
+MOZ_APP_VERSION_DISPLAY=$MOZ_APP_VERSION
+THUNDERBIRD_VERSION=52.6.0
 
 MOZ_UA_BUILDID=20100101
 
 MOZ_BRANDING_DIRECTORY=mail/branding/aurora
 MOZ_OFFICIAL_BRANDING_DIRECTORY=other-licenses/branding/epyrus
-MOZ_APP_ID={3550f703-e582-4d05-9a08-453d09bdfdc6}
+MOZ_APP_ID={29877c1d-27df-4421-9a79-382c31470151}
 # This should usually be the same as the value MAR_CHANNEL_ID.
 # If more than one ID is needed, then you should use a comma separated list
 # of values.

@@ -14,6 +14,8 @@
 pref("general.useragent.locale", "@AB_CD@");
 pref("general.skins.selectedSkin", "classic/1.0");
 pref("general.warnOnAboutConfig", false);
+pref("extensions.guid.appCompatVersion", "52.6");
+pref("extensions.guid.appCompatId", "{3550f703-e582-4d05-9a08-453d09bdfdc6}");
 
 #ifdef XP_MACOSX
 pref("browser.chromeURL", "chrome://messenger/content/messengercompose/messengercompose.xul");

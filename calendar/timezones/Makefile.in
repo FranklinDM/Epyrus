@@ -4,14 +4,14 @@
 
 XPI_PKGNAME = calendar-timezones-$(TIMEZONES_VERSION)
 
-THUNDERBIRD_VERSION := $(shell cat $(topsrcdir)/mail/config/version.txt)
+THUNDERBIRD_VERSION := 52.6.0
 SEAMONKEY_VERSION := $(shell cat $(topsrcdir)/mail/config/suite_version.txt)
-CALENDAR_VERSION := $(shell $(PYTHON) $(topsrcdir)/calendar/lightning/build/makeversion.py $(word 1,$(MOZ_PKG_VERSION) $(THUNDERBIRD_VERSION)))
-TIMEZONES_VERSION := $(shell $(PYTHON) $(srcdir)/version.py)
+CALENDAR_VERSION := $(MOZ_APP_VERSION)
+TIMEZONES_VERSION := $(MOZ_APP_VERSION)
 
 relativesrcdir = calendar/locales
 
-DEFINES += -DTHUNDERBIRD_VERSION=$(THUNDERBIRD_VERSION) \
+DEFINES += -DMOZ_APP_VERSION=$(MOZ_APP_VERSION) \
            -DSEAMONKEY_VERSION=$(SEAMONKEY_VERSION) \
            -DCALENDAR_VERSION=$(CALENDAR_VERSION) \
            -DTIMEZONES_VERSION=$(TIMEZONES_VERSION) \
