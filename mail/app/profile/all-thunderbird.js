@@ -102,7 +102,7 @@ pref("app.update.silent", false);
 pref("app.update.staging.enabled", true);
 
 // Update service URL:
-pref("app.update.url", "");
+pref("app.update.url", "https://www.addons.epyrus.org/%BUILD_TARGET%/%VERSION%/update.xml");
 
 // URL user can browse to manually if for some reason all update installation
 // attempts fail.
