@@ -456,7 +456,6 @@ function openEventDialog(calendarItem, calendar, mode, callback, job=null, initi
     args.initialStartDateValue = initialDate || getDefaultStartDate();
     args.counterProposal = counterProposal;
     args.inTab = Preferences.get("calendar.item.editInTab", false);
-    args.useNewItemUI = Preferences.get("calendar.item.useNewItemUI", false);
 
     // this will be called if file->new has been selected from within the dialog
     args.onNewEvent = function(opcalendar) {
@@ -480,8 +479,7 @@ function openEventDialog(calendarItem, calendar, mode, callback, job=null, initi
     let isEditable = mode == "modify" && !isInvitation && userCanModifyItem(calendarItem);
     if (isCalendarWritable(calendar) && (mode == "new" || isEditable)) {
         if (args.inTab) {
-            url = args.useNewItemUI ? "chrome://lightning/content/html-item-editing/lightning-item-iframe.html"
-                                    : "chrome://lightning/content/lightning-item-iframe.xul";
+            url = "chrome://lightning/content/lightning-item-iframe.xul";
         } else {
             url = "chrome://calendar/content/calendar-event-dialog.xul";
         }
