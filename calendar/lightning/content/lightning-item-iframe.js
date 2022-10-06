@@ -1526,7 +1526,7 @@ function untilDateCompensation(aItem) {
         let rule = rrules[0][0];
         if (!rule.isByCount && rule.isFinite && startDate) {
             let compensation = startDate.subtractDate(gStartTime);
-            if (compensation != "PT0S") {
+            if (compensation != "PT0S" && rule.untilDate) {
                 let untilDate = rule.untilDate.clone();
                 untilDate.addDuration(compensation);
                 rule.untilDate = untilDate;
