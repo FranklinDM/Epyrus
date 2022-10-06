@@ -52,6 +52,9 @@
 @RESPATH@/@PREF_DIR@/all-l10n.js
 @RESPATH@/dictionaries/*
 @RESPATH@/hyphenation/*
+#ifndef XP_MACOSX
+@RESPATH@/fonts/*
+#endif
 #ifdef HAVE_MAKENSISU
 @BINPATH@/uninstall/helper.exe
 #endif

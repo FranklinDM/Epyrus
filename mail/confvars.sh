@@ -56,3 +56,8 @@ MOZ_SEPARATE_MANIFEST_FOR_THEME_OVERRIDES=1
 MOZ_ENABLE_SIGNMAR=
 
 MOZ_DEVTOOLS=all
+
+# Include bundled fonts on everything except Mac.
+if test "$OS_ARCH" != "Darwin"; then
+  MOZ_BUNDLED_FONTS=1
+fi
