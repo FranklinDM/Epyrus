@@ -36,7 +36,7 @@ window.onload = function () {
 
   // Update the application basics section.
   document.getElementById("application-box").textContent = Services.appinfo.name;
-#expand document.getElementById("version-box").textContent = "__MOZ_APP_VERSION_DISPLAY__";
+  document.getElementById("version-box").textContent = Services.appinfo.version;
   document.getElementById("useragent-box").textContent = navigator.userAgent;
   document.getElementById("supportLink").href = supportUrl;
   let currProfD = Services.dirsvc.get("ProfD", Ci.nsIFile);
