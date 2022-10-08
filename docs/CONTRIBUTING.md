@@ -106,7 +106,7 @@ If you elect not to use the multi-part format, then be sure to use detailed comm
   - *`Issue #492 - Part 3: nsUpdateService.js, updater.cpp, nsUpdateDriver.cpp`*
   - *`Issue #492 - Part 4: Remove superfluous brackets in nsUpdateService.js and updater.cpp`*
 
-Occasionally a resolved (and shipped) issue requires further changes to fix bugs. However, If follow-ups are complex enough to be multi-part it should be considered a new issue. For Epyrus, I do not care if you forget the hyphen and write "Followup" instead of "Follow-up". I accept both forms.
+Occasionally a resolved (and shipped) issue requires further changes to fix bugs. However, If follow-ups are complex enough to be multi-part it should be considered a new issue (or at least grounds for reopening the original issue that prompted the follow-up). For Epyrus, I do not care if you forget the hyphen and write "Followup" instead of "Follow-up". I accept both forms.
 - Follow-up Form: *`Issue #xxx - Follow-up: Appropriate direct description of changes`*
   - *`Issue #1643 - Follow-up: Make sure things aren't changed while iterating.`*
 
