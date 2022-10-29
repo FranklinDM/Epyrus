@@ -402,6 +402,8 @@ function ltnOnLoad(event) {
         MailToolboxCustomizeDone(aEvent, "CustomizeTaskToolbar");
     };
 
+    gCalendarUIPrefsObserver.onLoad();
+
     ltnIntegrationCheck();
 
     Services.obs.notifyObservers(window, "lightning-startup-done", false);
@@ -631,6 +633,8 @@ function LtnObserveDisplayDeckChange(event) {
 function ltnFinish() {
     getCalendarManager().removeObserver(gInvitationsCalendarManagerObserver);
 
+    gCalendarUIPrefsObserver.onUnload();
+
     // Remove listener for mailContext.
     let mailContextPopup = document.getElementById("mailContext");
     if (mailContextPopup) {
@@ -686,6 +690,35 @@ var gInvitationsCalendarManagerObserver = {
 
     onCalendarDeleting: function(aCalendar) {
     }
+};
+
+var gCalendarUIPrefsObserver = {
+    prefBranch : null,
+
+    update: function() {
+        var hideTabButtons = this.prefBranch.getBoolPref("hideTabButtons");
+        document.getElementById('calendar-tab-button').hidden = hideTabButtons;
+        document.getElementById('task-tab-button').hidden = hideTabButtons;
+    },
+
+    onLoad: function() {
+        var prefService = Components.classes["@mozilla.org/preferences-service;1"]
+                                    .getService(Components.interfaces.nsIPrefService);
+        this.prefBranch = prefService.getBranch("calendar.ui.");
+        this.prefBranch.addObserver("", gCalendarUIPrefsObserver, false);
+        this.update();
+    },
+
+    onUnload: function() {
+        this.prefBranch.removeObserver("", gCalendarUIPrefsObserver);
+    },
+
+    observe: function(subject, topic, data) {
+        if (topic != "nsPref:changed") {
+            return;
+        }
+        this.update();
+    },
 };
 
 function scheduleInvitationsUpdate(firstDelay) {

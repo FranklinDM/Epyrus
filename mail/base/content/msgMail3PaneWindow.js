@@ -398,6 +398,11 @@ function OnLoadMessenger()
   migrateMailnews();
   // Rig up our TabsInTitlebar early so that we can catch any resize events.
   TabsInTitlebar.init();
+#ifdef MENUBAR_CAN_AUTOHIDE
+  // Ensure that the titlebar is updated on startup to ensure consistency on
+  // whether the app menu button or the native titlebar should be shown.
+  updateTitlebarDisplay();
+#endif
   // Listen for Lightweight Theme styling changes and update the theme accordingly.
   LightweightThemeListener.init();
   // update the pane config before we exit onload otherwise the user may see a flicker if we poke the document
@@ -783,7 +788,6 @@ function atStartupRestoreTabs(aDontRestoreFirstTab) {
  */
 function loadExtraTabs()
 {
-
   if (!("arguments" in window) || window.arguments.length < 2)
     return;
 
@@ -1744,35 +1748,23 @@ var TabsInTitlebar = {
     // resize event.
     this._readPref();
     Services.prefs.addObserver(this._drawInTitlePref, this, false);
-    Services.prefs.addObserver(this._autoHidePref, this, false);
 
     this.allowedBy("sizemode", false);
     window.addEventListener("resize", function (event) {
-      if (event.target != window)
+      if (event.target != window) {
         return;
-      TabsInTitlebar.allowedBy("sizemode", true);
+      }
+      let sizemode = document.documentElement.getAttribute("sizemode");
+      let isMaximizedOrFullscreen =
+        (sizemode == "maximized" || sizemode == "fullscreen");
+      TabsInTitlebar.allowedBy("sizemode", isMaximizedOrFullscreen);
     }, false);
-
-    // We need to update the appearance of the titlebar when the menu changes
-    // from the active to the inactive state. We can't, however, rely on
-    // DOMMenuBarInactive, because the menu fires this event and then removes
-    // the inactive attribute after an event-loop spin.
-    //
-    // Because updating the appearance involves sampling the heights and
-    // margins of various elements, it's important that the layout be more or
-    // less settled before updating the titlebar. So instead of listening to
-    // DOMMenuBarActive and DOMMenuBarInactive, we use a MutationObserver to
-    // watch the "invalid" attribute directly.
+#endif
     let menu = document.getElementById("mail-toolbar-menubar2");
     this._menuObserver = new MutationObserver(this._onMenuMutate);
     this._menuObserver.observe(menu, {attributes: true});
 
-    let sizeMode = document.getElementById("messengerWindow");
-    this._sizeModeObserver = new MutationObserver(this._onSizeModeMutate);
-    this._sizeModeObserver.observe(sizeMode, {attributes: true});
-
     this._initialized = true;
-#endif
   },
 
   allowedBy: function (condition, allow) {
@@ -1806,43 +1798,34 @@ var TabsInTitlebar = {
     if (topic == "nsPref:changed")
       this._readPref();
   },
-
+#endif
   _onMenuMutate: function (aMutations) {
     for (let mutation of aMutations) {
-      if (mutation.attributeName == "inactive" ||
-          mutation.attributeName == "autohide") {
+      if (mutation.attributeName == "autohide") {
+        updateTitlebarDisplay();
+#ifdef CAN_DRAW_IN_TITLEBAR
         TabsInTitlebar._update(true);
-        return;
-      }
-    }
-  },
-
-  _onSizeModeMutate: function (aMutations) {
-    for (let mutation of aMutations) {
-      if (mutation.attributeName == "sizemode") {
-        TabsInTitlebar._update(true);
+#endif
         return;
       }
     }
   },
 
   _initialized: false,
+#ifdef CAN_DRAW_IN_TITLEBAR
   _disallowed: {},
   _drawInTitlePref: "mail.tabs.drawInTitlebar",
-  _autoHidePref: "mail.tabs.autoHide",
   _lastSizeMode: null,
 
   _readPref: function () {
-    // check is only true when drawInTitlebar=true and autoHide=false
-    let check = Services.prefs.getBoolPref(this._drawInTitlePref) &&
-                !Services.prefs.getBoolPref(this._autoHidePref);
+    // check is only true when drawInTitlebar=true
+    let check = Services.prefs.getBoolPref(this._drawInTitlePref);
     this.allowedBy("pref", check);
   },
 
   _update: function (aForce=false) {
     function $(id) { return document.getElementById(id); }
     function rect(ele) { return ele.getBoundingClientRect(); }
-    function verticalMargins(cstyle) { return parseFloat(cstyle.marginBottom) + parseFloat(cstyle.marginTop); }
 
     if (!this._initialized || window.fullScreen)
       return;
@@ -1867,22 +1850,19 @@ var TabsInTitlebar = {
     }
 
     let titlebar = $("titlebar");
-    let titlebarContent = $("titlebar-content");
-    let menubar = $("mail-toolbar-menubar2");
 
     if (allowed) {
       // We set the tabsintitlebar attribute first so that our CSS for
       // tabsintitlebar manifests before we do our measurements.
       document.documentElement.setAttribute("tabsintitlebar", "true");
-      updateTitlebarDisplay();
-
-      // Try to avoid reflows in this code by calculating dimensions first and
-      // then later set the properties affecting layout together in a batch.
 
       // Get the full height of the tabs toolbar:
       let tabsToolbar = $("tabs-toolbar");
-      let fullTabsHeight = rect(tabsToolbar).height;
-      let gNavToolbox = $("navigation-toolbox");
+      let tabsToolbarRect = rect(tabsToolbar);
+      let titlebarTop = rect($("titlebar-content")).top;
+      titlebar.style.marginBottom = - Math.min(tabsToolbarRect.top - titlebarTop,
+                                               tabsToolbarRect.height) + "px";
+
       // Buttons first:
       let captionButtonsBoxWidth = rect($("titlebar-buttonbox")).width;
 
@@ -1890,79 +1870,14 @@ var TabsInTitlebar = {
       let secondaryButtonWidth = rect($("titlebar-fullscreen-button")).width;
 #endif
 
-      // Get the height and margins separately for the menubar
-      let menuHeight = rect(menubar).height;
-      let menuStyles = window.getComputedStyle(menubar);
-      let fullMenuHeight = verticalMargins(menuStyles) + menuHeight;
-      let tabsStyles = window.getComputedStyle(tabsToolbar);
-      fullTabsHeight += verticalMargins(tabsStyles);
-
-      // If the #tabmail overlaps the tabbar using negative margins, we need to
-      // take those into account so we don't overlap it
-      let tabmailMarginTop = parseFloat(window.getComputedStyle($("tabmail")).marginTop);
-      tabmailMarginTop = Math.min(tabmailMarginTop, 0);
-
-      // And get the height of what's in the titlebar:
-      let titlebarContentHeight = rect(titlebarContent).height;
-
-      // Begin setting CSS properties which will cause a reflow
-
-      // If the menubar is around (menuHeight is non-zero), try to adjust
-      // its full height (i.e. including margins) to match the titlebar,
-      // by changing the menubar's bottom padding
-      if (menuHeight) {
-        // Calculate the difference between the titlebar's height and that of
-        // the menubar
-        let menuTitlebarDelta = titlebarContentHeight - fullMenuHeight;
-        let paddingBottom;
-        // The titlebar is bigger:
-        if (menuTitlebarDelta > 0) {
-          fullMenuHeight += menuTitlebarDelta;
-          // If there is already padding on the menubar, we need to add that
-          // to the difference so the total padding is correct:
-          if ((paddingBottom = menuStyles.paddingBottom)) {
-            menuTitlebarDelta += parseFloat(paddingBottom);
-          }
-          menubar.style.paddingBottom = menuTitlebarDelta + "px";
-        // The menubar is bigger, but has bottom padding we can remove:
-        } else if (menuTitlebarDelta < 0 && (paddingBottom = menuStyles.paddingBottom)) {
-          let existingPadding = parseFloat(paddingBottom);
-          // menuTitlebarDelta is negative; work out what's left, but don't set
-          // negative padding:
-          let desiredPadding = Math.max(0, existingPadding + menuTitlebarDelta);
-          menubar.style.paddingBottom = desiredPadding + "px";
-          // We've changed the menu height now:
-          fullMenuHeight += desiredPadding - existingPadding;
-        }
-      }
-
-      // Next, we calculate how much we need to stretch the titlebar down to
-      // go all the way to the bottom of the tab strip, if necessary.
-      let tabAndMenuHeight = fullTabsHeight + fullMenuHeight;
-
-      if (tabAndMenuHeight > titlebarContentHeight) {
-        // We need to increase the titlebar content's outer height
-        // (ie including margins) to match the tab and menu height:
-        let extraMargin = tabAndMenuHeight - titlebarContentHeight;
-        // We need to reduce the height by the amount of navbar overlap
-        // (this value is 0 or negative):
-        extraMargin += tabmailMarginTop;
-        // On non-OSX, we can just use bottom margin:
-#ifndef XP_MACOSX
-        titlebarContent.style.marginBottom = extraMargin + "px";
-#endif
-        titlebarContentHeight += extraMargin;
-      } else {
-        titlebarContent.style.removeProperty("margin-bottom");
-      }
-
-      // Then we bring up the titlebar by the same amount, but we add any
-      // negative margin:
-      titlebar.style.marginBottom = "-" + titlebarContentHeight + "px";
-
       // Finally, size the placeholders:
 #ifdef XP_MACOSX
       this._sizePlaceholder("fullscreen-button", secondaryButtonWidth);
+#endif
+
+#ifdef XP_WIN
+      let appMenuButtonBoxWidth = rect($("appmenu-button-container")).width;
+      this._sizePlaceholder("appmenu-button", appMenuButtonBoxWidth);
 #endif
 
       this._sizePlaceholder("caption-buttons", captionButtonsBoxWidth);
@@ -1978,19 +1893,12 @@ var TabsInTitlebar = {
 
         this._draghandles.tabsToolbar = new tmp.WindowDraggingElement(tabsToolbar);
         this._draghandles.tabsToolbar.mouseDownCheck = mouseDownCheck;
-
-        this._draghandles.navToolbox = new tmp.WindowDraggingElement(gNavToolbox);
-        this._draghandles.navToolbox.mouseDownCheck = mouseDownCheck;
       }
     } else {
       document.documentElement.removeAttribute("tabsintitlebar");
-      updateTitlebarDisplay();
 
       // Reset the margins and padding that might have been modified:
-      titlebarContent.style.marginTop = "";
-      titlebarContent.style.marginBottom = "";
       titlebar.style.marginBottom = "";
-      menubar.style.paddingBottom = "";
     }
 
     ToolbarIconColor.inferFromText();
@@ -2003,49 +1911,57 @@ var TabsInTitlebar = {
 #endif
 
   uninit: function () {
-#ifdef CAN_DRAW_IN_TITLEBAR
     this._initialized = false;
+#ifdef CAN_DRAW_IN_TITLEBAR
     Services.prefs.removeObserver(this._drawInTitlePref, this);
-    Services.prefs.removeObserver(this._autoHidePref, this);
-    this._menuObserver.disconnect();
 #endif
+    this._menuObserver.disconnect();
   }
 };
 
-#ifdef CAN_DRAW_IN_TITLEBAR
+#ifdef MENUBAR_CAN_AUTOHIDE
 function updateTitlebarDisplay() {
+  let menubar = document.getElementById("mail-toolbar-menubar2");
+  let menubarAutoHide = (menubar.getAttribute("autohide") == "true");
+  let appMenuVisible = window.menubar.visible && menubarAutoHide;
 
+#ifdef CAN_DRAW_IN_TITLEBAR
 #ifdef XP_MACOSX
-    // OS X and the other platforms differ enough to necessitate this kind of
-    // special-casing. Like the other platforms where we CAN_DRAW_IN_TITLEBAR,
-    // we draw in the OS X titlebar when putting the tabs up there. However, OS X
-    // also draws in the titlebar when a lightweight theme is applied, regardless
-    // of whether or not the tabs are drawn in the titlebar.
-    if (TabsInTitlebar.enabled) {
-      document.documentElement.setAttribute("chromemargin-nonlwtheme", "0,2,2,2");
-      document.documentElement.setAttribute("chromemargin", "0,2,2,2");
-      document.documentElement.setAttribute("tabsintitlebar", "true");
-    } else {
-      // We set chromemargin-nonlwtheme to "" instead of removing it as a way of
-      // making sure that LightweightThemeConsumer doesn't take it upon itself to
-      // detect this value again if and when we do a lwtheme state change.
-      document.documentElement.setAttribute("chromemargin-nonlwtheme", "");
-      let hasLWTheme = document.documentElement.hasAttribute("lwtheme");
-      if (hasLWTheme) {
-        document.documentElement.setAttribute("chromemargin", "0,2,2,2");
-      } else {
-        document.documentElement.removeAttribute("chromemargin");
-      }
-    }
-
-#else
-  document.getElementById("titlebar").hidden = !TabsInTitlebar.enabled;
-
-  if (TabsInTitlebar.enabled)
+  // OS X and the other platforms differ enough to necessitate this kind of
+  // special-casing. Like the other platforms where we CAN_DRAW_IN_TITLEBAR,
+  // we draw in the OS X titlebar when putting the tabs up there. However, OS X
+  // also draws in the titlebar when a lightweight theme is applied, regardless
+  // of whether or not the tabs are drawn in the titlebar.
+  if (TabsInTitlebar.enabled) {
+    document.documentElement.setAttribute("chromemargin-nonlwtheme", "0,2,2,2");
     document.documentElement.setAttribute("chromemargin", "0,2,2,2");
-  else
-    document.documentElement.removeAttribute("chromemargin");
+    document.documentElement.setAttribute("tabsintitlebar", "true");
+  } else {
+    // We set chromemargin-nonlwtheme to "" instead of removing it as a way of
+    // making sure that LightweightThemeConsumer doesn't take it upon itself to
+    // detect this value again if and when we do a lwtheme state change.
+    document.documentElement.setAttribute("chromemargin-nonlwtheme", "");
+    let hasLWTheme = document.documentElement.hasAttribute("lwtheme");
+    if (hasLWTheme) {
+      document.documentElement.setAttribute("chromemargin", "0,2,2,2");
+    } else {
+      document.documentElement.removeAttribute("chromemargin");
+    }
+  }
+#else
+  let titlebarVisible = !TabsInTitlebar.enabled;
+  TabsInTitlebar.allowedBy("drawing-in-titlebar", appMenuVisible);
+  titlebarVisible = !appMenuVisible;
+  document.getElementById("titlebar").hidden = titlebarVisible;
 
+  if (!titlebarVisible) {
+    document.documentElement.setAttribute("chromemargin", "0,2,2,2");
+  } else {
+    document.documentElement.removeAttribute("chromemargin");
+  }
+#endif
+#else
+  document.getElementById("appmenu-toolbar-button").hidden = !appMenuVisible;
 #endif
 }
 #endif

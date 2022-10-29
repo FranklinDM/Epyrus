@@ -2223,7 +2223,7 @@
 #else
            defaultset="menubar-items,spring"
 #endif
-#ifndef XP_MACOSX
+#ifdef MENUBAR_CAN_AUTOHIDE
            toolbarname="&menubarCmd.label;"
            accesskey="&menubarCmd.accesskey;"
 #endif
@@ -3037,6 +3037,9 @@
       </menubar>
     </toolbaritem>
 #ifdef CAN_DRAW_IN_TITLEBAR
+#ifdef XP_WIN
+    <hbox class="titlebar-placeholder" type="appmenu-button" ordinal="0"/>
+#endif
     <hbox class="titlebar-placeholder" type="caption-buttons" ordinal="1000"/>
 #endif
   </toolbar>
@@ -3044,9 +3047,14 @@
 
 <toolbox id="mail-toolbox"
          class="mail-toolbox"
+#ifdef XP_WIN
+         mode="icons"
+         defaultmode="icons"
+         iconsize="large"
+         defaulticonsize="large"
+#else
          mode="full"
          defaultmode="full"
-#ifdef XP_MACOSX
          iconsize="small"
          defaulticonsize="small"
 #endif
@@ -3367,14 +3375,20 @@
            class="inline-toolbar chromeclass-toolbar"
            toolbarname="&showMessengerToolbarCmd.label;"
            accesskey="&showMessengerToolbarCmd.accesskey;"
-           fullscreentoolbar="true" mode="full"
+           fullscreentoolbar="true"
            customizable="true"
            context="toolbar-context-menu"
-#ifdef XP_MACOSX
-           iconsize="small"
-           defaultset="button-getmsg,button-newmsg,button-address,spacer,button-tag,qfb-show-filter-bar,spring,gloda-search,button-appmenu">
+#ifdef XP_WIN
+           mode="icons"
+           iconsize="large"
 #else
-           defaultset="button-getmsg,button-newmsg,button-address,separator,button-tag,qfb-show-filter-bar,spring,gloda-search,button-appmenu">
+           mode="full"
+           iconsize="small"
+#endif
+#ifdef XP_MACOSX
+           defaultset="button-getmsg,button-newmsg,button-address,spacer,button-tag,qfb-show-filter-bar,spring,gloda-search">
+#else
+           defaultset="button-getmsg,button-newmsg,button-address,separator,button-tag,qfb-show-filter-bar,spring,gloda-search">
 #endif
   </toolbar>
 

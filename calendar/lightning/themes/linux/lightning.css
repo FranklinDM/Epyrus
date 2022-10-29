@@ -84,24 +84,24 @@ radio[pane=paneLightning] {
 
 /* ::: tab icons ::: */
 .icon-holder[type="calendar"],
-.tabmail-tab[type="calendar"] {
+.tabmail-tab[type="calendar"] .tab-icon-image {
     list-style-image: url(chrome://lightning-common/skin/mode-switch-icons.png);
     -moz-image-region: rect(0px 64px 16px 48px);
 }
 
 .icon-holder[type="calendar"][selected="true"],
-.tabmail-tab[type="calendar"][selected="true"] {
+.tabmail-tab[type="calendar"][selected="true"] .tab-icon-image {
     -moz-image-region: rect(16px 64px 32px 48px);
 }
 
 .icon-holder[type="tasks"],
-.tabmail-tab[type="tasks"] {
+.tabmail-tab[type="tasks"] .tab-icon-image {
     list-style-image: url(chrome://lightning-common/skin/mode-switch-icons.png);
     -moz-image-region: rect(0px 80px 16px 64px);
 }
 
 .icon-holder[type="tasks"][selected="true"],
-.tabmail-tab[type="tasks"][selected="true"] {
+.tabmail-tab[type="tasks"][selected="true"] .tab-icon-image {
     -moz-image-region: rect(16px 80px 32px 64px);
 }
 

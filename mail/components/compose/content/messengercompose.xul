@@ -439,9 +439,14 @@
 
   <toolbox id="compose-toolbox"
            class="toolbox-top"
+#ifdef XP_WIN
+           mode="icons"
+           defaultmode="icons"
+           iconsize="large"
+           defaulticonsize="large"
+#else
            mode="full"
            defaultmode="full"
-#ifdef XP_MACOSX
            iconsize="small"
            defaulticonsize="small"
 #endif
@@ -454,11 +459,11 @@
 #ifdef XP_MACOSX
            defaultset="menubar-items"
 #else
-          defaultset="menubar-items,spring"
+           defaultset="menubar-items,spring"
 #endif
 #ifdef XP_WIN
-          toolbarname="&menubarCmd.label;"
-          accesskey="&menubarCmd.accesskey;"
+           toolbarname="&menubarCmd.label;"
+           accesskey="&menubarCmd.accesskey;"
 #endif
            context="toolbar-context-menu" mode="full">
 
@@ -884,9 +889,15 @@
   <toolbar id="composeToolbar2" class="toolbar-primary chromeclass-toolbar"
            toolbarname="&showCompositionToolbarCmd.label;"
            accesskey="&showCompositionToolbarCmd.accesskey;"
-           fullscreentoolbar="true" mode="full"
-#ifdef XP_MACOSX
+           fullscreentoolbar="true"
+#ifdef XP_WIN
+           mode="icons"
+           iconsize="large"
+#else
+           mode="full"
            iconsize="small"
+#endif
+#ifdef XP_MACOSX
            defaultset="button-send,separator,button-address,spellingButton,button-attach,button-security,button-save,spring"
 #else
            defaultset="button-send,separator,button-address,spellingButton,button-attach,button-security,button-save"

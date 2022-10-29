@@ -65,7 +65,8 @@ messenger.jar:
     content/messenger/phishingDetector.js           (content/phishingDetector.js)
     content/messenger/mail-offline.js               (content/mail-offline.js)
     content/messenger/aboutDialog.css               (content/aboutDialog.css)
-    content/messenger/messenger.css                 (content/messenger.css)
+*   content/messenger/messenger.css                 (content/messenger.css)
+    content/messenger/messenger-title.css           (content/messenger-title.css)
     content/messenger/search.xml                    (content/search.xml)
     content/messenger/tabmail.xml                   (content/tabmail.xml)
     content/messenger/tabmail.css                   (content/tabmail.css)
@@ -111,7 +112,7 @@ messenger.jar:
     content/messenger/sanitize.js                   (content/sanitize.js)
     content/messenger/sanitizeDialog.css            (content/sanitizeDialog.css)
     content/messenger/sanitizeDialog.js             (content/sanitizeDialog.js)
-*   content/messenger/toolbarIconColor.js           (content/toolbarIconColor.js)
+    content/messenger/toolbarIconColor.js           (content/toolbarIconColor.js)
 # the following files are mail-specific overrides
 *   content/messenger/license.html                  (/platform/toolkit/content/license.html)
 *   content/messenger/extensions.css                (content/extensions.css)

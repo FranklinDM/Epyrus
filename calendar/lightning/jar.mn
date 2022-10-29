@@ -97,7 +97,6 @@ lightning.jar:
 # Windows theme files
     ../skin/windows/lightning/accountCentral.css              (themes/windows/accountCentral.css)
     ../skin/windows/lightning/imip.css                        (themes/windows/imip.css)
-    ../skin/windows/lightning/imip.png                        (themes/windows/imip.png)
     ../skin/windows/lightning/lightning.css                   (themes/windows/lightning.css)
     ../skin/windows/lightning/lightning-toolbar.css           (themes/windows/lightning-toolbar.css)
     ../skin/windows/lightning/lightning-widgets.css           (themes/windows/lightning-widgets.css)

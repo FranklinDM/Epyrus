@@ -38,6 +38,12 @@ menulist > menupopup > menuitem > .menu-iconic-left {
   margin-inline-end: 5px !important;
 }
 
+/* Limit the size of search engine icons */
+#defaultWebSearch > .menulist-label-box > .menulist-icon {
+  width: 16px;
+  height: 16px;
+}
+
 /* Attachments Pane */
 #MailPreferences[animated="true"] #handlersView {
   height: 25em;

@@ -108,6 +108,12 @@ radio[pane=paneAdvanced] {
   }
 }
 
+/* Limit the size of search engine icons */
+#defaultWebSearch > .menulist-label-box > .menulist-icon {
+  width: 16px;
+  height: 16px;
+}
+
 /* Attachments Pane */
 #MailPreferences[animated="true"] #handlersView {
   height: 17em;

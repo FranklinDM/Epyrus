@@ -482,7 +482,7 @@ pref("mail.tabs.loadInBackground", true);
 pref("mail.tabs.tabMinWidth", 100);
 pref("mail.tabs.tabMaxWidth", 210);
 pref("mail.tabs.tabClipWidth", 140);
-pref("mail.tabs.autoHide", true);
+pref("mail.tabs.autoHide", false);
 pref("mail.tabs.closeWindowWithLastTab", true);
 
 // Where to show tab close buttons:
@@ -493,8 +493,7 @@ pref("mail.tabs.closeWindowWithLastTab", true);
 pref("mail.tabs.closeButtons", 1);
 
 // Allow the tabs to be in the titlebar
-pref("mail.tabs.drawInTitlebar", false);
-
+pref("mail.tabs.drawInTitlebar", true);
 
 // The breakpad report server to link to in about:crashes
 pref("breakpad.reportURL", "");
@@ -881,3 +880,8 @@ pref("mail.calendar-integration.opt-out", false);
 
 // Prompt for master password on application startup?
 pref("signon.startup.prompt", false);
+
+// On GTK, we now default to showing the menubar only when alt is pressed:
+#ifdef MOZ_WIDGET_GTK
+pref("ui.key.menuAccessKeyFocuses", true);
+#endif

@@ -514,6 +514,7 @@
             this.tabContainer.mCollapseToolbar.collapsed = false;
             this.tabContainer.adjustTabstrip();
           }
+          TabsInTitlebar.allowedBy("tabs-visible", !this.tabContainer.mCollapseToolbar.collapsed);
 
           let oldTab = this._mostRecentTabInfo = this.currentTabInfo;
           let oldPanel = this.panelContainer.selectedPanel;
@@ -761,6 +762,7 @@
             if (this.tabContainer.childNodes.length == 1 &&
                 this.tabContainer.mAutoHide)
               this.tabContainer.mCollapseToolbar.collapsed = true;
+            TabsInTitlebar.allowedBy("tabs-visible", !this.tabContainer.mCollapseToolbar.collapsed);
           ]]>
         </body>
       </method>
@@ -1740,6 +1742,7 @@
 
           if (this.mAutoHide)
             this.mCollapseToolbar.collapsed = true;
+          TabsInTitlebar.allowedBy("tabs-visible", !this.mAutoHide);
 
           this.firstChild.minWidth = this.mTabMinWidth;
           this.firstChild.maxWidth = this.mTabMaxWidth;
@@ -1849,8 +1852,10 @@
       <property name="mAutoHide" onget="return this._mAutoHide;">
         <setter><![CDATA[
           if (val != this._mAutoHide) {
-            if (this.childNodes.length == 1)
+            if (this.childNodes.length == 1) {
               this.mCollapseToolbar.collapsed = val;
+              TabsInTitlebar.allowedBy("tabs-visible", !val);
+            }
             this._mAutoHide = val;
           }
           return val;
