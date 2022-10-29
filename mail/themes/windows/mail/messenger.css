@@ -14,10 +14,6 @@
 %define mailbarLargeIcons :-moz-any(#mail-bar3, #composeToolbar2, #ab-bar2, #calendar-toolbar2, #event-toolbar, #task-toolbar2, #event-tab-toolbar)[iconsize="large"][mode="icons"]
 
 :root {
-  --fgTabTexture: linear-gradient(transparent, transparent 2px, var(--toolbar-highlight-top) 2px, var(--toolbar-highlight-top));
-  --fgTabBackgroundColor: -moz-dialog;
-  --fgTabTextureLWT: var(--fgTabTexture);
-
   --toolbarbutton-background-color: hsla(210,32%,93%,.3);
   --toolbarbutton-border-radius: 2.5px;
   --toolbarbutton-border-color: hsla(210,54%,20%,.2);

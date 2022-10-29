@@ -4,16 +4,6 @@
 
 @import url(chrome://calendar-common/skin/today-pane.css);
 
-@media (-moz-os-version: windows-win7) {
-  #today-pane-panel:-moz-lwtheme {
-    box-shadow: 0 1px 0 rgba(253, 253, 253, 0.45) inset;
-  }
-}
-
-#today-pane-panel:-moz-lwtheme > sidebarheader {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0) 19px);
-}
-
 .today-pane-cycler {
   list-style-image: url("chrome://calendar-common/skin/today-pane-cycler.svg#normal");
 }
@@ -115,16 +105,13 @@
     border-bottom: none;
   }
 
-  #today-pane-panel:-moz-lwtheme > sidebarheader {
-    background-color: rgba(255, 255, 255, 0.3);
-    background-image: linear-gradient(rgba(255, 255, 255, 0.5),
-                      rgba(255, 255, 255, 0) 28px);
-    border-top: 1px solid rgba(253, 253, 253, 0.45);
-  }
-
   sidebarheader > spacer {
     min-height: 25px;
   }
+}
+
+#today-pane-panel:-moz-lwtheme > sidebarheader {
+  background-color: transparent;
 }
 
 @media all and (-moz-windows-compositor) {

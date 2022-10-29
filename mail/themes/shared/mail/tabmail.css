@@ -14,7 +14,8 @@
   --tab-selected-highlight: rgba(255,255,255,.7);
 }
 
-#tabs-toolbar[brighttext] {
+#tabs-toolbar:-moz-lwtheme-darktext {
+  --tab-selected-highlight: rgba(255,255,255,.6);
 }
 
 .tabmail-tab {
@@ -62,6 +63,41 @@
 
 .tabmail-tab[type="preferencesTab"] {
   list-style-image: url("chrome://mozapps/skin/extensions/utilities.svg#utilities");
+}
+
+/* Remove highlight fuzz on dark themes */
+.tabmail-tab:-moz-lwtheme-brighttext {
+  box-shadow:none;
+  -moz-border-top-colors: transparent #707070;
+  -moz-border-left-colors: transparent #707070;
+  -moz-border-right-colors: transparent #707070;
+}
+
+.tabmail-tab[selected="true"]:-moz-lwtheme {
+  background-image: linear-gradient(var(--tab-selected-highlight), var(--toolbar-highlight-top) 50%);
+}
+
+.tabmail-tab[selected="true"]:-moz-lwtheme-brighttext {
+  background-image: linear-gradient(rgba(128,128,128,.9), rgba(32,32,32,.9) 50%, rgba(32,32,32,.9) 80%, var(--toolbar-highlight-top) 100%);
+  -moz-border-top-colors: transparent #D0D0D0;
+  -moz-border-left-colors: transparent #D0D0D0;
+  -moz-border-right-colors: transparent #D0D0D0;
+}
+
+.tabmail-tab:-moz-lwtheme-brighttext:not([selected="true"]) {
+  background-image: linear-gradient(hsla(0,0%,25%,.4), hsla(0,0%,15%,.6) 80%);
+}
+
+.tabmail-tab:-moz-lwtheme-brighttext:not([selected="true"]):hover {
+  background-image: linear-gradient(hsla(0,0%,60%,.4), hsla(0,0%,10%,.8) 80%);
+}
+
+.tabmail-tab:-moz-lwtheme-darktext:not([selected="true"]) {
+  background-image: linear-gradient(hsla(0,0%,75%,.4), hsla(0,0%,85%,.6) 80%);
+}
+
+.tabmail-tab:-moz-lwtheme-darktext:not([selected="true"]):hover {
+  background-image: linear-gradient(hsla(0,0%,60%,.4), hsla(0,0%,90%,.8) 80%);
 }
 
 .tab-content {

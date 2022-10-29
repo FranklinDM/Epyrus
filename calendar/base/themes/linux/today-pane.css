@@ -8,14 +8,6 @@
   border-bottom: 1px solid ThreeDShadow;
 }
 
-#today-pane-panel:-moz-lwtheme {
-  box-shadow: 0 1px 0 rgba(255, 255, 255, .3) inset;
-}
-
-#today-pane-panel:-moz-lwtheme > sidebarheader {
-  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0) 19px);
-}
-
 #today-pane-splitter {
   -moz-appearance: none;
   border-bottom: 3px double ThreeDShadow;

@@ -34,8 +34,12 @@
   background-color: transparent;
 }
 
+#navigation-toolbox:-moz-lwtheme {
+  border-bottom-color: transparent;
+}
+
 @media (min-resolution: 1.25dppx) {
-  #navigation-toolbox {
+  #navigation-toolbox:not(:-moz-lwtheme) {
     border-bottom-width: 0.6px;
   }
 }

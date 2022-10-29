@@ -21,6 +21,10 @@
   background-color: transparent;
 }
 
+#today-pane-panel:-moz-lwtheme > sidebarheader {
+  background-image: linear-gradient(var(--toolbar-highlight-top), var(--toolbar-highlight-bottom));
+}
+
 #today-pane-panel > * {
   color: -moz-DialogText;
 }

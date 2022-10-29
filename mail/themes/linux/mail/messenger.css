@@ -10,12 +10,6 @@
 @import url("chrome://messenger/content/messenger.css");
 @import url("chrome://messenger/skin/shared/messenger.css");
 
-:root {
-  --fgTabTexture: linear-gradient(transparent 2px, var(--toolbar-highlight-top) 2px, var(--toolbar-highlight-top));
-  --fgTabTextureLWT: var(--fgTabTexture);
-  --fgTabBackgroundColor: -moz-dialog;
-}
-
 toolbar:not(.inline-toolbar):not(:-moz-lwtheme) {
   -moz-appearance: menubar;
   color: -moz-menubartext;

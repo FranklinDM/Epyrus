@@ -15,12 +15,11 @@
 #tabs-toolbar {
   -moz-appearance: none;
   padding: 0;
-  background-image: linear-gradient(to top, hsla(0, 0%, 0%, .3) 1px,
-                                    transparent 1px);
 }
 
 #tabs-toolbar:not(:-moz-lwtheme) {
   -moz-binding: url("chrome://global/content/bindings/toolbar.xml#toolbar-drag");
+  background-image: linear-gradient(to top, hsla(0, 0%, 0%, .3) 1px, transparent 1px);
 }
 
 #tabpanelcontainer:-moz-lwtheme {

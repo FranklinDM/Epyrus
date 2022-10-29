@@ -12,6 +12,15 @@
   --toolbox-after-color: ThreeDShadow;
 }
 
+:root:-moz-lwtheme-brighttext {
+  --toolbar-highlight-top: rgba(32,32,32,.8);
+  --toolbar-highlight-bottom: rgba(32,32,32,0);
+}
+
+:root:-moz-lwtheme-darktext {
+  --toolbar-highlight-top: rgba(255,255,255,.8);
+}
+
 :-moz-any(#mail-bar3, #calendar-toolbar2, #task-toolbar2, #event-tab-toolbar, .glodaTabToolbar),
 :-moz-any(#mail-bar3, #calendar-toolbar2, #task-toolbar2, #event-tab-toolbar, .glodaTabToolbar)[collapsed=true]:not([customizing]) + toolbar,
 :-moz-any(#mail-bar3, #calendar-toolbar2, #task-toolbar2, #event-tab-toolbar, .glodaTabToolbar)[collapsed=true]:not([customizing]) + #customToolbars {
