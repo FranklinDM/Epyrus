@@ -57,7 +57,7 @@ MOZ_ENABLE_SIGNMAR=
 
 MOZ_DEVTOOLS=all
 
-# Platform Feature: Dual-GUID system
+# Platform Feature: AppCompat GUID system
 # Allows the installation of Thunderbird GUID targeted extensions despite having
 # a different Application ID.
 UXP_APPCOMPAT_GUID=1
