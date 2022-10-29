@@ -57,6 +57,11 @@ MOZ_ENABLE_SIGNMAR=
 
 MOZ_DEVTOOLS=all
 
+# Platform Feature: AppCompat GUID system
+# Allows the installation of Thunderbird GUID targeted extensions despite having
+# a different Application ID.
+UXP_APPCOMPAT_GUID=1
+
 # Include bundled fonts on everything except Mac.
 if test "$OS_ARCH" != "Darwin"; then
   MOZ_BUNDLED_FONTS=1
