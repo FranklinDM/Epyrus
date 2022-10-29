@@ -3,11 +3,13 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/. */
 
-var EXPORTED_SYMBOLS = ["WinTaskbarJumpList"];
-
 Components.utils.import("resource://gre/modules/XPCOMUtils.jsm");
 Components.utils.import("resource://gre/modules/Services.jsm");
 Components.utils.import("resource:///modules/iteratorUtils.jsm");
+
+/**
+ * Constants
+ */
 
 var Cc = Components.classes;
 var Ci = Components.interfaces;
@@ -17,7 +19,19 @@ var PREF_TASKBAR_BRANCH    = "mail.taskbar.lists.";
 var PREF_TASKBAR_ENABLED   = "enabled";
 var PREF_TASKBAR_TASKS     = "tasks.enabled";
 
-XPCOMUtils.defineLazyGetter(this, "_stringBundle", function () {
+/**
+ * Exports
+ */
+
+this.EXPORTED_SYMBOLS = [
+  "WinTaskbarJumpList",
+];
+
+/**
+ * Smart getters
+ */
+
+XPCOMUtils.defineLazyGetter(this, "_stringBundle", function() {
   return Services.strings
                  .createBundle("chrome://messenger/locale/taskbar.properties");
 });
@@ -33,6 +47,10 @@ XPCOMUtils.defineLazyServiceGetter(this, "_winShellService",
 XPCOMUtils.defineLazyGetter(this, "_prefs", function() {
   return Services.prefs.getBranch(PREF_TASKBAR_BRANCH);
 });
+
+/**
+ * Global functions
+ */
 
 function _getString(aName) {
   return _stringBundle.GetStringFromName(aName);
@@ -66,7 +84,7 @@ var WinTaskbarJumpList = {
    * Startup, shutdown, and update
    */
 
-  startup: function WTBJL_startup() {
+  startup: function() {
     // exit if this isn't win7 or higher.
     if (!this._initTaskbar())
       return;
@@ -93,7 +111,7 @@ var WinTaskbarJumpList = {
     this.update();
   },
 
-  update: function WTBJL_update() {
+  update: function() {
     // are we disabled via prefs? don't do anything!
     if (!this._enabled)
       return;
@@ -102,13 +120,13 @@ var WinTaskbarJumpList = {
     this._buildList();
   },
 
-  _shutdown: function WTBJL__shutdown() {
+  _shutdown: function() {
     this._shuttingDown = true;
 
     this._free();
   },
 
-  _shortcutMaintenance: function WTBJL__maintenace() {
+  _shortcutMaintenance: function() {
     _winShellService.shortcutMaintenance();
   },
 
@@ -116,7 +134,7 @@ var WinTaskbarJumpList = {
    * List building
    */
 
-  _buildList: function WTBJL__buildList() {
+  _buildList: function() {
     // anything to build?
     if (!this._showTasks) {
       // don't leave the last list hanging on the taskbar.
@@ -137,33 +155,33 @@ var WinTaskbarJumpList = {
    * Taskbar api wrappers
    */
 
-  _startBuild: function WTBJL__startBuild() {
+  _startBuild: function() {
     // This is useful if there are any async tasks pending. Since we don't right
     // now, it's just harmless.
     this._builder.abortListBuild();
     // Since our list is static right now, we won't actually get back any
     // removed items.
-    let removedItems = Cc["@mozilla.org/array;1"]
+    var removedItems = Cc["@mozilla.org/array;1"]
                          .createInstance(Ci.nsIMutableArray);
     return this._builder.initListBuild(removedItems);
   },
 
-  _commitBuild: function WTBJL__commitBuild() {
+  _commitBuild: function() {
     if (!this._builder.commitListBuild()) {
       this._builder.abortListBuild();
     }
   },
 
-  _buildTasks: function WTBJL__buildTasks() {
+  _buildTasks: function() {
     if (this._tasks.length > 0) {
-      let items = toXPCOMArray(this._tasks.map(task =>
+      var items = toXPCOMArray(this._tasks.map(task =>
                                  this._createHandlerAppItem(task)),
                                Ci.nsIMutableArray);
       this._builder.addListToBuild(this._builder.JUMPLIST_CATEGORY_TASKS, items);
     }
   },
 
-  _deleteActiveJumpList: function WTBJL__deleteAJL() {
+  _deleteActiveJumpList: function() {
     this._builder.deleteActiveList();
   },
 
@@ -171,30 +189,27 @@ var WinTaskbarJumpList = {
    * Jump list item creation helpers
    */
 
-  _createHandlerAppItem: function WTBJL__createHandlerAppItem(aTask) {
-    let file = Services.dirsvc.get("XCurProcD", Ci.nsILocalFile);
+  _createHandlerAppItem: function(aTask) {
+    var file = Services.dirsvc.get("XREExeF", Ci.nsILocalFile);
 
-    // XXX where can we grab this from in the build? Do we need to?
-    file.append("thunderbird.exe");
-
-    let handlerApp = Cc["@mozilla.org/uriloader/local-handler-app;1"]
+    var handlerApp = Cc["@mozilla.org/uriloader/local-handler-app;1"]
                        .createInstance(Ci.nsILocalHandlerApp);
     handlerApp.executable = file;
     // handlers default to the leaf name if a name is not specified
-    let title = aTask.title;
+    var title = aTask.title;
     if (title && title.length != 0)
       handlerApp.name = title;
     handlerApp.detailedDescription = aTask.description;
     handlerApp.appendParameter(aTask.args);
 
-    let item = Cc["@mozilla.org/windows-jumplistshortcut;1"]
+    var item = Cc["@mozilla.org/windows-jumplistshortcut;1"]
                  .createInstance(Ci.nsIJumpListShortcut);
     item.app = handlerApp;
     item.iconIndex = aTask.iconIndex;
     return item;
   },
 
-  _createSeparatorItem: function WTBJL__createSeparatorItem() {
+  _createSeparatorItem: function() {
     return Cc["@mozilla.org/windows-jumplistseparator;1"]
              .createInstance(Ci.nsIJumpListSeparator);
   },
@@ -203,7 +218,7 @@ var WinTaskbarJumpList = {
    * Prefs utilities
    */
 
-  _refreshPrefs: function WTBJL__refreshPrefs() {
+  _refreshPrefs: function() {
     this._enabled = _prefs.getBoolPref(PREF_TASKBAR_ENABLED);
     this._showTasks = _prefs.getBoolPref(PREF_TASKBAR_TASKS);
   },
@@ -212,7 +227,7 @@ var WinTaskbarJumpList = {
    * Init and shutdown utilities
    */
 
-  _initTaskbar: function WTBJL__initTaskbar() {
+  _initTaskbar: function() {
     this._builder = _taskbarService.createJumpListBuilder();
     if (!this._builder || !this._builder.available)
       return false;
@@ -220,17 +235,17 @@ var WinTaskbarJumpList = {
     return true;
   },
 
-  _initObs: function WTBJL__initObs() {
+  _initObs: function() {
     Services.obs.addObserver(this, "profile-before-change", false);
     _prefs.addObserver("", this, false);
   },
 
-  _freeObs: function WTBJL__freeObs() {
+  _freeObs: function() {
     Services.obs.removeObserver(this, "profile-before-change");
     _prefs.removeObserver("", this);
   },
 
-  observe: function WTBJL_observe(aSubject, aTopic, aData) {
+  observe: function(aSubject, aTopic, aData) {
     switch (aTopic) {
       case "nsPref:changed":
         if (this._enabled == true && !_prefs.getBoolPref(PREF_TASKBAR_ENABLED))
@@ -245,7 +260,7 @@ var WinTaskbarJumpList = {
     }
   },
 
-  _free: function WTBJL__free() {
+  _free: function() {
     this._freeObs();
     delete this._builder;
   },
