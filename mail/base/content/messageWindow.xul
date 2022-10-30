@@ -62,6 +62,7 @@
   <script type="application/javascript" src="chrome://messenger/content/msgViewNavigation.js"/>
   <script type="application/javascript" src="chrome://messenger/content/editContactOverlay.js"/>
   <script type="application/javascript" src="chrome://messenger/content/toolbarIconColor.js"/>
+  <script type="application/javascript" src="chrome://messenger/content/msgMail3PaneWindow.js"/>
 
   <commandset id="mailCommands">
     <commandset id="mailFileMenuItems"/>
