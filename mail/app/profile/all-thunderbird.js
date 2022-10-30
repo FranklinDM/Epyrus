@@ -857,7 +857,11 @@ pref("mail.pgpmime.addon_url", "");
 
 // If set to true, Thunderbird will collapse the main menu for new profiles
 // (or, more precisely, profiles that start with no accounts created).
+#ifdef XP_WIN
+pref("mail.main_menu.collapse_by_default", true);
+#else
 pref("mail.main_menu.collapse_by_default", false);
+#endif
 
 // If set to true, when saving a message to a file, use underscore
 // instead of space in the file name.
