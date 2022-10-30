@@ -38,8 +38,4 @@ endef
 postflight_all:
 	$(call unify_lightning,xpi-stage,lightning)
 	$(call unify_lightning_repackage,xpi-stage,lightning)
-ifdef NIGHTLY_BUILD
 	$(call unify_lightning,$(MOZ_APP_DISPLAYNAME).app/Contents/Resources/extensions,{e2fda1a4-762b-4020-b5ad-a41df1933103})
-else
-	$(call unify_lightning,$(MOZ_APP_DISPLAYNAME).app/Contents/Resources/distribution/extensions,{e2fda1a4-762b-4020-b5ad-a41df1933103})
-endif
