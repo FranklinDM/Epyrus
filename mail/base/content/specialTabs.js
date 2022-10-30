@@ -436,7 +436,6 @@ var contentTabBaseType = {
 };
 
 var specialTabs = {
-  _kAboutRightsVersion: 1,
   get _protocolSvc() {
     delete this._protocolSvc;
     return this._protocolSvc =
@@ -602,10 +601,6 @@ var specialTabs = {
       }
       Services.prefs.clearUserPref("app.update.postupdate");
     }
-
-    // Show the about rights notification if we need to.
-    if (this.shouldShowAboutRightsNotification())
-      this.showAboutRightsNotification();
   },
 
   /**
@@ -820,67 +815,6 @@ var specialTabs = {
       return;
 
     openWhatsNew();
-  },
-
-  /**
-   * Looks at the existing prefs and determines if we should show about:rights
-   * or not.
-   *
-   * This is controlled by two prefs:
-   *
-   *   mail.rights.override
-   *     If this pref is set to false, always show the about:rights
-   *     notification.
-   *     If this pref is set to true, never show the about:rights notification.
-   *     If the pref doesn't exist, then we fallback to checking
-   *     mail.rights.version.
-   *
-   *   mail.rights.version
-   *     If this pref isn't set or the value is less than the current version
-   *     then we show the about:rights notification.
-   */
-  shouldShowAboutRightsNotification: function() {
-    try {
-      return !Services.prefs.getBoolPref("mail.rights.override");
-    } catch (e) { }
-
-    return Services.prefs.getIntPref("mail.rights.version") < this._kAboutRightsVersion;
-  },
-
-  showAboutRightsNotification: function() {
-    var notifyBox = document.getElementById("mail-notification-box");
-
-    var brandBundle =
-      Services.strings.createBundle("chrome://branding/locale/brand.properties");
-    var rightsBundle =
-      Services.strings.createBundle("chrome://messenger/locale/aboutRights.properties");
-
-    var productName = brandBundle.GetStringFromName("brandFullName");
-    var notifyRightsText = rightsBundle.formatStringFromName("notifyRightsText",
-                                                             [productName], 1);
-
-    var buttons = [
-      {
-        label: rightsBundle.GetStringFromName("buttonLabel"),
-        accessKey: rightsBundle.GetStringFromName("buttonAccessKey"),
-        popup: null,
-        callback: function(aNotificationBar, aButton) {
-          // Show the about:rights tab
-          document.getElementById('tabmail')
-                  .openTab("contentTab", { contentPage: "about:rights",
-                                           clickHandler: "specialTabs.aboutClickHandler(event);" });
-        }
-      }
-    ];
-
-    var box = notifyBox.appendNotification(notifyRightsText, "about-rights",
-                                           null, notifyBox.PRIORITY_INFO_LOW,
-                                           buttons);
-    // arbitrary number, just so bar sticks around for a bit
-    box.persistence = 3;
-
-    // Set the pref to say we've displayed the notification.
-    Services.prefs.setIntPref("mail.rights.version", this._kAboutRightsVersion);
   },
 
   /**
