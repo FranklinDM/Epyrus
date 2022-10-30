@@ -76,12 +76,14 @@ $(DIST)/branding:
 libs-%:
 	$(NSINSTALL) -D $(DIST)/install
 	@$(MAKE) -C $(DEPTH)/toolkit/locales libs-$*  XPI_ROOT_APPID='$(XPI_ROOT_APPID)'
-	@$(MAKE) -C $(DEPTH)/devtools/client/locales AB_CD=$* XPI_NAME=locale-$* XPI_ROOT_APPID='$(XPI_ROOT_APPID)'
-	@$(MAKE) -C ../../editor/ui/locales AB_CD=$* XPI_NAME=locale-$*
 	@$(MAKE) -C $(DEPTH)/extensions/spellcheck/locales AB_CD=$* XPI_NAME=locale-$*
 	@$(MAKE) -C $(DEPTH)/intl/locales AB_CD=$* XPI_NAME=locale-$*
+ifdef MOZ_DEVTOOLS
+	@$(MAKE) -C $(DEPTH)/devtools/client/locales AB_CD=$* XPI_NAME=locale-$* XPI_ROOT_APPID='$(XPI_ROOT_APPID)'
+endif
 	@$(MAKE) libs AB_CD=$* XPI_NAME=locale-$* PREF_DIR=defaults/pref
 	@$(MAKE) -C $(DEPTH)/$(MOZ_BRANDING_DIRECTORY)/locales AB_CD=$* XPI_NAME=locale-$*
+	@$(MAKE) -C ../../editor/ui/locales AB_CD=$* XPI_NAME=locale-$*
 
 
 # Note the funny extra '../' in SFX_HEADER is because the repackage-zip command

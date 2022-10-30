@@ -8,7 +8,6 @@
 DIRS += [
     'compose',
     'cloudfile',
-    'devtools',
     'downloads',
     'preferences',
     'addrbook',
@@ -19,6 +18,9 @@ DIRS += [
     'wintaskbar',
     'newmailaccount',
 ]
+
+if CONFIG['MOZ_DEVTOOLS']:
+    DIRS += ['devtools']
 
 if CONFIG['MOZ_WIDGET_TOOLKIT'] in ('windows', 'gtk2', 'gtk3', 'cocoa', 'qt'):
     DIRS += ['shell']

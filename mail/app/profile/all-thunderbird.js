@@ -808,11 +808,13 @@ pref("browser.search.order.2", "chrome://messenger-region/locale/region.properti
 pref("browser.search.order.3", "chrome://messenger-region/locale/region.properties");
 pref("browser.search.order.4", "chrome://messenger-region/locale/region.properties");
 
+#ifdef MOZ_DEVTOOLS
 // Developer Tools related preferences
 pref("devtools.debugger.log", false);
 pref("devtools.chrome.enabled", true);
 pref("devtools.debugger.remote-enabled", true);
 pref("devtools.selfxss.count", 5);
+#endif
 
 pref("mail.chat.enabled", true);
 // Whether to show chat notifications or not.
