@@ -27,9 +27,6 @@ try {
     // is false, which means the UI will not be shown
 }
 
-// Flag for using new item UI code (HTML/React.js).
-const gNewItemUI = Preferences.get("calendar.item.useNewItemUI", false);
-
 // the following variables are constructed if the jsContext this file
 // belongs to gets constructed. all those variables are meant to be accessed
 // from within this file only.
@@ -196,9 +193,6 @@ function receiveMessage(aEvent) {
         case "editConfigState": {
             Object.assign(gConfig, aEvent.data.argument);
             updateConfigState(aEvent.data.argument);
-            if (gNewItemUI) {
-                gTopComponent.importState(aEvent.data.argument);
-            }
             break;
         }
         case "editToDoStatus": {
@@ -213,12 +207,6 @@ function receiveMessage(aEvent) {
         case "toggleTimezoneLinks":
             gTimezonesEnabled = aEvent.data.checked;
             updateDateTime();
-            /*
-            // Not implemented in react-code.js yet
-            if (gNewItemUI) {
-                gTopComponent.importState({ timezonesEnabled: aEvent.data.checked });
-            }
-            */
             break;
         case "toggleLink": {
             let newUrl = window.calendarItem.getProperty("URL") || "";
@@ -227,14 +215,7 @@ function receiveMessage(aEvent) {
             if (!newUrl.length) {
                 sendMessage({ command: "disableLinkCommand" });
             }
-            if (gNewItemUI) {
-                gTopComponent.importState({
-                    url: newUrl,
-                    showUrl: newShow
-                });
-            } else {
-                updateItemURL(newShow, newUrl);
-            }
+            updateItemURL(newShow, newUrl);
             break;
         }
         case "closingWindowWithTabs": {
@@ -367,11 +348,9 @@ function onLoad() {
     // Set initial values for datepickers in New Tasks dialog
     if (isToDo(item)) {
         let initialDatesValue = cal.dateTimeToJsDate(args.initialStartDateValue);
-        if (!gNewItemUI) {
-            setElementValue("completed-date-picker", initialDatesValue);
-            setElementValue("todo-entrydate", initialDatesValue);
-            setElementValue("todo-duedate", initialDatesValue);
-        }
+        setElementValue("completed-date-picker", initialDatesValue);
+        setElementValue("todo-entrydate", initialDatesValue);
+        setElementValue("todo-duedate", initialDatesValue);
     }
     loadDialog(window.calendarItem);
 
@@ -382,10 +361,8 @@ function onLoad() {
 
     gMainWindow.setCursor("auto");
 
-    if (!gNewItemUI) {
-        document.getElementById("item-title").focus();
-        document.getElementById("item-title").select();
-    }
+    document.getElementById("item-title").focus();
+    document.getElementById("item-title").select();
 
     // This causes the app to ask if the window should be closed when the
     // application is closed.
@@ -436,14 +413,6 @@ function onAccept() {
  * @return    Returns true if the window should be closed.
  */
 function onCommandCancel() {
-    if (gNewItemUI) {
-        // saving is not supported yet for gNewItemUI, return true to
-        // allow the tab to close
-        console.log("Saving changes is not yet supported with the HTML " +
-                    "UI for editing events and tasks.");
-        return true;
-    }
-
     // Allow closing if the item has not changed and no warning dialog has to be showed.
     if (!isItemChanged() && !gWarning) {
         return true;
@@ -544,92 +513,27 @@ function cancelItem() {
 function loadDialog(aItem) {
     loadDateTime(aItem);
 
-    let itemProps;
-    if (gNewItemUI) {
-        // Properties for initializing the React component/UI.
-        itemProps = {
-            initialTitle: aItem.title,
-            initialLocation: aItem.getProperty("LOCATION"),
-            initialStartTimezone: gStartTimezone,
-            initialEndTimezone: gEndTimezone,
-            initialStartTime: gStartTime,
-            initialEndTime: gEndTime
-        };
-    } else {
-        setElementValue("item-title", aItem.title);
-        setElementValue("item-location", aItem.getProperty("LOCATION"));
-    }
+    setElementValue("item-title", aItem.title);
+    setElementValue("item-location", aItem.getProperty("LOCATION"));
 
     // add calendars to the calendar menulist
-    if (gNewItemUI) {
-        let calendarToUse = aItem.calendar || window.arguments[0].calendar;
-        let unfilteredList = sortCalendarArray(cal.getCalendarManager().getCalendars({}));
-
-        // filter out calendars that should not be included
-        let calendarList = unfilteredList.filter((calendar) =>
-           (calendar.id == calendarToUse.id ||
-            (calendar &&
-             isCalendarWritable(calendar) &&
-             (userCanAddItemsToCalendar(calendar) ||
-              (calendar == aItem.calendar && userCanModifyItem(aItem))) &&
-             isItemSupported(aItem, calendar))));
-
-        itemProps.calendarList = calendarList.map(calendar => [calendar.id, calendar.name]);
-
-        if (calendarToUse && calendarToUse.id) {
-            let index = itemProps.calendarList.findIndex(
-                calendar => (calendar[0] == calendarToUse.id));
-            if (index != -1) {
-                itemProps.initialCalendarId = calendarToUse.id;
-            }
-        }
-    } else {
-        let calendarList = document.getElementById("item-calendar");
-        removeChildren(calendarList);
-        let indexToSelect = appendCalendarItems(aItem, calendarList, aItem.calendar || window.arguments[0].calendar);
-        if (indexToSelect > -1) {
-            calendarList.selectedIndex = indexToSelect;
-        }
+    let calendarList = document.getElementById("item-calendar");
+    removeChildren(calendarList);
+    let indexToSelect = appendCalendarItems(aItem, calendarList, aItem.calendar || window.arguments[0].calendar);
+    if (indexToSelect > -1) {
+        calendarList.selectedIndex = indexToSelect;
     }
 
     // Categories
-    if (gNewItemUI) {
-        // XXX more to do here with localization, see loadCategories.
-        itemProps.initialCategoriesList = cal.sortArrayByLocaleCollator(getPrefCategoriesArray());
-        itemProps.initialCategories = aItem.getCategories({});
-
-        // just to demo capsules component
-        itemProps.initialCategories = ["Some", "Demo", "Categories"];
-    } else {
-        loadCategories(aItem);
-    }
+    loadCategories(aItem);
 
     // Attachment
-    if (!gNewItemUI) {
-        loadCloudProviders();
-    }
+    loadCloudProviders();
     let hasAttachments = capSupported("attachments");
     let attachments = aItem.getAttachments({});
-    if (gNewItemUI) {
-        itemProps.initialAttachments = {};
-    }
     if (hasAttachments && attachments && attachments.length > 0) {
         for (let attachment of attachments) {
-            if (gNewItemUI) {
-                if (attachment &&
-                    attachment.hashId &&
-                    !(attachment.hashId in gAttachMap) &&
-                    // We currently only support uri attachments.
-                    attachment.uri) {
-                    itemProps.initialAttachments[attachment.hashId] = attachment;
-
-                    // XXX eventually we probably need to call addAttachment(attachment)
-                    // here, until this works we just call updateAttachment()
-                    updateAttachment();
-                }
-            } else {
-                addAttachment(attachment);
-            }
+            addAttachment(attachment);
         }
     } else {
         updateAttachment();
@@ -646,27 +550,16 @@ function loadDialog(aItem) {
     if (!itemUrl.length) {
         sendMessage({ command: "disableLinkCommand" });
     }
-    if (gNewItemUI) {
-        itemProps.initialUrl = itemUrl;
-        itemProps.initialShowUrl = showLink;
-    } else {
-        updateItemURL(showLink, itemUrl);
-    }
+    updateItemURL(showLink, itemUrl);
 
     // Description
-    if (gNewItemUI) {
-        itemProps.initialDescription = aItem.getProperty("DESCRIPTION");
-    } else {
-        setElementValue("item-description", aItem.getProperty("DESCRIPTION"));
-    }
+    setElementValue("item-description", aItem.getProperty("DESCRIPTION"));
 
     // Task completed date
-    if (!gNewItemUI) {
-        if (aItem.completedDate) {
-            updateToDoStatus(aItem.status, cal.dateTimeToJsDate(aItem.completedDate));
-        } else {
-            updateToDoStatus(aItem.status);
-        }
+    if (aItem.completedDate) {
+        updateToDoStatus(aItem.status, cal.dateTimeToJsDate(aItem.completedDate));
+    } else {
+        updateToDoStatus(aItem.status);
     }
 
     // Task percent complete
@@ -682,11 +575,7 @@ function loadDialog(aItem) {
             percentCompleteInteger = 100;
         }
         gConfig.percentComplete = percentCompleteInteger;
-        if (gNewItemUI) {
-            itemProps.initialPercentComplete = percentCompleteInteger;
-        } else {
-            setElementValue("percent-complete-textbox", percentCompleteInteger);
-        }
+        setElementValue("percent-complete-textbox", percentCompleteInteger);
     }
 
     // When in a window, set Item-Menu label to Event or Task
@@ -707,64 +596,56 @@ function loadDialog(aItem) {
 
     // Repeat details
     let [repeatType, untilDate] = getRepeatTypeAndUntilDate(aItem);
-    if (gNewItemUI) {
-        itemProps.initialRepeat = repeatType;
-        itemProps.initialRepeatUntilDate = untilDate;
-        // XXX more to do, see loadRepeat
+    loadRepeat(repeatType, untilDate, aItem);
+
+    // load reminders details
+    loadReminders(aItem.getAlarms({}));
+
+    // Synchronize link-top-image with keep-duration-button status
+    let keepAttribute = document.getElementById("keepduration-button").getAttribute("keep") == "true";
+    setBooleanAttribute("link-image-top", "keep", keepAttribute);
+
+    updateDateTime();
+
+    updateCalendar();
+
+    // figure out what the title of the dialog should be and set it
+    // tabs already have their title set
+    if (!gInTab) {
+        updateTitle();
+    }
+
+    let notifyCheckbox = document.getElementById("notify-attendees-checkbox");
+    let undiscloseCheckbox = document.getElementById("undisclose-attendees-checkbox");
+    let disallowcounterCheckbox = document.getElementById("disallow-counter-checkbox");
+    if (canNotifyAttendees(aItem.calendar, aItem)) {
+        // visualize that the server will send out mail:
+        notifyCheckbox.checked = true;
+        // hide these controls as this a client only feature
+        undiscloseCheckbox.disabled = true;
     } else {
-        loadRepeat(repeatType, untilDate, aItem);
+        let itemProp = aItem.getProperty("X-MOZ-SEND-INVITATIONS");
+        notifyCheckbox.checked = (aItem.calendar.getProperty("imip.identity") &&
+                                  ((itemProp === null)
+                                   ? Preferences.get("calendar.itip.notify", true)
+                                   : (itemProp == "TRUE")));
+        let undiscloseProp = aItem.getProperty("X-MOZ-SEND-INVITATIONS-UNDISCLOSED");
+        undiscloseCheckbox.checked = (undiscloseProp === null)
+                                     ? false // default value as most common within organizations
+                                     : (undiscloseProp == "TRUE");
+        // disable checkbox, if notifyCheckbox is not checked
+        undiscloseCheckbox.disabled = (notifyCheckbox.checked == false);
     }
+    // this may also be a server exposed calendar property from exchange servers - if so, this
+    // probably should overrule the client-side config option
+    let disallowCounterProp = aItem.getProperty("X-MICROSOFT-DISALLOW-COUNTER");
+    disallowcounterCheckbox.checked = disallowCounterProp == "TRUE";
+    // if we're in reschedule mode, it's pointless to enable the control
+    disallowcounterCheckbox.disabled = !!window.counterProposal;
 
-    if (!gNewItemUI) {
-        // load reminders details
-        loadReminders(aItem.getAlarms({}));
-
-        // Synchronize link-top-image with keep-duration-button status
-        let keepAttribute = document.getElementById("keepduration-button").getAttribute("keep") == "true";
-        setBooleanAttribute("link-image-top", "keep", keepAttribute);
-
-        updateDateTime();
-
-        updateCalendar();
-
-        // figure out what the title of the dialog should be and set it
-        // tabs already have their title set
-        if (!gInTab) {
-            updateTitle();
-        }
-
-        let notifyCheckbox = document.getElementById("notify-attendees-checkbox");
-        let undiscloseCheckbox = document.getElementById("undisclose-attendees-checkbox");
-        let disallowcounterCheckbox = document.getElementById("disallow-counter-checkbox");
-        if (canNotifyAttendees(aItem.calendar, aItem)) {
-            // visualize that the server will send out mail:
-            notifyCheckbox.checked = true;
-            // hide these controls as this a client only feature
-            undiscloseCheckbox.disabled = true;
-        } else {
-            let itemProp = aItem.getProperty("X-MOZ-SEND-INVITATIONS");
-            notifyCheckbox.checked = (aItem.calendar.getProperty("imip.identity") &&
-                                      ((itemProp === null)
-                                       ? Preferences.get("calendar.itip.notify", true)
-                                       : (itemProp == "TRUE")));
-            let undiscloseProp = aItem.getProperty("X-MOZ-SEND-INVITATIONS-UNDISCLOSED");
-            undiscloseCheckbox.checked = (undiscloseProp === null)
-                                         ? false // default value as most common within organizations
-                                         : (undiscloseProp == "TRUE");
-            // disable checkbox, if notifyCheckbox is not checked
-            undiscloseCheckbox.disabled = (notifyCheckbox.checked == false);
-        }
-        // this may also be a server exposed calendar property from exchange servers - if so, this
-        // probably should overrule the client-side config option
-        let disallowCounterProp = aItem.getProperty("X-MICROSOFT-DISALLOW-COUNTER");
-        disallowcounterCheckbox.checked = disallowCounterProp == "TRUE";
-        // if we're in reschedule mode, it's pointless to enable the control
-        disallowcounterCheckbox.disabled = !!window.counterProposal;
-
-        updateAttendees();
-        updateRepeat(true);
-        updateReminder(true);
-    }
+    updateAttendees();
+    updateRepeat(true);
+    updateReminder(true);
 
     // Status
     if (cal.isEvent(aItem)) {
@@ -774,22 +655,14 @@ function loadDialog(aItem) {
             sendMessage({ command: "showCmdStatusNone" });
         }
         updateConfigState({ status: gConfig.status });
-        if (gNewItemUI) {
-            itemProps.initialStatus = gConfig.status;
-        }
     } else {
         let itemStatus = aItem.getProperty("STATUS");
-        if (gNewItemUI) {
-            // Not implemented yet in react-code.js
-            // itemProps.initialTodoStatus = itemStatus;
-        } else {
-            let todoStatus = document.getElementById("todo-status");
-            setElementValue(todoStatus, itemStatus);
-            if (!todoStatus.selectedItem) {
-                // No selected item means there was no <menuitem> that matches the
-                // value given. Select the "NONE" item by default.
-                setElementValue(todoStatus, "NONE");
-            }
+        let todoStatus = document.getElementById("todo-status");
+        setElementValue(todoStatus, itemStatus);
+        if (!todoStatus.selectedItem) {
+            // No selected item means there was no <menuitem> that matches the
+            // value given. Select the "NONE" item by default.
+            setElementValue(todoStatus, "NONE");
         }
     }
 
@@ -800,26 +673,6 @@ function loadDialog(aItem) {
 
     // update in outer parent context
     updateConfigState(gConfig);
-
-    // update in iframe (gNewItemUI only)
-    if (gNewItemUI) {
-        itemProps.initialPriority = gConfig.priority;
-        itemProps.supportsPriority = capSupported("priority");
-
-        itemProps.initialPrivacy = gConfig.privacy || "NONE";
-        // XXX need to update the privacy options depending on calendar support for them
-        itemProps.supportsPrivacy = capSupported("privacy");
-
-        itemProps.initialShowTimeAs = gConfig.showTimeAs;
-    }
-
-    // render the UI for gNewItemUI
-    if (gNewItemUI) {
-        gTopComponent = ReactDOM.render(
-            React.createElement(TopComponent, itemProps),
-            document.getElementById("container")
-        );
-    }
 }
 
 /**
@@ -940,10 +793,8 @@ function loadDateTime(item) {
         if (hasEntryDate && hasDueDate) {
             duration = endTime.subtractDate(startTime);
         }
-        if (!gNewItemUI) {
-            setElementValue("cmd_attendees", true, "disabled");
-            setBooleanAttribute("keepduration-button", "disabled", !(hasEntryDate && hasDueDate));
-        }
+        setElementValue("cmd_attendees", true, "disabled");
+        setBooleanAttribute("keepduration-button", "disabled", !(hasEntryDate && hasDueDate));
         sendMessage({
             command: "updateConfigState",
             argument: { attendeesCommand: false }
@@ -1349,9 +1200,6 @@ function getRepeatTypeAndUntilDate(aItem) {
 
 /**
  * Updates the XUL UI with the repeat type and the until date.
- *
- * XXX For gNewItemUI we need to handle gLastRepeatSelection and
- * disabling the element as we do in this function.
  *
  * @param {string} aRepeatType  The type of repeat
  * @param {string} aUntilDate   The until date
@@ -2626,15 +2474,7 @@ function updateRepeat(aSuppressDialogs, aItemRepeatCall) {
             // have only the until date. The getRepeatTypeAndUntilDate()
             // function verifies whether this is the case.
             let [repeatType, untilDate] = getRepeatTypeAndUntilDate(item);
-            if (gNewItemUI) {
-                gTopComponent.importState({
-                    repeat: repeatType,
-                    repeatUntilDate: untilDate
-                });
-                // XXX more to do, see loadRepeat
-            } else {
-                loadRepeat(repeatType, untilDate, window.calendarItem);
-            }
+            loadRepeat(repeatType, untilDate, window.calendarItem);
         }
     } else {
         let item = window.calendarItem;
@@ -3461,9 +3301,7 @@ function updateTimezone() {
  */
 function updateAttachment() {
     let hasAttachments = capSupported("attachments");
-    if (!gNewItemUI) {
-        setElementValue("cmd_attach_url", !hasAttachments && "true", "disabled");
-    }
+    setElementValue("cmd_attach_url", !hasAttachments && "true", "disabled");
     sendMessage({
         command: "updateConfigState",
         argument: { attachUrlCommand: hasAttachments }
@@ -3491,7 +3329,7 @@ function showOrHideItemURL(aShow, aUrl) {
             // hideOrShow(false);
             return false;
         }
-        // Only show if its either an internal protcol handler, or its external
+        // Only show if its either an internal protocol handler, or its external
         // and there is an external app for the scheme
         handler = cal.wrapInstance(handler, Components.interfaces.nsIExternalProtocolHandler);
         return !handler || handler.externalAppExistsForScheme(uri.scheme);
