@@ -95,5 +95,4 @@
 @DIR_MACOS@greprefs/
 @DIR_MACOS@jssubloader/
 @DIR_MACOS@modules/
-@DIR_MACOS@searchplugins/*
 @DIR_MACOS@webapprt/components/

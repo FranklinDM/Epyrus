@@ -806,11 +806,7 @@ pref("browser.search.defaultenginename", "chrome://messenger-region/locale/regio
 pref("browser.search.order.1", "chrome://messenger-region/locale/region.properties");
 pref("browser.search.order.2", "chrome://messenger-region/locale/region.properties");
 pref("browser.search.order.3", "chrome://messenger-region/locale/region.properties");
-
-pref("browser.search.defaultenginename.US", "data:text/plain,browser.search.defaultenginename.US=Bing");
-pref("browser.search.order.US.1", "data:text/plain,browser.search.defaultenginename.US=Bing");
-pref("browser.search.order.US.2", "data:text/plain,browser.search.defaultenginename.US=Yahoo");
-pref("browser.search.order.US.3", "data:text/plain,browser.search.defaultenginename.US=");
+pref("browser.search.order.4", "chrome://messenger-region/locale/region.properties");
 
 // Developer Tools related preferences
 pref("devtools.debugger.log", false);
