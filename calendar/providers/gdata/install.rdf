@@ -8,7 +8,7 @@
      xmlns:em="http://www.mozilla.org/2004/em-rdf#">
 
   <Description about="urn:mozilla:install-manifest">
-    <em:id>{a62ef8ec-5fdc-40c2-873c-223b8a6925cc}</em:id>
+    <em:id>@XPI_EM_ID@</em:id>
     <em:version>@GDATA_VERSION@</em:version>
     <em:type>2</em:type>
 
