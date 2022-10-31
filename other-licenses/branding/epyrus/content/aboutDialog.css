@@ -21,12 +21,11 @@
 
 #rightBox {
   /* this margin prevents text from overlapping the egg image */
-  margin-left: 320px;
-  margin-right: 20px;
+  margin-left: 310px;
 }
 
 #bottomBox {
-  margin-top: 130px;
+  margin-top: 80px;
   background-color: #e8d84f;
   color: #000000;
 }
