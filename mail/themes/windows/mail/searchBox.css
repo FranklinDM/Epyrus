@@ -80,13 +80,6 @@
   border-radius: 2px;
 }
 
-#searchInput,
-#IMSearchInput,
-#peopleSearchInput {
-  /* margin-top: -1px; */
-  /* margin-bottom: -1px; */
-}
-
 .searchBox[focused],
 #view-task-edit-field[focused],
 #unifinder-task-edit-field[focused] {
