@@ -80,7 +80,14 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
   padding-inline-start: 20px;
 }
 
+/* ..... tree children adjustments ..... */
 
+@media (-moz-windows-default-theme) {
+  /* XXX: Override toolkit tree children styling to reduce the height. */
+  treechildren:not(.autocomplete-treebody)::-moz-tree-row {
+    height: 1.7em;
+  }
+}
 
 /* ..... splitter adjustments ..... */
 
