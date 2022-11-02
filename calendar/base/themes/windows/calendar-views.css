@@ -8,7 +8,6 @@
 #calendar-nav-control {
     background-color: ButtonFace;
     border-top: 1px solid ThreeDShadow;
-    border-inline-start: 1px solid ThreeDShadow;
     padding-top: 1px;
 }
 
@@ -59,15 +58,4 @@ tab[calview]:hover {
 
 .today-navigation-button {
     padding-top: 0px !important; /* a workaround to center the label vertically on Windows */
-}
-
-#calendar-view-box #calendar-view-splitter {
-  border: none;
-  border-bottom: 1px solid #A9B7C9;
-  min-height: 0;
-  height: 5px;
-  background-color: transparent;
-  margin-top: -5px;
-  position: relative;
-  z-index: 10;
 }

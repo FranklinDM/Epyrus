@@ -4,18 +4,6 @@
 
 @import url(chrome://calendar-common/skin/calendar-task-view.css);
 
-#calendar-task-view-splitter {
-     -moz-appearance: none;
-    border-bottom: 1px solid ThreeDShadow;
-    /* splitter grip area */
-    height: 5px;
-    /* make only the splitter border visible */
-    margin-top: -5px;
-    /* because of the negative margin needed to make the splitter visible */
-    position: relative;
-    z-index: 10;
-}
-
 #task-addition-box {
     height: 37px;
 }

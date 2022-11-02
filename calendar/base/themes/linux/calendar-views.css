@@ -7,7 +7,6 @@
 /* Navigation controls for the views */
 #calendar-nav-control {
     background-color: AppWorkspace;
-    border-inline-start: 1px solid ThreeDShadow;
     padding-top: 1px;
 }
 

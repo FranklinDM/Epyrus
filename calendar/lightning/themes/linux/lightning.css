@@ -9,42 +9,6 @@
   background-color: -moz-Dialog;
 }
 
-#calsidebar_splitter,
-#today-splitter {
-  -moz-appearance: none;
-  /* splitter grip area */
-  width: 5px;
-  margin-top: 0;
-  /* because of the negative margin needed to make the splitter visible */
-  position: relative;
-  z-index: 10;
-  transition: border-width .3s ease-in;
-}
-
-#calsidebar_splitter {
-  border-inline-start: 1px solid ThreeDShadow;
-  /* make only the splitter border visible */
-  margin-inline-end: -5px;
-}
-
-#today-splitter {
-  border-inline-start: 1px solid ThreeDShadow;
-  /* make only the splitter border visible */
-  margin-inline-end: -5px;
-}
-
-#calsidebar_splitter[state="collapsed"] {
-  border-inline-start: 1px solid transparent;
-}
-
-#calsidebar_splitter[state="collapsed"]:hover {
-  border-inline-start: 4px solid highlight;
-}
-
-#today-splitter > grippy {
-  display: none;
-}
-
 /* Calendar list rules */
 #calendar-panel {
     padding-bottom: 5px;
