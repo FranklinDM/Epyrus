@@ -142,18 +142,6 @@ function OnLoadCardView()
   cvData.cvWorkWebPage  = doc.getElementById("cvWorkWebPage");
   cvData.cvbPhoto = doc.getElementById("cvbPhoto");
   cvData.cvPhoto  = doc.getElementById("cvPhoto");
-  // Chat section
-  cvData.cvbChat      = doc.getElementById("cvbChat");
-  cvData.cvhChat      = doc.getElementById("cvhChat");
-  cvData.cvGtalk      = doc.getElementById("cvGtalk");
-  cvData.cvAIM        = doc.getElementById("cvAIM");
-  cvData.cvYahoo      = doc.getElementById("cvYahoo");
-  cvData.cvSkype      = doc.getElementById("cvSkype");
-  cvData.cvQQ         = doc.getElementById("cvQQ");
-  cvData.cvMSN        = doc.getElementById("cvMSN");
-  cvData.cvICQ        = doc.getElementById("cvICQ");
-  cvData.cvXMPP       = doc.getElementById("cvXMPP");
-  cvData.cvIRC        = doc.getElementById("cvIRC");
 }
 
 // XXX todo
@@ -264,10 +252,6 @@ function DisplayCardViewPane(realCard)
     // Addresses section
     visible = cvAddAddressNodes(data.cvAddresses, card.mailListURI);
     cvSetVisible(data.cvbAddresses, visible);
-
-    // Other and Chat sections, not shown for mailing lists.
-    cvSetVisible(data.cvbOther, false);
-    cvSetVisible(data.cvbChat, false);
   }
   else {
     // Other section
@@ -315,28 +299,6 @@ function DisplayCardViewPane(realCard)
 
     cvSetVisible(data.cvhOther, visible);
     cvSetVisible(data.cvbOther, visible);
-
-    // Chat section
-    visible = cvSetNodeWithLabel(data.cvGtalk, zGtalk,
-                                 card.getProperty("_GoogleTalk"));
-    visible = cvSetNodeWithLabel(data.cvAIM, zAIM,
-                                 card.getProperty("_AimScreenName")) || visible;
-    visible = cvSetNodeWithLabel(data.cvYahoo, zYahoo,
-                                 card.getProperty("_Yahoo")) || visible;
-    visible = cvSetNodeWithLabel(data.cvSkype, zSkype,
-                                 card.getProperty("_Skype")) || visible;
-    visible = cvSetNodeWithLabel(data.cvQQ, zQQ,
-                                 card.getProperty("_QQ")) || visible;
-    visible = cvSetNodeWithLabel(data.cvMSN, zMSN,
-                                 card.getProperty("_MSN")) || visible;
-    visible = cvSetNodeWithLabel(data.cvICQ, zICQ,
-                                 card.getProperty("_ICQ")) || visible;
-    visible = cvSetNodeWithLabel(data.cvXMPP, zXMPP,
-                                 card.getProperty("_JabberId")) || visible;
-    visible = cvSetNodeWithLabel(data.cvIRC, zIRC,
-                                 card.getProperty("_IRC")) || visible;
-    cvSetVisible(data.cvhChat, visible);
-    cvSetVisible(data.cvbChat, visible);
 
     // hide description section, not show for non-mailing lists
     cvSetVisible(data.cvbDescription, false);
