@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>English</string>
 	<key>CFBundleExecutable</key>
-	<string>thunderbird</string>
+	<string>epyrus</string>
 	<key>CFBundleGetInfoString</key>
 	<string>%MAC_APP_NAME% %APP_VERSION%</string>
 	<key>CFBundleIconFile</key>
@@ -55,23 +55,32 @@
 	<true/>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.productivity</string>
-        <key>LSMinimumSystemVersion</key>
-        <string>10.9.0</string>
-        <key>NSSupportsAutomaticGraphicsSwitching</key>
-        <true/>
+	<key>LSEnvironment</key>
+	<dict>
+		<key>MallocNanoZone</key>
+		<string>0</string>
+		<key>SYSTEM_VERSION_COMPAT</key>
+		<string>0</string>
+	</dict>
+	<key>LSMinimumSystemVersion</key>
+	<string>10.7.0</string>
+	<key>NSSupportsAutomaticGraphicsSwitching</key>
+	<true/>
+	<key>NSRequiresAquaSystemAppearance</key>
+	<true/>
 	<key>NSDisablePersistence</key>
 	<true/>
-        <key>NSPrincipalClass</key>
-        <string>GeckoNSApplication</string>
+	<key>NSPrincipalClass</key>
+	<string>GeckoNSApplication</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
 			<key>UTTypeIdentifier</key>
 			<string>com.mozilla.thunderbird.mozeml</string>
 			<key>UTTypeReferenceURL</key>
-			<string>http://www.mozilla.com/Thunderbird</string>
+			<string>http://epyrus.org</string>
 			<key>UTTypeDescription</key>
-			<string>Thunderbird Mail Message</string>
+			<string>Epyrus Mail Message</string>
 			<key>UTTypeConformsTo</key>
 			<array>
 				<string>public.data</string>
@@ -103,7 +112,7 @@
 			</array>
 
 			<key>CFBundleTypeName</key>
-			<string>Thunderbird Mail Message</string>
+			<string>Epyrus Mail Message</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 			<key>LSTypeIsPackage</key>
@@ -119,7 +128,7 @@
 			    <string>eml</string>
 			</array>
 			<key>CFBundleTypeName</key>
-			<string>Thunderbird E-mail</string>
+			<string>Epyrus E-mail</string>
 			<key>CFBundleTypeRole</key>
 			<string>Viewer</string>
 		</dict>

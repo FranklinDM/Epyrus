@@ -74,8 +74,10 @@
 #ifdef XP_WIN
 @BINPATH@/@DLL_PREFIX@gkmedias@DLL_SUFFIX@
 #endif
+#ifdef MOZ_FFVPX
 @BINPATH@/@DLL_PREFIX@mozavcodec@DLL_SUFFIX@
 @BINPATH@/@DLL_PREFIX@mozavutil@DLL_SUFFIX@
+#endif
 #ifdef MOZ_DMD
 @BINPATH@/@DLL_PREFIX@dmd@DLL_SUFFIX@
 #endif
@@ -130,7 +132,7 @@
 @BINPATH@/VisualElements/VisualElements_150.png
 @BINPATH@/VisualElements/VisualElements_70.png
 #else
-@BINPATH@/@MOZ_APP_NAME@-bin
+@RESPATH@/@MOZ_APP_NAME@-bin
 @BINPATH@/@MOZ_APP_NAME@
 #endif
 @RESPATH@/application.ini
@@ -141,7 +143,7 @@
 @RESPATH@/blocklist.xml
 @RESPATH@/platform.ini
 #ifndef MOZ_SYSTEM_SQLITE
-@RESPATH@/@DLL_PREFIX@mozsqlite3@DLL_SUFFIX@
+@BINPATH@/@DLL_PREFIX@mozsqlite3@DLL_SUFFIX@
 #endif
 #ifdef UNIX_BUT_NOT_MAC
 @RESPATH@/run-mozilla.sh
