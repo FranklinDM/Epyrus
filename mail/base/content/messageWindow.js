@@ -1370,3 +1370,11 @@ function SelectFolder (aFolderUri) {
   gFolderDisplay.treeSelection.currentIndex = -1;
   gFolderDisplay.show(MailUtils.getFolderForURI(aFolderUri));
 }
+
+function OpenContainingFolder() {
+  if (!gFolderDisplay.selectedMessage) {
+    return;
+  }
+
+  MailUtils.displayMessageInFolderTab(gFolderDisplay.selectedMessage);
+}
