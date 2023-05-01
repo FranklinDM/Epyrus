@@ -74,6 +74,9 @@
 #ifdef XP_WIN
 @BINPATH@/@DLL_PREFIX@gkmedias@DLL_SUFFIX@
 #endif
+#ifndef MOZ_SYSTEM_HUNSPELL
+@BINPATH@/@DLL_PREFIX@hunspell@DLL_SUFFIX@
+#endif
 #ifdef MOZ_FFVPX
 @BINPATH@/@DLL_PREFIX@mozavcodec@DLL_SUFFIX@
 @BINPATH@/@DLL_PREFIX@mozavutil@DLL_SUFFIX@
