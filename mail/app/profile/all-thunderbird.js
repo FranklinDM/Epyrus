@@ -169,26 +169,6 @@ pref("extensions.blocklist.url", "");
 pref("extensions.blocklist.detailsURL", "");
 pref("extensions.blocklist.itemURL", "");
 
-// Kinto blocklist preferences
-pref("services.kinto.base", "");
-pref("services.kinto.changes.path", "");
-pref("services.kinto.bucket", "blocklists");
-pref("services.kinto.onecrl.collection", "certificates");
-pref("services.kinto.onecrl.checked", 0);
-pref("services.kinto.addons.collection", "addons");
-pref("services.kinto.addons.checked", 0);
-pref("services.kinto.plugins.collection", "plugins");
-pref("services.kinto.plugins.checked", 0);
-pref("services.kinto.gfx.collection", "gfx");
-pref("services.kinto.gfx.checked", 0);
-
-// For now, let's keep kinto update out of the release channel.
-#ifdef RELEASE_OR_BETA
-pref("services.kinto.update_enabled", false);
-#else
-pref("services.kinto.update_enabled", true);
-#endif
-
 // Enables some extra Extension System Logging (can reduce performance)
 pref("extensions.logging.enabled", false);
 
