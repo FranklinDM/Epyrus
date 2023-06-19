@@ -1,3 +1,0 @@
-[submodule "mozilla"]
-	path = platform
-	url = https://repo.palemoon.org/MoonchildProductions/UXP.git
