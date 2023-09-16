@@ -165,30 +165,6 @@ toolbox > toolbar:last-of-type {
   border-inline-end: 1px solid transparent;
 }
 
-/* ::::: splitters ::::: */
-
-#dirTree-splitter {
-  border: none;
-  border-inline-end: 1px solid #a9b7c9;
-  min-width: 0;
-  width: 3px;
-  background-color: transparent;
-  margin-inline-start: -3px;
-  position: relative;
-  z-index: 10;
-}
-
-#results-splitter {
-  border: none;
-  border-top: 1px solid #a9b7c9;
-  min-height: 0;
-  height: 3px;
-  background-color: transparent;
-  margin-bottom: -3px;
-  position: relative;
-  z-index: 10;
-}
-
 /* ::::: results pane ::::: */
 
 #abResultsTree {
@@ -196,11 +172,6 @@ toolbox > toolbar:last-of-type {
 }
 
 /* ::::: card view pane ::::: */
-
-#CardViewOuterBox {
-  border: none;
-  border-top: 1px solid ThreeDShadow;
-}
 
 @media (-moz-windows-glass) {
   #ab-toolbox:not(:-moz-lwtheme) {

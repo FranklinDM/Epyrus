@@ -78,32 +78,6 @@
   border-bottom: 1px solid ThreeDShadow;
 }
 
-/* ::::: splitters ::::: */
-
-#dirTree-splitter {
-  -moz-appearance: none;
-  border-inline-end: 1px solid ThreeDShadow;
-  /* splitter grip area */
-  width: 4px;
-  /* make only the splitter border visible */
-  margin-inline-start: -4px;
-  /* because of the negative margin needed to make the splitter visible */
-  position: relative;
-  z-index: 10;
-}
-
-#results-splitter {
-  -moz-appearance: none;
-  border-top: 1px solid ThreeDShadow;
-  /* splitter grip area */
-  height: 4px;
-  /* make only the splitter border visible */
-  margin-bottom: -4px;
-  /* because of the negative margin needed to make the splitter visible */
-  position: relative;
-  z-index: 10;
-}
-
 /* ::::: results pane ::::: */
 
 #blankResultsPaneMessageBox {

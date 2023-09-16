@@ -8,18 +8,6 @@
   border-bottom: 1px solid ThreeDShadow;
 }
 
-#today-pane-splitter {
-  -moz-appearance: none;
-  border-bottom: 3px double ThreeDShadow;
-  /* splitter grip area */
-  height: 5px;
-  /* make only the splitter border visible */
-  margin-top: -3px;
-  /* because of the negative margin needed to make the splitter visible */
-  position: relative;
-  z-index: 10;
-}
-
 .today-pane-cycler {
   padding-inline-end: 0 !important;
 }

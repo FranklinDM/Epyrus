@@ -4,10 +4,6 @@
 
 @import url(chrome://calendar-common/skin/calendar-unifinder.css);
 
-#bottom-events-box {
-  border-inline-start: 1px solid ThreeDShadow;
-}
-
 #unifinder-searchBox {
   border-bottom: 1px solid ThreeDShadow;
 }

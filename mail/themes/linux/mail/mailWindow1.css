@@ -72,46 +72,6 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
 
 /* ..... splitter adjustments ..... */
 
-#folderpane_splitter,
-#threadpane-splitter:not([orient="vertical"]) {
-  -moz-appearance: none;
-  /* splitter grip area */
-  width: 5px;
-  margin-top: 0;
-  /* because of the negative margin needed to make the splitter visible */
-  position: relative;
-  z-index: 10;
-  transition: border-width .3s ease-in;
-}
-
-#folderpane_splitter {
-  border-inline-start: 1px solid ThreeDShadow;
-  /* make only the splitter border visible */
-  margin-inline-end: -5px;
-}
-
-#folderpane_splitter[state="collapsed"]:hover {
-  border-inline-start: 4px solid highlight;
-}
-
-#threadpane-splitter:not([orient="vertical"]) {
-  border-inline-start: 1px solid ThreeDShadow;
-  /* make only the splitter border visible */
-  margin-inline-end: -5px;
-}
-
-#threadpane-splitter[state="collapsed"]:not([orient="vertical"]) {
-  border-inline-start-width: 0;
-  border-inline-end: 1px solid ThreeDShadow;
-  margin-inline-start: -5px;
-  margin-inline-end: 0;
-}
-
-#threadpane-splitter[state="collapsed"]:not([orient="vertical"]):hover {
-  border-inline-end: 4px solid highlight;
-}
-
-#threadpane-splitter,
 #attachment-splitter {
   -moz-appearance: none;
   border-bottom: 1px solid ThreeDShadow;
@@ -122,27 +82,15 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
   /* because of the negative margin needed to make the splitter visible */
   position: relative;
   z-index: 10;
-  transition: border-width .3s ease-in;
+  transition: border-width .3s ease-in, border-color .3s;
 }
 
 #attachment-splitter:not([state="collapsed"]) {
   border-bottom: 1px solid transparent;
 }
 
-#attachment-splitter,
-#threadpane-splitter[state="collapsed"] {
-  transition: border-color .3s;
-}
-
-#threadpane-splitter[state="collapsed"]:hover,
 #attachment-splitter[state="collapsed"]:hover {
   border-bottom: 4px solid highlight;
-}
-
-#messagesBox {
-  /* For some reason, the thread/message panes overlap the folder pane splitter
-     by 1px because of the CSS above. Fix this. */
-  margin-inline-start: 1px;
 }
 
 /* ..... tree adjustments ..... */
