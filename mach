@@ -1,14 +1,144 @@
-#!/bin/sh
+#!/usr/bin/perl
 
-MCP_MACH=./platform/mach
+use Digest::file qw(digest_file_hex);
+
+$mcp_mach = './platform/mach';
+$osname = $^O;
 
 # Check to see if ./platform/mach exists.
 
-if [ ! -f "$MCP_MACH" ]; then
-  printf "Error: There is no platform codebase.\n"
-  printf "Make sure you have checked out the platform submodule before using this command.\n"
-  exit 1
-fi
+die "Error: There is no platform codebase.
+Make sure you have checked out the platform submodule before using this command.\n" unless -e $mcp_mach;
 
-# Pass all arguments to ./platform/mach.
-$MCP_MACH $@
+# Check to see if the updater-xml command was given.
+
+if (@ARGV[0] eq "updater-xml") {
+	if ($osname eq "msys") {
+		$objdir32 = './obj-i686-pc-mingw32/dist';
+	        $objdir64 = './obj-x86_64-pc-mingw32/dist';
+		} elsif ($osname eq "linux") {
+		# 32-bit Linux builds aren't easy to do on RHEL 7, 
+		# and we don't officially support them. 
+		$objdir32 = './obj-i686-pc-linux-gnu/dist';	
+	        $objdir64 = './obj-x86_64-pc-linux-gnu/dist';
+	} else { 
+		die "Error: Unknown platform.";
+	}
+
+	if (-d $objdir32) {
+		$marfile32 = glob "$objdir32/*.mar";
+		die "Error: 32-bit MAR file not generated yet." 
+		unless -e $marfile32;
+		$jsonfile32 = glob "$objdir32/*.json";
+
+	} elsif ($osname eq "msys") {
+		# Lack of 32-bit build is only fatal on Windows.
+		die "Error: 32-bit Epyrus not built."
+	}
+
+	if (-d $objdir64) {
+	       $marfile64 = glob "$objdir64/*.mar";
+		die "Error: 64-bit MAR file not generated yet."
+		unless -e $marfile64;
+		$jsonfile64 = glob "$objdir64/*.json";
+	} else {
+		die "Error: 64-bit Epyrus not built."
+	}
+
+	print "What was the last released version of Epyrus?\n";
+	$prev_version = <STDIN>;
+	chomp($prev_version);
+	open($versiontext, '<', "./mail/config/version.txt");
+	$curr_version = <$versiontext>;
+	close $versiontext;
+        chomp($curr_version);
+        
+        if ($osname eq "msys") {
+		# Create an update.xml for 32-bit Windows.
+		open ($buildidjson, '<', $jsonfile32);
+	        while (<$buildidjson>) {
+			if ($_ =~ /"buildid"/) {
+				$_ =~ /(.*)\"(.*)\"/;
+				$buildid = $2;
+			}
+		}
+		close $buildidjson;
+	        $size = -s $marfile32;
+	        $sha256 = digest_file_hex($marfile32, "SHA-256");
+		open (UPDATE, '>', $objdir32.'/update.xml');
+		print UPDATE ('<updates>
+  <update type="major"
+	  appVersion="'.${curr_version}.'"
+          buildID="'.${buildid}.'"
+          extensionVersion="2.0.0"
+          displayVersion="'.${curr_version}.'"
+          detailsURL="https://www.epyrus.org/info/releasenotes-1.2.3.html">
+    <patch type="complete"
+	    URL="https://www.addons.epyrus.org/WINNT_x86-msvc/'.${prev_version}.'/epyrus-'.${curr_version}.'.win32.mar"
+           hashFunction="SHA256"
+           hashValue="'.${sha256}.'"
+           size="'.${size}.'"/>
+  </update>
+</updates>');
+                close(UPDATE);
+		# Ditto for 64-bit Windows.
+		open ($buildidjson, '<', $jsonfile64);
+	        while (<$buildidjson>) {
+			if ($_ =~ /"buildid"/) {
+				$_ =~ /(.*)\"(.*)\"/;
+				$buildid = $2;
+			}
+		}
+		close $buildidjson;
+	        $size = -s $marfile64;
+	        $sha256 = digest_file_hex($marfile64, "SHA-256");
+		open (UPDATE, '>', $objdir64.'/update.xml');
+		print UPDATE ('<updates>
+  <update type="major"
+	  appVersion="'.${curr_version}.'"
+          buildID="'.${buildid}.'"
+          extensionVersion="2.0.0"
+          displayVersion="'.${curr_version}.'"
+          detailsURL="https://www.epyrus.org/info/releasenotes-1.2.3.html">
+    <patch type="complete"
+	    URL="https://www.addons.epyrus.org/WINNT_x86_64-msvc/'.${prev_version}.'/epyrus-'.${curr_version}.'.win64.mar"
+           hashFunction="SHA256"
+           hashValue="'.${sha256}.'"
+           size="'.${size}.'"/>
+  </update>
+</updates>');
+
+
+	} elsif ($osname eq "linux") {
+		open ($buildidjson, '<', $jsonfile64);
+	        while (<$buildidjson>) {
+			if ($_ =~ /"buildid"/) {
+				$_ =~ /(.*)\"(.*)\"/;
+				$buildid = $2;
+			}
+		}
+		close $buildidjson;
+	        $size = -s $marfile64;
+	        $sha256 = digest_file_hex($marfile64, "SHA-256");
+		open (UPDATE, '>', $objdir64.'/update.xml');
+		print UPDATE ('<updates>
+  <update type="major"
+	  appVersion="'.${curr_version}.'"
+          buildID="'.${buildid}.'"
+          extensionVersion="2.0.0"
+          displayVersion="'.${curr_version}.'"
+          detailsURL="https://www.epyrus.org/info/releasenotes-1.2.3.html">
+    <patch type="complete"
+	    URL="https://www.addons.epyrus.org/Linux_x86_64-gcc3'.${prev_version}.'/epyrus-'.${curr_version}.'.linux-x86_64-gtk3.mar"
+           hashFunction="SHA256"
+           hashValue="'.${sha256}.'"
+           size="'.${size}.'"/>
+  </update>
+</updates>');
+        }
+} else {	
+	
+# Pass all other arguments to ./platform/mach.
+system($mcp_mach, @ARGV);
+
+}
