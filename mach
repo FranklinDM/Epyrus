@@ -13,14 +13,24 @@ Make sure you have checked out the platform submodule before using this command.
 if (@ARGV[0] eq "updater-xml") {
         use Digest::file qw(digest_file_hex);
 	if ($osname eq "msys") {
+		$realos = 'WINNT';
 		$objdir32 = './obj-i686-pc-mingw32/dist';
 	        $objdir64 = './obj-x86_64-pc-mingw32/dist';
 		} elsif ($osname eq "linux") {
 		# 32-bit Linux builds aren't easy to do on RHEL 7, 
 		# and we don't officially support them. 
+		$realos = 'Linux';
+		$osstring = $osname;
 		$objdir32 = './obj-i686-pc-linux-gnu/dist';	
 	        $objdir64 = './obj-x86_64-pc-linux-gnu/dist';
-	} else { 
+		$special = 'gtk3';
+	        } elsif ($osname eq "solaris") {
+		$realos = 'SunOS';
+		$osstring = $osname.'2.11';
+		$objdir32 = './obj-i386-pc-solaris2.11/dist';
+		$objdir64 = './obj-x86_64-pc-solaris2.11/dist';
+                $special = 'illumos';
+		} else {
 		die "Error: Unknown platform.";
 	}
 
@@ -108,7 +118,7 @@ if (@ARGV[0] eq "updater-xml") {
 </updates>');
 
 
-	} elsif ($osname eq "linux") {
+	} else {
 		open ($buildidjson, '<', $jsonfile64);
 	        while (<$buildidjson>) {
 			if ($_ =~ /"buildid"/) {
@@ -128,7 +138,7 @@ if (@ARGV[0] eq "updater-xml") {
           displayVersion="'.${curr_version}.'"
           detailsURL="https://www.epyrus.org/info/releasenotes-1.2.3.html">
     <patch type="complete"
-	    URL="https://www.addons.epyrus.org/Linux_x86_64-gcc3/'.${prev_version}.'/epyrus-'.${curr_version}.'.linux-x86_64-gtk3.mar"
+	    URL="https://www.addons.epyrus.org/'.${realos}.'_x86_64-gcc3/'.${prev_version}.'/epyrus-'.${curr_version}.'.'.${osstring}.'-x86_64-'.${special}.'.mar"
            hashFunction="SHA256"
            hashValue="'.${sha256}.'"
            size="'.${size}.'"/>
