@@ -1,7 +1,5 @@
 #!/usr/bin/perl
 
-use Digest::file qw(digest_file_hex);
-
 $mcp_mach = './platform/mach';
 $osname = $^O;
 
@@ -13,6 +11,7 @@ Make sure you have checked out the platform submodule before using this command.
 # Check to see if the updater-xml command was given.
 
 if (@ARGV[0] eq "updater-xml") {
+        use Digest::file qw(digest_file_hex);
 	if ($osname eq "msys") {
 		$objdir32 = './obj-i686-pc-mingw32/dist';
 	        $objdir64 = './obj-x86_64-pc-mingw32/dist';
@@ -129,7 +128,7 @@ if (@ARGV[0] eq "updater-xml") {
           displayVersion="'.${curr_version}.'"
           detailsURL="https://www.epyrus.org/info/releasenotes-1.2.3.html">
     <patch type="complete"
-	    URL="https://www.addons.epyrus.org/Linux_x86_64-gcc3'.${prev_version}.'/epyrus-'.${curr_version}.'.linux-x86_64-gtk3.mar"
+	    URL="https://www.addons.epyrus.org/Linux_x86_64-gcc3/'.${prev_version}.'/epyrus-'.${curr_version}.'.linux-x86_64-gtk3.mar"
            hashFunction="SHA256"
            hashValue="'.${sha256}.'"
            size="'.${size}.'"/>
