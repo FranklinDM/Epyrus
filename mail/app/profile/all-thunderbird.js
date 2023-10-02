@@ -5,6 +5,8 @@
 
 #filter substitution
 
+
+
 #ifdef XP_UNIX
 #ifndef XP_MACOSX
 #define UNIX_BUT_NOT_MAC
@@ -341,6 +343,9 @@ pref("offline.autoDetect", false);
 // the network connection.
 pref("offline.autoDetect", true);
 #endif
+
+// Disable DNS prefetching
+pref("network.dns.disablePrefetch", true);
 
 // Expose only select protocol handlers. All others should go
 // through the external protocol handler route.
