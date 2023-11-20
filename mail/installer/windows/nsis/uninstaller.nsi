@@ -66,9 +66,6 @@ Var TmpVal
 VIAddVersionKey "FileDescription"  "${BrandShortName} Helper"
 VIAddVersionKey "OriginalFilename" "helper.exe"
 
-; Most commonly used macros for managing shortcuts
-!insertmacro _LoggingShortcutsCommon
-
 !insertmacro AddHandlerValues
 !insertmacro CleanVirtualStore
 !insertmacro ElevateUAC
@@ -77,7 +74,6 @@ VIAddVersionKey "OriginalFilename" "helper.exe"
 !insertmacro InitHashAppModelId
 !insertmacro IsHandlerForInstallDir
 !insertmacro IsPinnedToTaskBar
-!insertmacro IsUserAdmin
 !insertmacro LogDesktopShortcut
 !insertmacro LogQuickLaunchShortcut
 !insertmacro LogStartMenuShortcut
