@@ -1666,8 +1666,8 @@ BatchMessageMover.prototype = {
       let archiveGranularity;
       let archiveKeepFolderStructure;
       if (server.type == "rss" || server.type == "none") {
-        // RSS servers and Local Folders don't have an identity, 
-	// so we need to figure this out based on the default identity prefs.
+        // RSS servers and Local Folders don't have an identity,
+        // so we need to figure this out based on the default identity prefs.
         let enabled = Services.prefs.getBoolPref(
           "mail.identity.default.archive_enabled"
         );
