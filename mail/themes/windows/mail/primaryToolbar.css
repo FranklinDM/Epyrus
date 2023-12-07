@@ -820,12 +820,6 @@ toolbar[iconsize="large"]:not([mode="text"]) .badgeButton-badge {
   }
 }
 
-@media (-moz-windows-glass) {
-  #tabs-toolbar:not(:-moz-lwtheme) {
-    position: relative;
-  }
-}
-
 @media (-moz-os-version: windows-win7) {
   @media (-moz-windows-default-theme) {
     #appmenuSecondaryPane {
