@@ -295,6 +295,12 @@ pref("mail.threadpane.padding.bottom_percent", 10);
 // Use correspondents column instead of from/recipient columns.
 pref("mail.threadpane.use_correspondents", true);
 
+// Bump Epyrus purge threshold from the platform default of 20MB.
+pref("mail.purge_threshhold_mb", 100);
+
+// Epyrus purge timer should only fire every 15 minutes.
+pref("mail.purge.timer_interval", 15);
+
 // only affects cookies from RSS articles
 // 0-Accept, 1-dontAcceptForeign, 2-dontUse
 pref("network.cookie.cookieBehavior", 0);
