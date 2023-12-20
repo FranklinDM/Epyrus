@@ -403,8 +403,11 @@ function ltnOnLoad(event) {
     };
 
     gCalendarUIPrefsObserver.onLoad();
-
-    ltnIntegrationCheck();
+    // If we're on Epyrus, we don't need this... I think everyone knows
+    // what Lightning calendar is and whether they want it by now. 
+    if (Services.appinfo.ID != "{29877c1d-27df-4421-9a79-382c31470151}") {
+      ltnIntegrationCheck();
+    }
 
     Services.obs.notifyObservers(window, "lightning-startup-done", false);
 }
