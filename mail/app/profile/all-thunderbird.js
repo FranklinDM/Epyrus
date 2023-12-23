@@ -308,6 +308,9 @@ pref("mail.purge.min_delay", 240);
 // 0-Accept, 1-dontAcceptForeign, 2-dontUse
 pref("network.cookie.cookieBehavior", 0);
 
+// Work Offline is best manually managed by the user.
+pref("network.manage-offline-status", false);
+
 // clear the SeaMonkey pref, so we don't hear about how we don't have a chrome
 // package registered for editor-region while opening about:config
 pref("editor.throbber.url", "");
