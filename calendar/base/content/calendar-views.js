@@ -673,37 +673,6 @@ function selectAllEvents() {
 }
 
 var cal = cal || {};
-cal.navigationBar = {
-    setDateRange: function(aStartDate, aEndDate) {
-        let docTitle = "";
-        if (aStartDate) {
-            let intervalLabel = document.getElementById("intervalDescription");
-            let firstWeekNo = getWeekInfoService().getWeekTitle(aStartDate);
-            let secondWeekNo = firstWeekNo;
-            let weekLabel = document.getElementById("calendarWeek");
-            if (aStartDate.nativeTime == aEndDate.nativeTime) {
-                intervalLabel.value = getDateFormatter().formatDate(aStartDate);
-            } else {
-                intervalLabel.value = currentView().getRangeDescription();
-                secondWeekNo = getWeekInfoService().getWeekTitle(aEndDate);
-            }
-            if (secondWeekNo == firstWeekNo) {
-                weekLabel.value = calGetString("calendar", "singleShortCalendarWeek", [firstWeekNo]);
-                weekLabel.tooltipText = calGetString("calendar", "singleLongCalendarWeek", [firstWeekNo]);
-            } else {
-                weekLabel.value = calGetString("calendar", "severalShortCalendarWeeks", [firstWeekNo, secondWeekNo]);
-                weekLabel.tooltipText = calGetString("calendar", "severalLongCalendarWeeks", [firstWeekNo, secondWeekNo]);
-            }
-            docTitle = intervalLabel.value;
-        }
-        if (document.getElementById("modeBroadcaster").getAttribute("mode") == "calendar") {
-            document.title = (docTitle ? docTitle + " - " : "") +
-                calGetString("brand", "brandFullName", null, "branding");
-        }
-        let viewTabs = document.getElementById("view-tabs");
-        viewTabs.selectedIndex = getViewDeck().selectedIndex;
-    }
-};
 
 /*
  * Timer for the time indicator in day and week view.

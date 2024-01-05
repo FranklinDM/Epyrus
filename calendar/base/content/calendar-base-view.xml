@@ -696,7 +696,52 @@
         <parameter name="aStartDate"/>
         <parameter name="aEndDate"/>
         <body><![CDATA[
-          cal.navigationBar.setDateRange(aStartDate, aEndDate);
+          this._setDateRange(aStartDate, aEndDate);
+        ]]></body>
+      </method>
+
+      <method name="_setDateRange">
+        <parameter name="aStartDate"/>
+        <parameter name="aEndDate"/>
+        <body><![CDATA[
+          // XXX: There's no way to call the base method from an overriding
+          // implementation. Until we have something like "baseBinding"
+          // (bug 373652), a separate method is necessary...
+          let docTitle = "";
+          if (aStartDate) {
+              let intervalLabel = document.getElementById("intervalDescription");
+              let firstWeekNo = cal.getWeekInfoService().getWeekTitle(aStartDate);
+              let secondWeekNo = firstWeekNo;
+              let weekLabel = document.getElementById("calendarWeek");
+              if (aStartDate.nativeTime == aEndDate.nativeTime) {
+                  intervalLabel.value = getDateFormatter().formatDate(aStartDate);
+              } else {
+                  intervalLabel.value = currentView().getRangeDescription();
+                  secondWeekNo = cal.getWeekInfoService().getWeekTitle(aEndDate);
+              }
+              if (secondWeekNo == firstWeekNo) {
+                  weekLabel.value = cal.calGetString("calendar",
+                                                     "singleShortCalendarWeek",
+                                                     [firstWeekNo]);
+                  weekLabel.tooltipText = cal.calGetString("calendar",
+                                                           "singleLongCalendarWeek",
+                                                           [firstWeekNo]);
+              } else {
+                  weekLabel.value = cal.calGetString("calendar",
+                                                     "severalShortCalendarWeeks",
+                                                     [firstWeekNo, secondWeekNo]);
+                  weekLabel.tooltipText = cal.calGetString("calendar",
+                                                           "severalLongCalendarWeeks",
+                                                           [firstWeekNo, secondWeekNo]);
+              }
+              docTitle = intervalLabel.value;
+          }
+          if (document.getElementById("modeBroadcaster").getAttribute("mode") == "calendar") {
+              document.title = (docTitle ? docTitle + " - " : "") +
+                  calGetString("brand", "brandFullName", null, "branding");
+          }
+          let viewTabs = document.getElementById("view-tabs");
+          viewTabs.selectedIndex = getViewDeck().selectedIndex;
         ]]></body>
       </method>
 

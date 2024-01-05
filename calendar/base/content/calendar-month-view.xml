@@ -679,7 +679,7 @@
 
           // Update the navigation bar only when changes are related to the current view.
           if (this.isVisible()) {
-              cal.navigationBar.setDateRange(aStartDate, aEndDate);
+              this._setDateRange(aStartDate, aEndDate);
           }
 
           // Check whether view range has been changed since last call to
