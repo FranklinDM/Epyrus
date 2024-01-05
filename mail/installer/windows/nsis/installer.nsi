@@ -818,11 +818,18 @@ Function preSummary
   WriteINIStr "$PLUGINSDIR\summary.ini" "Field 2" flags  "READONLY"
 
   WriteINIStr "$PLUGINSDIR\summary.ini" "Field 3" Type   "label"
-  WriteINIStr "$PLUGINSDIR\summary.ini" "Field 3" Text   "$(SUMMARY_CLICK)"
   WriteINIStr "$PLUGINSDIR\summary.ini" "Field 3" Left   "0"
   WriteINIStr "$PLUGINSDIR\summary.ini" "Field 3" Right  "-1"
   WriteINIStr "$PLUGINSDIR\summary.ini" "Field 3" Top    "130"
   WriteINIStr "$PLUGINSDIR\summary.ini" "Field 3" Bottom "150"
+
+  ${If} ${FileExists} "$INSTDIR\${FileMainEXE}"
+    WriteINIStr "$PLUGINSDIR\summary.ini" "Field 3" Text "$(SUMMARY_UPGRADE_CLICK)"
+    WriteINIStr "$PLUGINSDIR\summary.ini" "Settings" NextButtonText "$(UPGRADE_BUTTON)"
+  ${Else}
+    WriteINIStr "$PLUGINSDIR\summary.ini" "Field 3" Text "$(SUMMARY_INSTALL_CLICK)"
+    DeleteINIStr "$PLUGINSDIR\summary.ini" "Settings" NextButtonText
+  ${EndIf}
 
   ${If} "$TmpVal" == "true"
     WriteINIStr "$PLUGINSDIR\summary.ini" "Field 4" Type   "label"
