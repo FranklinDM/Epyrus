@@ -34,7 +34,6 @@ RequestExecutionLevel user
 Var TmpVal
 Var InstallType
 Var AddStartMenuSC
-Var AddTaskbarSC
 Var AddQuickLaunchSC
 Var AddDesktopSC
 Var PageName
@@ -381,7 +380,6 @@ Section "-Application" APP_IDX
     StrCpy $0 "Software\Clients\Mail\${ClientsRegName}\InstallInfo"
     ${If} $AddDesktopSC == 1
     ${OrIf} $AddStartMenuSC == 1
-    ${OrIf} $AddTaskbarSC == 1
       WriteRegDWORD HKLM "$0" "IconsVisible" 1
     ${Else}
       WriteRegDWORD HKLM "$0" "IconsVisible" 0
