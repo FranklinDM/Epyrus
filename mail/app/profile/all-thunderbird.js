@@ -301,6 +301,9 @@ pref("mail.purge_threshhold_mb", 100);
 // Epyrus purge timer should only fire every 15 minutes.
 pref("mail.purge.timer_interval", 15);
 
+// "mail.purge.min_delay", never purge a junk folder more than once every 240 minutes (60 mins/hour * 4 hours)
+pref("mail.purge.min_delay", 240);
+
 // only affects cookies from RSS articles
 // 0-Accept, 1-dontAcceptForeign, 2-dontUse
 pref("network.cookie.cookieBehavior", 0);
