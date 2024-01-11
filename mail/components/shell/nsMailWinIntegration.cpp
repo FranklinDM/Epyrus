@@ -77,12 +77,12 @@ typedef enum {
 
 // APP_REG_NAME_MAIL and APP_REG_NAME_NEWS should be kept in synch with
 // AppRegNameMail and AppRegNameNews in the installer file: defines.nsi.in
-#define APP_REG_NAME_MAIL L"Thunderbird"
-#define APP_REG_NAME_NEWS L"Thunderbird (News)"
-#define CLS_EML "ThunderbirdEML"
-#define CLS_MAILTOURL "Thunderbird.Url.mailto"
-#define CLS_NEWSURL "Thunderbird.Url.news"
-#define CLS_FEEDURL "Thunderbird.Url.feed"
+#define APP_REG_NAME_MAIL L"" MOZ_APP_DISPLAYNAME
+#define APP_REG_NAME_NEWS L"" MOZ_APP_DISPLAYNAME " (News)"
+#define CLS_EML MOZ_APP_BASENAME "EML"
+#define CLS_MAILTOURL MOZ_APP_BASENAME ".Url.mailto"
+#define CLS_NEWSURL MOZ_APP_BASENAME ".Url.news"
+#define CLS_FEEDURL MOZ_APP_BASENAME ".Url.feed"
 #define SOP "\\shell\\open\\command"
 #define VAL_OPEN "\"%APPPATH%\" \"%1\""
 #define VAL_MAIL_OPEN "\"%APPPATH%\" -osint -mail \"%1\""
