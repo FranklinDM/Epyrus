@@ -218,9 +218,9 @@ Section "Uninstall"
     ${un.DeleteShortcuts}
   ${EndIf}
 
-  ${un.RegCleanAppHandler} "Thunderbird.Url.mailto"
-  ${un.RegCleanAppHandler} "Thunderbird.Url.news"
-  ${un.RegCleanAppHandler} "ThunderbirdEML"
+  ${un.RegCleanAppHandler} "${AppBaseName}.Url.mailto"
+  ${un.RegCleanAppHandler} "${AppBaseName}.Url.news"
+  ${un.RegCleanAppHandler} "${AppBaseName}EML"
   ${un.RegCleanProtocolHandler} "mailto"
   ${un.RegCleanProtocolHandler} "news"
   ${un.RegCleanProtocolHandler} "nntp"
@@ -237,13 +237,13 @@ Section "Uninstall"
   DeleteRegValue HKLM "Software\Mozilla\${AppName}\TaskBarIDs" "$INSTDIR"
 
   ClearErrors
-  ReadRegStr $R9 HKCR "ThunderbirdEML" ""
-  ; Don't clean up the file handlers if the ThunderbirdEML key still exists
+  ReadRegStr $R9 HKCR "${AppBaseName}EML" ""
+  ; Don't clean up the file handlers if the ${AppBaseName}EML key still exists
   ; since there could be a second installation that may be the default file
   ; handler.
   ${If} ${Errors}
-    ${un.RegCleanFileHandler}  ".eml"   "ThunderbirdEML"
-    ${un.RegCleanFileHandler}  ".wdseml" "ThunderbirdEML"
+    ${un.RegCleanFileHandler}  ".eml"   "${AppBaseName}EML"
+    ${un.RegCleanFileHandler}  ".wdseml" "${AppBaseName}EML"
     DeleteRegValue HKLM "SOFTWARE\Microsoft\Windows\CurrentVersion\explorer\KindMap" ".wdseml"
     ; It doesn't matter if the value didn't exist
     ClearErrors
@@ -266,7 +266,7 @@ Section "Uninstall"
   ; of the default app for the OS settings. The XPInstall base un-installer 
   ; always removes these keys if it is uninstalling the default app and it 
   ; will always replace the keys when installing even if there is another 
-  ; install of Thunderbird that is set as the
+  ; install of the mail/news client that is set as the
   ; default app. Now the keys are always updated on install but are only
   ; removed if they refer to this install location.
   ${If} "$INSTDIR" == "$R1"
@@ -316,7 +316,7 @@ Section "Uninstall"
   ${EndIf}
 
   ; Remove the updates directory for Vista and above
-  ${un.CleanUpdatesDir} "Thunderbird"
+  ${un.CleanUpdatesDir} "${AppName}"
 
   ; Remove files that may be left behind by the application in the
   ; VirtualStore directory.
@@ -332,10 +332,10 @@ Section "Uninstall"
   ; Remove the installation directory if it is empty
   ${RemoveDir} "$INSTDIR"
 
-  ; If thunderbird.exe was successfully deleted yet we still need to restart to
-  ; remove other files create a dummy thunderbird.exe.moz-delete to prevent the
-  ; installer from allowing an install without restart when it is required
-  ; to complete an uninstall.
+  ; If the main executable was successfully deleted yet we still need to restart to
+  ; remove other files create a dummy main executable with the .moz-delete extension
+  ; to prevent the installer from allowing an install without restart when it is
+  ; required to complete an uninstall.
   ${If} ${RebootFlag}
     ${Unless} ${FileExists} "$INSTDIR\${FileMainEXE}.moz-delete"
       FileOpen $0 "$INSTDIR\${FileMainEXE}.moz-delete" w

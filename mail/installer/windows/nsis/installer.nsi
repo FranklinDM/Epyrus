@@ -209,7 +209,7 @@ Section "-InstallStartCleanup"
   ${EndIf}
 
   ; Remove the updates directory for Vista and above
-  ${CleanUpdatesDir} "Thunderbird"
+  ${CleanUpdatesDir} "${AppName}"
 
   ${GetParameters} $0
   ${GetOptions} "$0" "/INI=" $1
@@ -351,21 +351,21 @@ Section "-Application" APP_IDX
   ; it doesn't cause problems always add them.
   ${SetUninstallKeys}
 
-  ; On install always add the ThunderbirdEML, Thunderbird.Url.mailto, and
-  ; Thunderbird.Url.news keys.
+  ; On install always add the ${AppBaseName}EML, ${AppBaseName}.Url.mailto, and
+  ; ${AppBaseName}.Url.news keys.
   ${GetLongPath} "$INSTDIR\${FileMainEXE}" $8
   StrCpy $0 "SOFTWARE\Classes"
   StrCpy $1 "$\"$8$\" $\"%1$\""
   StrCpy $2 "$\"$8$\" -osint -compose $\"%1$\""
   StrCpy $3 "$\"$8$\" -osint -mail $\"%1$\""
 
-  ; An empty string is used for the 5th param because ThunderbirdEML is not a
+  ; An empty string is used for the 5th param because ${AppBaseName}EML is not a
   ; protocol handler
-  ${AddHandlerValues} "$0\ThunderbirdEML"  "$1" "$8,0" \
+  ${AddHandlerValues} "$0\${AppBaseName}EML"  "$1" "$8,0" \
                       "${AppRegNameMail} Document" "" ""
-  ${AddHandlerValues} "$0\Thunderbird.Url.mailto"  "$2" "$8,0" \
+  ${AddHandlerValues} "$0\${AppBaseName}.Url.mailto"  "$2" "$8,0" \
                       "${AppRegNameMail} URL" "delete" ""
-  ${AddHandlerValues} "$0\Thunderbird.Url.news" "$3" "$8,0" \
+  ${AddHandlerValues} "$0\${AppBaseName}.Url.news" "$3" "$8,0" \
                       "${AppRegNameNews} URL" "delete" ""
 
   ; The following keys should only be set if we can write to HKLM

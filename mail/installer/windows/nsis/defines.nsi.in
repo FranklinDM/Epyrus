@@ -5,7 +5,8 @@
 
 
 # These defines should match application.ini settings
-!define AppName               "Thunderbird"
+!define AppName               "@MOZ_APP_DISPLAYNAME@"
+!define AppBaseName           "@MOZ_APP_BASENAME@"
 !define AppVersion            "@MOZ_APP_VERSION@"
 
 !define GREVersion            @MOZILLA_VERSION@
@@ -14,10 +15,10 @@
 !define FileMainEXE           "@MOZ_APP_NAME@.exe"
 !define WindowClass           "@MOZ_APP_REMOTINGNAME@MessageWindow"
 
-!define AppRegNameMail        "Thunderbird"
-!define AppRegNameNews        "Thunderbird (News)"
+!define AppRegNameMail        "@MOZ_APP_DISPLAYNAME@"
+!define AppRegNameNews        "@MOZ_APP_DISPLAYNAME@ (News)"
 
-!define ClientsRegName        "Mozilla Thunderbird"
+!define ClientsRegName        "@MOZ_APP_DISPLAYNAME@"
 
 !define BrandShortName        "@MOZ_APP_DISPLAYNAME@"
 !define PreReleaseSuffix      "@PRE_RELEASE_SUFFIX@"
