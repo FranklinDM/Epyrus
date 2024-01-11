@@ -34,10 +34,8 @@ RequestExecutionLevel user
 Var TmpVal
 Var InstallType
 Var AddStartMenuSC
-Var AddTaskbarSC
 Var AddQuickLaunchSC
 Var AddDesktopSC
-Var InstallMaintenanceService
 Var PageName
 
 ; By defining NO_STARTMENU_DIR an installer that doesn't provide an option for
@@ -88,7 +86,6 @@ VIAddVersionKey "OriginalFilename" "setup.exe"
 !insertmacro InitHashAppModelId
 !insertmacro IsHandlerForInstallDir
 !insertmacro IsPinnedToTaskBar
-!insertmacro IsUserAdmin
 !insertmacro LogDesktopShortcut
 !insertmacro LogQuickLaunchShortcut
 !insertmacro LogStartMenuShortcut
@@ -157,11 +154,6 @@ Page custom preOptions leaveOptions
 !define MUI_PAGE_CUSTOMFUNCTION_LEAVE leaveDirectory
 !define MUI_DIRECTORYPAGE_VERIFYONLEAVE
 !insertmacro MUI_PAGE_DIRECTORY
-
-; Custom Components Page
-!ifdef MOZ_MAINTENANCE_SERVICE
-Page custom preComponents leaveComponents
-!endif
 
 ; Custom Shortcuts Page
 Page custom preShortcuts leaveShortcuts
@@ -388,43 +380,11 @@ Section "-Application" APP_IDX
     StrCpy $0 "Software\Clients\Mail\${ClientsRegName}\InstallInfo"
     ${If} $AddDesktopSC == 1
     ${OrIf} $AddStartMenuSC == 1
-    ${OrIf} $AddTaskbarSC == 1
       WriteRegDWORD HKLM "$0" "IconsVisible" 1
     ${Else}
       WriteRegDWORD HKLM "$0" "IconsVisible" 0
     ${EndIf}
   ${EndIf}
-
-!ifdef MOZ_MAINTENANCE_SERVICE
-  ; If the maintenance service page was displayed then a value was already
-  ; explicitly selected for installing the maintenance service and
-  ; and so InstallMaintenanceService will already be 0 or 1.
-  ; If the maintenance service page was not displayed then
-  ; InstallMaintenanceService will be equal to "".
-  ${If} $InstallMaintenanceService == ""
-    Call IsUserAdmin
-    Pop $R0
-    ${If} $R0 == "true"
-    ; Only proceed if we have HKLM write access
-    ${AndIf} $TmpVal == "HKLM"
-    ; On Windows 2000 we do not install the maintenance service.
-    ${AndIf} ${AtLeastWinXP}
-      ; The user is an admin so we should default to install service yes
-      StrCpy $InstallMaintenanceService "1"
-    ${Else}
-      ; The user is not admin so we should default to install service no
-      StrCpy $InstallMaintenanceService "0"
-    ${EndIf}
-  ${EndIf}
-
-  ${If} $InstallMaintenanceService == "1"
-    ; The user wants to install the maintenance service, so execute
-    ; the pre-packaged maintenance service installer.
-    ; This option can only be turned on if the user is an admin so there
-    ; is no need to use ExecShell w/ verb runas to enforce elevated.
-    nsExec::Exec "$\"$INSTDIR\maintenanceservice_installer.exe$\""
-  ${EndIf}
-!endif
 
   ; These need special handling on uninstall since they may be overwritten by
   ; an install into a different location.
@@ -532,13 +492,6 @@ Section "-Application" APP_IDX
       ${EndIf}
     ${EndUnless}
   ${EndIf}
-
-!ifdef MOZ_MAINTENANCE_SERVICE
-  ${If} $TmpVal == "HKLM"
-    ; Add the registry keys for allowed certificates.
-    ${AddMaintCertKeys}
-  ${EndIf}
-!endif
 SectionEnd
 
 ; Cleanup operations to perform at the end of the installation.
@@ -841,58 +794,6 @@ Function leaveShortcuts
   ${EndIf}
 FunctionEnd
 
-!ifdef MOZ_MAINTENANCE_SERVICE
-Function preComponents
-  ; If the service already exists, don't show this page
-  ServicesHelper::IsInstalled "MozillaMaintenance"
-  Pop $R9
-  ${If} $R9 == 1
-    ; The service already exists so don't show this page.
-    Abort
-  ${EndIf}
-
-  ; On Windows 2000 we do not install the maintenance service.
-  ${Unless} ${AtLeastWinXP}
-    Abort
-  ${EndUnless}
-
-  ; Don't show the custom components page if the
-  ; user is not an admin
-  Call IsUserAdmin
-  Pop $R9
-  ${If} $R9 != "true"
-    Abort
-  ${EndIf}
-
-  ; Only show the maintenance service page if we have write access to HKLM
-  ClearErrors
-  WriteRegStr HKLM "Software\Mozilla" \
-              "${BrandShortName}InstallerTest" "Write Test"
-  ${If} ${Errors}
-    ClearErrors
-    Abort
-  ${Else}
-    DeleteRegValue HKLM "Software\Mozilla" "${BrandShortName}InstallerTest"
-  ${EndIf}
-
-  StrCpy $PageName "Components"
-  ${CheckCustomCommon}
-  !insertmacro MUI_HEADER_TEXT "$(COMPONENTS_PAGE_TITLE)" "$(COMPONENTS_PAGE_SUBTITLE)"
-  !insertmacro MUI_INSTALLOPTIONS_DISPLAY "components.ini"
-FunctionEnd
-
-Function leaveComponents
-  ${MUI_INSTALLOPTIONS_READ} $0 "components.ini" "Settings" "State"
-  ${If} $0 != 0
-    Abort
-  ${EndIf}
-  ${MUI_INSTALLOPTIONS_READ} $InstallMaintenanceService "components.ini" "Field 2" "State"
-  ${If} $InstallType == ${INSTALLTYPE_CUSTOM}
-    Call CheckExistingInstall
-  ${EndIf}
-FunctionEnd
-!endif
-
 Function preSummary
   StrCpy $PageName "Summary"
   ; Setup the summary.ini file for the Custom Summary Page
@@ -917,11 +818,18 @@ Function preSummary
   WriteINIStr "$PLUGINSDIR\summary.ini" "Field 2" flags  "READONLY"
 
   WriteINIStr "$PLUGINSDIR\summary.ini" "Field 3" Type   "label"
-  WriteINIStr "$PLUGINSDIR\summary.ini" "Field 3" Text   "$(SUMMARY_CLICK)"
   WriteINIStr "$PLUGINSDIR\summary.ini" "Field 3" Left   "0"
   WriteINIStr "$PLUGINSDIR\summary.ini" "Field 3" Right  "-1"
   WriteINIStr "$PLUGINSDIR\summary.ini" "Field 3" Top    "130"
   WriteINIStr "$PLUGINSDIR\summary.ini" "Field 3" Bottom "150"
+
+  ${If} ${FileExists} "$INSTDIR\${FileMainEXE}"
+    WriteINIStr "$PLUGINSDIR\summary.ini" "Field 3" Text "$(SUMMARY_UPGRADE_CLICK)"
+    WriteINIStr "$PLUGINSDIR\summary.ini" "Settings" NextButtonText "$(UPGRADE_BUTTON)"
+  ${Else}
+    WriteINIStr "$PLUGINSDIR\summary.ini" "Field 3" Text "$(SUMMARY_INSTALL_CLICK)"
+    DeleteINIStr "$PLUGINSDIR\summary.ini" "Settings" NextButtonText
+  ${EndIf}
 
   ${If} "$TmpVal" == "true"
     WriteINIStr "$PLUGINSDIR\summary.ini" "Field 4" Type   "label"
@@ -1068,7 +976,6 @@ Function .onInit
 
   !insertmacro InitInstallOptionsFile "options.ini"
   !insertmacro InitInstallOptionsFile "shortcuts.ini"
-  !insertmacro InitInstallOptionsFile "components.ini"
   !insertmacro InitInstallOptionsFile "summary.ini"
 
   ClearErrors
@@ -1175,25 +1082,6 @@ Function .onInit
     WriteINIStr "$PLUGINSDIR\shortcuts.ini" "Field 4" Bottom "70"
     WriteINIStr "$PLUGINSDIR\shortcuts.ini" "Field 4" State  "1"
   ${EndUnless}
-
-  ; Setup the components.ini file for the Components Page
-  WriteINIStr "$PLUGINSDIR\components.ini" "Settings" NumFields "2"
-
-  WriteINIStr "$PLUGINSDIR\components.ini" "Field 1" Type   "label"
-  WriteINIStr "$PLUGINSDIR\components.ini" "Field 1" Text   "$(OPTIONAL_COMPONENTS_DESC)"
-  WriteINIStr "$PLUGINSDIR\components.ini" "Field 1" Left   "0"
-  WriteINIStr "$PLUGINSDIR\components.ini" "Field 1" Right  "-1"
-  WriteINIStr "$PLUGINSDIR\components.ini" "Field 1" Top    "5"
-  WriteINIStr "$PLUGINSDIR\components.ini" "Field 1" Bottom "25"
-
-  WriteINIStr "$PLUGINSDIR\components.ini" "Field 2" Type   "checkbox"
-  WriteINIStr "$PLUGINSDIR\components.ini" "Field 2" Text   "$(MAINTENANCE_SERVICE_CHECKBOX_DESC)"
-  WriteINIStr "$PLUGINSDIR\components.ini" "Field 2" Left   "0"
-  WriteINIStr "$PLUGINSDIR\components.ini" "Field 2" Right  "-1"
-  WriteINIStr "$PLUGINSDIR\components.ini" "Field 2" Top    "27"
-  WriteINIStr "$PLUGINSDIR\components.ini" "Field 2" Bottom "37"
-  WriteINIStr "$PLUGINSDIR\components.ini" "Field 2" State  "1"
-  WriteINIStr "$PLUGINSDIR\components.ini" "Field 2" Flags  "GROUP"
 
   ; There must always be a core directory.
   ${GetSize} "$EXEDIR\core\" "/S=0K" $R5 $R7 $R8

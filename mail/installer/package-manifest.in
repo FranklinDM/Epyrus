@@ -140,7 +140,7 @@
 [mail]
 #ifndef XP_UNIX
 @BINPATH@/@MOZ_APP_NAME@.exe
-@BINPATH@/thunderbird.VisualElementsManifest.xml
+@BINPATH@/epyrus.VisualElementsManifest.xml
 @BINPATH@/VisualElements/VisualElements_150.png
 @BINPATH@/VisualElements/VisualElements_70.png
 #else
@@ -774,13 +774,6 @@
 #else
 @BINPATH@/updater@BIN_SUFFIX@
 #endif
-#endif
-
-; [MaintenanceService]
-;
-#ifdef MOZ_MAINTENANCE_SERVICE
-@BINPATH@/maintenanceservice.exe
-@BINPATH@/maintenanceservice_installer.exe
 #endif
 
 ; [Crash Reporter]
