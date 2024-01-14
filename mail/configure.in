@@ -64,6 +64,14 @@ MOZ_ARG_DISABLE_BOOL(ldap,
     MOZ_LDAP_XPCOM=1)
 
 dnl =========================================================
+dnl = Classic Account Wizard
+dnl =========================================================
+MOZ_ARG_ENABLE_BOOL(classic-account-wizard,
+[  --enable-classic-account-wizard Enable the classic account wizard],
+    MOZ_CLASSIC_ACCOUNT_WIZARD=1,
+    MOZ_CLASSIC_ACCOUNT_WIZARD= )
+
+dnl =========================================================
 dnl = MAPI support (Windows only)
 dnl =========================================================
 
