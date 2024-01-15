@@ -6,6 +6,10 @@
 
 <!ENTITY accountManagerTitle.label "Account Settings">
 
+#ifdef MOZ_CLASSIC_ACCOUNT_WIZARD
+<!ENTITY addAccountButton.label "Add Account…">
+<!ENTITY addAccountButton.accesskey "A">
+#else
 <!ENTITY accountActionsButton.label "Account Actions">
 <!ENTITY accountActionsButton.accesskey "A">
 <!ENTITY addMailAccountButton.label "Add Mail Account…">
@@ -16,6 +20,7 @@
 <!ENTITY addFeedAccountButton.accesskey "F">
 <!ENTITY addOtherAccountButton.label "Add Other Account…">
 <!ENTITY addOtherAccountButton.accesskey "O">
+#endif
 <!ENTITY setDefaultButton.label "Set as Default">
 <!ENTITY setDefaultButton.accesskey "D">
 <!ENTITY removeButton.label "Remove Account">
