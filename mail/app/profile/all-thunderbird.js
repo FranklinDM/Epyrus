@@ -116,7 +116,7 @@ pref("toolkit.crashreporter.infoURL",
      "");");
 
 // Base URL for web-based support pages.
-pref("app.support.baseURL", "");
+pref("app.support.baseURL", "https://forum.palemoon.org/viewforum.php?f=73");
 
 // Show error messages in error console.
 pref("javascript.options.showInConsole", true);
