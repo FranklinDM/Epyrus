@@ -64,7 +64,8 @@
 
 @media (-moz-os-version: windows-win7),
        (-moz-os-version: windows-win8),
-       (-moz-os-version: windows-win10) {
+       (-moz-os-version: windows-win10),
+       (-moz-os-version: windows-win11) {
   .occurrence-accept-buttons {
     list-style-image: url(chrome://calendar/skin/calendar-occurrence-prompt-aero.png);
   }

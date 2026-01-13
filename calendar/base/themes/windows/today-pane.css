@@ -26,7 +26,8 @@
 }
 
 @media (-moz-os-version: windows-win8),
-       (-moz-os-version: windows-win10) {
+       (-moz-os-version: windows-win10),
+       (-moz-os-version: windows-win11) {
   #mini-day-image {
     background-image: none;
   }
@@ -115,7 +116,8 @@
 }
 
 @media all and (-moz-windows-compositor) {
-  @media not all and (-moz-os-version: windows-win10) {
+  @media not all and (-moz-os-version: windows-win10),
+         not all and (-moz-os-version: windows-win11) {
     #messengerWindow[sizemode=normal] #today-pane-panel {
       border-inline-end: 1px solid rgba(10%, 10%, 10%, .4);
       border-bottom: 1px solid rgba(10%, 10%, 10%, .4);

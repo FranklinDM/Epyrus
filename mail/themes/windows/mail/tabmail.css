@@ -49,14 +49,18 @@
     --tab-border-radius: 0px;
     --tab-box-shadow: none;
   }
+}
 
+@media (-moz-os-version: windows-win10),
+       (-moz-os-version: windows-win11) {
   #messengerWindow[sizemode="maximized"][tabsintitlebar="true"] #tabs-toolbar {
     --tab-height: 28px;
   }
 }
 
 @media (-moz-os-version: windows-win8),
-       (-moz-os-version: windows-win10) {
+       (-moz-os-version: windows-win10),
+       (-moz-os-version: windows-win11) {
   @media not all and (-moz-windows-default-theme) {
     #tabs-toolbar:not(:-moz-lwtheme) {
       color: CaptionText;
@@ -222,7 +226,8 @@ tabpanels {
 }
 
 @media (-moz-os-version: windows-win8),
-       (-moz-os-version: windows-win10) {
+       (-moz-os-version: windows-win10),
+       (-moz-os-version: windows-win11) {
   .tabs-alltabs-button {
     list-style-image: url(icons/dropmarker.svg#win8);
   }

@@ -104,7 +104,8 @@ a {
 
 @media (-moz-windows-default-theme) and  (-moz-os-version: windows-win7),
        (-moz-windows-default-theme) and  (-moz-os-version: windows-win8),
-       (-moz-windows-default-theme) and  (-moz-os-version: windows-win10) {
+       (-moz-windows-default-theme) and  (-moz-os-version: windows-win10),
+       (-moz-windows-default-theme) and  (-moz-os-version: windows-win11) {
   #accountType {
     height: 26px;
     /* We have to be a stickler about the width here, or else we get

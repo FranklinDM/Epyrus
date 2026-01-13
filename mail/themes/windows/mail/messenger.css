@@ -27,7 +27,8 @@
   }
 
   @media (-moz-os-version: windows-win8),
-         (-moz-os-version: windows-win10) {
+         (-moz-os-version: windows-win10),
+         (-moz-os-version: windows-win11) {
     :root {
       --toolbar-custom-color: hsl(210, 0%, 92%);
     }
@@ -418,13 +419,15 @@ menulist > menupopup:not([type="folder"]) > menuseparator {
 }
 
 @media (-moz-os-version: windows-win8),
-       (-moz-os-version: windows-win10) {
+       (-moz-os-version: windows-win10),
+       (-moz-os-version: windows-win11) {
   :root:not(:-moz-lwtheme) {
     --fgTabTexture: linear-gradient(transparent, transparent)
   }
 }
 
-@media (-moz-windows-default-theme) and (-moz-os-version: windows-win10) {
+@media (-moz-windows-default-theme) and (-moz-os-version: windows-win10),
+       (-moz-windows-default-theme) and (-moz-os-version: windows-win11) {
   #PopupGlodaAutocomplete:not(:-moz-lwtheme) {
     margin-top: -2px;
   }
@@ -528,7 +531,8 @@ menulist > menupopup:not([type="folder"]) > menuseparator {
 }
 
 @media (-moz-windows-compositor) {
-  @media (-moz-os-version: windows-win10) {
+  @media (-moz-os-version: windows-win10),
+         (-moz-os-version: windows-win11) {
     #appmenu-button {
       margin-top: -1px;
       margin-bottom: 5px;
