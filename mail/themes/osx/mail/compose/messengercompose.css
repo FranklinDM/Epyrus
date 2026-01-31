@@ -40,7 +40,7 @@
 }
 
 toolbar[nowindowdrag="true"] {
-  -moz-appearance: none;
+  appearance: none;
 }
 
 /* Findbar */
@@ -262,7 +262,7 @@ toolbar[brighttext] #button-print {
   border: 1px solid transparent;
   border-bottom-color: #C6C6C6;
   border-radius: 2px;
-  -moz-appearance: none;
+  appearance: none;
   background: url("chrome://global/skin/arrow/arrow-dn.gif") no-repeat right;
   transition: border .2s, background-color .2s;
 }
@@ -327,7 +327,7 @@ toolbar[brighttext] #button-print {
 }
 
 .notification-button[type="menu-button"] > button {
-  -moz-appearance: none;
+  appearance: none;
   margin-bottom: -1px;
   margin-inline-start: -3px;
   margin-inline-end: 3px;
@@ -353,7 +353,7 @@ toolbar[brighttext] #button-print {
   margin-inline-start: 0;
   margin-inline-end: 1px;
   background-color: inherit;
-  -moz-appearance: none !important;
+  appearance: none !important;
   border: 1px solid transparent;
   border-bottom-color: #C6C6C6;
   border-bottom-left-radius: 0px;
@@ -438,7 +438,7 @@ treechildren::-moz-tree-image(subscribed-news) {
 
 #addressingWidget {
   -moz-user-focus: none;
-  -moz-appearance: none;
+  appearance: none;
   width: 0;
   margin: 0px;
   border: none;
@@ -477,7 +477,7 @@ treechildren::-moz-tree-image(subscribed-news) {
 
 .aw-menulist {
   -moz-binding: url("chrome://messenger/content/messengercompose/menulistCompactBindings.xml#menulist-compact");
-  -moz-appearance: none;
+  appearance: none;
   -moz-box-align: center;
   -moz-box-pack: center;
   min-height: 18px;
@@ -545,7 +545,7 @@ treechildren::-moz-tree-image(subscribed-news) {
 }
 
 toolbarbutton.formatting-button {
-  -moz-appearance: toolbarbutton;
+  appearance: toolbarbutton;
   height: 22px;
   margin: 0px;
   padding: 0;
@@ -1300,7 +1300,7 @@ toolbarbutton.formatting-button > .toolbarbutton-menubutton-dropmarker {
 }
 
 #sidebar-box {
-  -moz-appearance: -moz-mac-source-list;
+  appearance: -moz-mac-source-list;
 }
 
 #sidebar-splitter {
@@ -1315,7 +1315,7 @@ toolbarbutton.formatting-button > .toolbarbutton-menubutton-dropmarker {
 }
 
 #searchInput #sidebar {
-  -moz-appearance: textfield !important;
+  appearance: textfield !important;
   margin: 3px;
 }
 

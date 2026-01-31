@@ -12,7 +12,7 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
 #abContactsPanel {
-  -moz-appearance: none !important;
+  appearance: none !important;
   background-color: transparent;
 }
 

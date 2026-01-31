@@ -15,7 +15,7 @@ caption {
 }
 
 spinbuttons {
-  -moz-appearance: none;
+  appearance: none;
 }
 
 .spinbuttons-up {

@@ -23,7 +23,7 @@
 /* Don't use the listbox appearance as that gives us a blue-grey top border
    that collides with the primary toolbar border */
 #threadTree, #folderTree {
-  -moz-appearance:  none;
+  appearance:  none;
   background-color: -moz-Field;
   color: -moz-FieldText;
 }
@@ -126,17 +126,17 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
 /* ..... tabs ..... */
 
 #tabpanelcontainer {
-  -moz-appearance: none;
+  appearance: none;
 }
 
 /* ..... Draw in titlebar ..... */
 
 #messengerWindow[sizemode="normal"] > #titlebar {
-  -moz-appearance: -moz-window-titlebar;
+  appearance: -moz-window-titlebar;
 }
 
 #messengerWindow[sizemode="maximized"] > #titlebar {
-  -moz-appearance: -moz-window-titlebar-maximized;
+  appearance: -moz-window-titlebar-maximized;
 }
 
 @media (-moz-windows-classic) {
@@ -170,12 +170,12 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
 }
 
 #titlebar-buttonbox {
-  -moz-appearance: -moz-window-button-box;
+  appearance: -moz-window-button-box;
   position: relative;
 }
 
 #messengerWindow[sizemode="maximized"] #titlebar-buttonbox {
-  -moz-appearance: -moz-window-button-box-maximized;
+  appearance: -moz-window-button-box-maximized;
 }
 
 @media (-moz-windows-classic) {
@@ -185,7 +185,7 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
 }
 
 #titlebar-min {
-  -moz-appearance: -moz-window-button-minimize;
+  appearance: -moz-window-button-minimize;
 }
 
 @media not all and (-moz-windows-classic) {
@@ -195,15 +195,15 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
 }
 
 #titlebar-max {
-  -moz-appearance: -moz-window-button-maximize;
+  appearance: -moz-window-button-maximize;
 }
 
 #messengerWindow[sizemode="maximized"] #titlebar-max {
-  -moz-appearance: -moz-window-button-restore;
+  appearance: -moz-window-button-restore;
 }
 
 #titlebar-close {
-  -moz-appearance: -moz-window-button-close;
+  appearance: -moz-window-button-close;
 }
 
 #messengerWindow[tabsintitlebar] .titlebar-placeholder[type="appmenu-button"] {
@@ -220,13 +220,13 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
 
 @media (-moz-windows-compositor) {
   #tabmail-container {
-    -moz-appearance: -moz-win-exclude-glass;
+    appearance: -moz-win-exclude-glass;
   }
 
   @media (-moz-os-version: windows-win7),
          (-moz-os-version: windows-win8) {
     #messengerWindow {
-      -moz-appearance: -moz-win-borderless-glass;
+      appearance: -moz-win-borderless-glass;
       background-color: transparent;
     }
 
@@ -409,7 +409,7 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
     }
 
     #messengerWindow {
-      -moz-appearance: -moz-win-glass;
+      appearance: -moz-win-glass;
     }
     
     #messengerWindow:-moz-window-inactive:not(:-moz-lwtheme) {
@@ -425,7 +425,7 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
 
     #titlebar-buttonbox,
     .titlebar-button {
-      -moz-appearance: none !important;
+      appearance: none !important;
     }
 
     .titlebar-button {
@@ -652,7 +652,7 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
 
 #viewPickerPopup menu,
 #viewPickerPopup menuitem {
-  -moz-appearance: none;
+  appearance: none;
 }
 
 @media (-moz-windows-default-theme) {
@@ -668,14 +668,14 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
   }
 
   #folderPaneHeader {
-    -moz-appearance: none;
+    appearance: none;
     background-color: #f8f8f8;
     border-top: 0px;
     border-bottom: 1px solid #a9b1b8;
   }
 
   #folderTree {
-    -moz-appearance: none;
+    appearance: none;
     background-color: -moz-Dialog;
     border-bottom: none;
     border-left: none;
@@ -762,7 +762,7 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
     }
 
     #messengerWindow[sizemode=normal] statusbar {
-      -moz-appearance: none;
+      appearance: none;
       margin-top: -1px;
       border: 1px solid rgba(10%, 10%, 10%, .4);
       border-top-color: threedshadow;
@@ -826,7 +826,7 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
 }
 
 #viewPickerPopup > menu > .menu-text {
-  -moz-appearance: none;
+  appearance: none;
   margin-inline-start: 0 !important;
   padding-inline-start: 0 !important;
 }

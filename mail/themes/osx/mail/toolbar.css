@@ -11,7 +11,7 @@
 /* ::::: toolbox ::::: */
 
 toolbox {
-  -moz-appearance: toolbox;
+  appearance: toolbox;
   background-color: -moz-Dialog;
   border-left: 1px solid ThreeDShadow;
   border-top: 1px solid ThreeDShadow;
@@ -23,7 +23,7 @@ toolbox {
 
 toolbar,
 menubar {
-  -moz-appearance: toolbar;
+  appearance: toolbar;
   min-width: 1px; /* DON'T DELETE!
     Prevents hiding of scrollbars in browser when window is made smaller.*/
 }
@@ -38,7 +38,7 @@ menubar {
 /* ::::: toolbarseparator ::::: */
 
 toolbarseparator {
-  -moz-appearance       : separator;
+  appearance       : separator;
   margin                : 2px 0.2em;
   border-right          : 1px solid ThreeDHighlight;
   border-left           : 1px solid ThreeDShadow;

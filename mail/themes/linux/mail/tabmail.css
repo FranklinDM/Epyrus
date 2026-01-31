@@ -9,11 +9,11 @@
  */
 
 #navigation-toolbox:not(:-moz-lwtheme) {
-  -moz-appearance: menubar;
+  appearance: menubar;
 }
 
 #tabs-toolbar {
-  -moz-appearance: none;
+  appearance: none;
   padding: 0;
 }
 
@@ -27,7 +27,7 @@
 }
 
 tabpanels {
-  -moz-appearance: none;
+  appearance: none;
   background-color: transparent;
 }
 
@@ -79,7 +79,7 @@ tabpanels {
 }
 
 fdfs.tab-close-button {
-  -moz-appearance: none;
+  appearance: none;
   height: 16px;
   width: 16px;
 }
@@ -112,12 +112,12 @@ fdfs.tab-close-button {
 
 .tabmail-arrowscrollbox > .scrollbutton-up > .toolbarbutton-icon,
 .tabmail-arrowscrollbox > stack > .scrollbutton-down > .toolbarbutton-icon {
-  -moz-appearance: none;
+  appearance: none;
 }
 
 .tabmail-arrowscrollbox > .scrollbutton-up,
 .tabmail-arrowscrollbox > stack > .scrollbutton-down {
-  -moz-appearance: none;
+  appearance: none;
   list-style-image: url(tabs/arrow-left.png);
 }
 
@@ -164,7 +164,7 @@ fdfs.tab-close-button {
 }
 
 .tabs-alltabs-button > .toolbarbutton-menu-dropmarker {
-  -moz-appearance: none !important;
+  appearance: none !important;
   margin-bottom: -1px;
   padding-inline-start: 0 !important;
   list-style-image: url("chrome://messenger/skin/icons/dropmarker.svg");

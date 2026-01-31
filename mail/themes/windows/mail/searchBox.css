@@ -71,7 +71,7 @@
 .searchBox,
 #view-task-edit-field,
 #unifinder-task-edit-field {
-  -moz-appearance: none;
+  appearance: none;
   min-height: 24px;
   width: 25em;
   margin: 1px 3px;

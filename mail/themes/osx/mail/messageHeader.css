@@ -31,7 +31,7 @@
 }
 
 .inline-toolbar {
-  -moz-appearance: none;
+  appearance: none;
 }
 
 #expandedBoxSpacer {
@@ -48,12 +48,12 @@
 }
 
 #attachmentToggle {
-  -moz-appearance: treetwisty;
+  appearance: treetwisty;
   -moz-user-focus: normal;
 }
 
 #attachmentToggle[checked="true"] {
-  -moz-appearance: treetwistyopen;
+  appearance: treetwistyopen;
 }
 
 #attachmentToggle:focus {
@@ -418,7 +418,7 @@ toolbar[mode="icons"] > #otherActionsButton > .toolbarbutton-menu-dropmarker >
   color: black !important;
   line-height: 1.5em;
 
-  -moz-appearance: none !important;
+  appearance: none !important;
 
   padding: .1em 0px !important;
   margin: 0px !important;
@@ -509,7 +509,7 @@ mail-emailaddress[selected="true"] .emailDisplayButton:-moz-system-metric(mac-gr
 .emailStar {
   max-width: 1em;
   max-height: 1em;
-  -moz-appearance: none;
+  appearance: none;
   -moz-box-orient: vertical;
   margin: 0 2px;
   margin-inline-start: -1px;

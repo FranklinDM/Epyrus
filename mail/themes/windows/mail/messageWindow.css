@@ -22,7 +22,7 @@
 }
 
 #mail-toolbox:not(:-moz-lwtheme) {
-  -moz-appearance: toolbox;
+  appearance: toolbox;
 }
 
 /* ::::: message header borders ::::: */
@@ -31,12 +31,12 @@
 }
 
 #messengerWindow {
-  -moz-appearance: window;
+  appearance: window;
   background-color: -moz-Dialog;
 }
 
 #messagepanebox {
-  -moz-appearance: toolbox;
+  appearance: toolbox;
 }
 
 /* ..... splitter adjustments ..... */
@@ -66,7 +66,7 @@
 
 @media (-moz-windows-compositor) {
   #status-bar {
-    -moz-appearance: none;
+    appearance: none;
     border: none;
     border-top: 1px solid ThreeDShadow;
     background-color: hsl(210, 75%, 92%);

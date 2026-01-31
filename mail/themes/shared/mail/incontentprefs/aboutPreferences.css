@@ -5,7 +5,7 @@
 @namespace html "http://www.w3.org/1999/xhtml";
 
 #MailPreferences {
-  -moz-appearance: none;
+  appearance: none;
   font-size: 12px;
   background-color: #fbfbfb;
   color: #424e5a;
@@ -54,7 +54,7 @@ caption > label {
 /* Category List */
 
 .paneSelector {
-  -moz-appearance: none;
+  appearance: none;
   background-color: #424e5a;
   background-image: none;
   border-bottom: none;
@@ -66,7 +66,7 @@ caption > label {
 
 radio[pane] {
   -moz-box-orient: horizontal;
-  -moz-appearance: none;
+  appearance: none;
   color: #c1c1c1;
   border-right-width: 0;
   border-left-width: 0;
@@ -304,7 +304,7 @@ tabs {
 }
 
 #dialogBox > .groupbox-body {
-  -moz-appearance: none;
+  appearance: none;
   padding: 20px;
 }
 

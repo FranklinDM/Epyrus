@@ -12,7 +12,7 @@
 @namespace url("http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul");
 
 #abContactsPanel {
-  -moz-appearance: toolbox;
+  appearance: toolbox;
   background-color: -moz-Dialog;
 }
 
@@ -32,7 +32,7 @@
 @media (-moz-windows-default-theme) {
   button,
   #addressbookList {
-    -moz-appearance: none;
+    appearance: none;
     margin: 1px 4px;
     padding: 1px 5px !important;
     border: 1px solid;
@@ -71,7 +71,7 @@
 
 @media (-moz-windows-default-theme) and (-moz-os-version: windows-win7) {
   #abContactsPanel {
-    -moz-appearance: none;
+    appearance: none;
     background-color: hsl(210, 75%, 92%);
   }
 

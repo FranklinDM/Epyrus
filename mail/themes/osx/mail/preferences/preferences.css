@@ -131,7 +131,7 @@ radio[pane=paneAdvanced] {
 }
 
 prefpane .groupbox-body {
-  -moz-appearance: none;
+  appearance: none;
   padding: 8px 4px 4px;
 }
 
@@ -199,12 +199,12 @@ tabpanels {
 /* Quota meter in Folder Properties */
 
 #quotaPercentageBar {
-  -moz-appearance: none;
+  appearance: none;
   border: 1px solid #8B8B8B;
 }
 
 #quotaPercentageBar > .progress-bar {
-  -moz-appearance: none;
+  appearance: none;
   background-color: #88AAFF;
   opacity: .5;
 }

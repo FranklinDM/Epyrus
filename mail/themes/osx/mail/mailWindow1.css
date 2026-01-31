@@ -53,7 +53,7 @@ treechildren::-moz-tree-twisty {
 }
 
 #folderTree {
-  -moz-appearance: -moz-mac-source-list;
+  appearance: -moz-mac-source-list;
 }
 
 .focusring > .tree-stack > .tree-rows > .tree-bodybox {
@@ -71,12 +71,12 @@ treechildren::-moz-tree-twisty {
 }
 
 #folderTree treechildren::-moz-tree-row(selected) {
-  -moz-appearance: -moz-mac-source-list-selection;
+  appearance: -moz-mac-source-list-selection;
 }
 
 @media not all and (-moz-mac-yosemite-theme) {
   #folderTree treechildren::-moz-tree-row(selected, focus) {
-    -moz-appearance: -moz-mac-active-source-list-selection;
+    appearance: -moz-mac-active-source-list-selection;
   }
 
   #folderTree treechildren::-moz-tree-cell-text(selected) {
@@ -130,7 +130,7 @@ treechildren::-moz-tree-row(dummy, focus, selected)  {
 
 #messagepanebox {
   background-color: #FFFFFF;
-  -moz-appearance: none;
+  appearance: none;
 }
 
 /* ..... splitter adjustments ..... */
@@ -208,7 +208,7 @@ splitter {
 /* ..... status bar adjustments ..... */
 
 #quotaMeter {
-  -moz-appearance: none;
+  appearance: none;
 }
 
 #status-bar {

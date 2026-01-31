@@ -24,7 +24,7 @@
 }
 
 .mail-toolbox > toolbar:not(:-moz-lwtheme) {
-  -moz-appearance: toolbar;
+  appearance: toolbar;
 }
 
 /* ::::: message header borders ::::: */

@@ -138,7 +138,7 @@ menulist.folderMenuItem menu:not(.folderMenuItem) {
 }
 
 #PopupGlodaAutocomplete {
-  -moz-appearance: none;
+  appearance: none;
   margin-top: -1px;
   border-width: 1px;
   -moz-border-top-colors: ThreeDShadow;
@@ -171,7 +171,7 @@ notification[type="critical"] .messageCloseButton {
 
 /* Give menupopup[type="folder"] a menu look */
 menupopup[type="folder"] {
-  -moz-appearance: menupopup;
+  appearance: menupopup;
   background-color: menu;
 }
 
@@ -183,7 +183,7 @@ menupopup[type="folder"] menuitem[_moz-menuactive="true"] {
 
 menupopup[type="folder"] > menu,
 menupopup[type="folder"] > menuitem {
-  -moz-appearance: menuitem !important;
+  appearance: menuitem !important;
   padding-right: 0;
   padding-left: 0;
 }
@@ -208,7 +208,7 @@ button[type="menu-button"] > button {
 }
 
 .toolbar-primary {
-  -moz-appearance: none;
+  appearance: none;
 }
 
 .toolbarbutton-menu-dropmarker {
@@ -234,7 +234,7 @@ button[type="menu-button"] > button {
 
 @media not all and (-moz-windows-compositor) {
   #print-preview-toolbar:not(:-moz-lwtheme) {
-    -moz-appearance: -moz-win-browsertabbar-toolbox;
+    appearance: -moz-win-browsertabbar-toolbox;
   }
 }
 
@@ -271,7 +271,7 @@ button[type="menu-button"] > button {
 }
 
 @mailbarLargeIcons@ .toolbarbutton-1[type="menu-button"] {
-  -moz-appearance: none;
+  appearance: none;
   border: none;
   padding: 0 !important;
   background: none !important;
@@ -310,7 +310,7 @@ button[type="menu-button"] > button {
 @mailbarLargeIcons@ .toolbarbutton-1:not([type="menu-button"]),
 @mailbarLargeIcons@ .toolbarbutton-1 > .toolbarbutton-menubutton-button,
 @mailbarLargeIcons@ .toolbarbutton-1 > .toolbarbutton-menubutton-dropmarker {
-  -moz-appearance: none;
+  appearance: none;
   padding: 2px 6px;
   background: var(--toolbarbutton-background-color) padding-box;
   background-image: linear-gradient(hsla(0,0%,100%,.4), hsla(0,0%,100%,.1));
@@ -409,7 +409,7 @@ toolbar[brighttext] .toolbarbutton-1 > .toolbarbutton-menubutton-dropmarker {
 }
 
 menulist > menupopup:not([type="folder"]) > menuseparator {
-  -moz-appearance: none;
+  appearance: none;
   margin-top: 3px;
   margin-bottom: 3px;
   padding-top: 0;
@@ -441,7 +441,7 @@ menulist > menupopup:not([type="folder"]) > menuseparator {
 /* ::::: app menu button ::::: */
 
 #appmenu-button {
-  -moz-appearance: none;
+  appearance: none;
   background-clip: padding-box;
   border: 0.6px solid;
   border-top: none;

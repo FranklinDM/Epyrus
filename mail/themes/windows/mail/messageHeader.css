@@ -32,21 +32,21 @@
 /* toolbars are optimized to look like OS-provided widgets; override this */
 .inline-toolbox {
   border-top-width: 0;
-  -moz-appearance: none;
+  appearance: none;
   background-color: transparent;
 }
 
 /* ::::: attachment view ::::: */
 
 #attachmentList {
-  -moz-appearance: none;
+  appearance: none;
   background-color: -moz-Field;
   color: -moz-FieldText;
 }
 
 #attachmentToggle {
   /* Override button appearance */
-  -moz-appearance: none;
+  appearance: none;
   min-width: 0;
   margin: 0;
   border: 0;
@@ -102,7 +102,7 @@
 }
 
 .inline-toolbar {
-  -moz-appearance: none;
+  appearance: none;
   -moz-box-pack: end;
   border-bottom-width: 0 !important;
 }
@@ -150,7 +150,7 @@ window[inlinetoolbox] #newtoolbar {
   white-space: normal;
   color: WindowText;
   line-height: 1.5em;
-  -moz-appearance: none;
+  appearance: none;
   padding: .1em 0;
   margin: 0;
   margin-bottom: 3px !important;
@@ -234,7 +234,7 @@ mail-emailaddress[selected="true"] .emailDisplayButton{
 .emailStar {
   max-width: 1em;
   max-height: 1em;
-  -moz-appearance: none;
+  appearance: none;
   -moz-box-orient: vertical;
   padding: 0;
   margin-inline-start: -2px !important;

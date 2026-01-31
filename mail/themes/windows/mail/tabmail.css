@@ -92,7 +92,7 @@
 }
 
 tabpanels {
-  -moz-appearance: none;
+  appearance: none;
   background-color: transparent;
 }
 
@@ -182,7 +182,7 @@ tabpanels {
 
 .tabs-alltabs-button,
 .tabmail-tabs toolbarbutton {
-  -moz-appearance: none;
+  appearance: none;
   border-style: none;
   padding: 0 3px;
 }

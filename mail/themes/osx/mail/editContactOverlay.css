@@ -42,7 +42,7 @@
 #editContactAddressBookList,
 #editContactPanel > hbox > button,
 #editContactPanelBottomButtons > button {
-  -moz-appearance: none;
+  appearance: none;
   color: #434343;
   border-radius: 4px;
   border: 1px solid #b5b5b5;
@@ -76,7 +76,7 @@
 }
 
 #editContactAddressBookList > .menulist-dropmarker {
-  -moz-appearance: none;
+  appearance: none;
   display: -moz-box;
   background-color: transparent;
   border: 0;
@@ -91,7 +91,7 @@
 }
 
 .editContactTextbox {
-  -moz-appearance: none !important;
+  appearance: none !important;
   cursor: text;
   margin: 2px 6px;
   background: linear-gradient(#fafafa, #fff);
@@ -104,7 +104,7 @@
 }
 
 .editContactTextbox[readonly="true"] {
-  -moz-appearance: none;
+  appearance: none;
   border-color: transparent;
   background: #ededed;
   box-shadow: none;

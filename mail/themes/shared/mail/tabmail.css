@@ -19,7 +19,7 @@
 }
 
 .tabmail-tab {
-  -moz-appearance: none;
+  appearance: none;
   background: var(--tab-background-shadow), var(--tab-background),
               linear-gradient(var(--toolbar-custom-color), var(--toolbar-custom-color));
   background-clip: padding-box;

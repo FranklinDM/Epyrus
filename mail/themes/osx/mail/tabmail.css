@@ -116,7 +116,7 @@
 }
 
 tabmail > tabbox > tabpanels {
-  -moz-appearance: none !important;
+  appearance: none !important;
 }
 
 
@@ -152,7 +152,7 @@ tabmail > tabbox > tabpanels {
 }
 
 .tab-close-button {
-  -moz-appearance: none;
+  appearance: none;
   border: none !important;
   background: none;
   cursor: default;
