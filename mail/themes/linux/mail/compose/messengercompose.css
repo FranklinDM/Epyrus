@@ -246,7 +246,7 @@ treechildren::-moz-tree-image(subscribed-news) {
 
 #addressingWidget {
   -moz-user-focus: none;
-  -moz-appearance: none;
+  appearance: none;
   width: 0;
   border: none;
   background-color: transparent;
@@ -326,7 +326,7 @@ treechildren::-moz-tree-image(subscribed-news) {
 }
 
 #identityLabel {
-  -moz-appearance: none;
+  appearance: none;
   margin-inline-end: 3px;
   margin-top: 2px;
   margin-bottom: 0;
@@ -345,7 +345,7 @@ treechildren::-moz-tree-image(subscribed-news) {
 /* ::::: format toolbar ::::: */
 
 #FormatToolbar {
-  -moz-appearance: none;
+  appearance: none;
   color: WindowText;
   margin-left: 3px;
   margin-right: 3px;
@@ -654,7 +654,7 @@ toolbarbutton.formatting-button {
 .ab-closebutton {
   list-style-image: url("chrome://messenger/skin/icons/close-button.png");
   -moz-image-region: rect(0 16px 16px 0);
-  -moz-appearance: none;
+  appearance: none;
   border: none !important;
   padding: 2px;
 }
@@ -712,7 +712,7 @@ toolbarbutton.formatting-button {
 }
 
 #sidebar-splitter {
-  -moz-appearance: none;
+  appearance: none;
   border-inline-start: 1px solid ThreeDShadow;
   /* splitter grip area */
   width: 5px;

@@ -46,7 +46,7 @@ prefpane {
     border-left: 1px solid transparent;
     padding: 3px 0;
     margin: 0;
-    -moz-appearance: none !important;
+    appearance: none !important;
 }
 
 radio[pane][selected="true"] {
@@ -111,7 +111,7 @@ prefpane button {
 }
 
 prefpane .groupbox-body {
-    -moz-appearance: none;
+    appearance: none;
     border: none !important;
     border-radius: 0px !important;
     background-image: none !important;

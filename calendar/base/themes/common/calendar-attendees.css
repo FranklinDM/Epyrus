@@ -5,7 +5,7 @@
 /* this is for attendee and organizer decoration in summary and event dialog */
 
 #item-attendees-box {
-    -moz-appearance: listbox;
+    appearance: listbox;
     margin: 2px 4px 0;
     overflow-y: auto;
     min-height: 54px; /*at least two rows - otherwise a scrollbar (if required) wouldn't appear*/

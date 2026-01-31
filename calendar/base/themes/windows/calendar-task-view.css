@@ -41,7 +41,7 @@
 /* ::::: task actions toolbar ::::: */
 
 #task-actions-toolbox {
-    -moz-appearance: none;
+    appearance: none;
 }
 
 #task-actions-toolbar {

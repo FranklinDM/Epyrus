@@ -5,7 +5,7 @@
 @import url(chrome://calendar-common/skin/widgets/calendar-widgets.css);
 
 treenode-checkbox > .checkbox-check {
-  -moz-appearance: none;
+  appearance: none;
   -moz-box-align: center;
   border: none;
   width: 9px; /* The image's width is 9 pixels */

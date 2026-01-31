@@ -59,7 +59,7 @@ treenode-checkbox > .checkbox-label-center-box > .checkbox-label-box > .checkbox
 }
 
 .categories-listbox {
-    -moz-appearance: none;
+    appearance: none;
     background-color: Menu;
     color: MenuText;
     margin: 0 0 4px 0;
@@ -72,5 +72,5 @@ treenode-checkbox > .checkbox-label-center-box > .checkbox-label-box > .checkbox
 }
 
 .categories-textbox {
-    -moz-appearance: textfield;
+    appearance: textfield;
 }

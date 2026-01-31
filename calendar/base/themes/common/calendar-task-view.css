@@ -27,7 +27,7 @@
 }
 
 #calendar-task-details-description {
-    -moz-appearance: textfield;
+    appearance: textfield;
     border: 1px solid;
     margin: 0;
     font-family: serif;
@@ -94,7 +94,7 @@
 }
 
 #task-actions-toolbar {
-    -moz-appearance: none;
+    appearance: none;
     -moz-box-pack: end;
     border: none;
 }

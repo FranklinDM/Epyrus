@@ -44,7 +44,7 @@
 .searchBox,
 #view-task-edit-field,
 #unifinder-task-edit-field  {
-  -moz-appearance: none;
+  appearance: none;
   padding: 3px;
   border: 1px solid ThreeDShadow;
   border-radius: 2px;

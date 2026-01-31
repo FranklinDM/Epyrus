@@ -120,7 +120,7 @@ tab[calview] > .tab-middle {
 
 .view-navigation-button {
     -moz-user-focus: normal;
-    -moz-appearance: toolbarbutton;
+    appearance: toolbarbutton;
     margin-top: 3px;
     margin-inline-start: 3px;
     margin-inline-end: 3px;

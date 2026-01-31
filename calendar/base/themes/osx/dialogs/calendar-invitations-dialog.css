@@ -6,6 +6,6 @@
 
 .calendar-invitations-richlistitem-button {
   /* Workaround for making the checked button actually look checked */
-  -moz-appearance: tab;
+  appearance: tab;
   min-height: 20px;
 }

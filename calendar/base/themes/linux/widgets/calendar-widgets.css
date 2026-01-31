@@ -9,7 +9,7 @@ treenode-checkbox[checked="true"] > .checkbox-check {
 }
 
 treenode-checkbox > .checkbox-check {
-  -moz-appearance: none;
+  appearance: none;
   -moz-box-align: center;
   border: none;
   width: 9px; /* The image's width is 9 pixels */

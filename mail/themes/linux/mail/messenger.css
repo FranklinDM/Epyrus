@@ -11,7 +11,7 @@
 @import url("chrome://messenger/skin/shared/messenger.css");
 
 toolbar:not(.inline-toolbar):not(:-moz-lwtheme) {
-  -moz-appearance: menubar;
+  appearance: menubar;
   color: -moz-menubartext;
 }
 
@@ -335,7 +335,7 @@ menuitem[command="cmd_goForward"][disabled]:-moz-locale-dir(rtl) {
 }
 
 statusbarpanel {
-  -moz-appearance: none !important;
+  appearance: none !important;
   border: none !important;
 }
 

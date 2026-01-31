@@ -55,7 +55,7 @@ radio[pane=paneAdvanced]:hover, radio[pane=paneAdvanced][selected="true"] {
 /* File Field Widget */
 filefield {
     margin: 2px 4px;
-    -moz-appearance: textfield;
+    appearance: textfield;
 }
 
 .fileFieldContentBox {
@@ -82,7 +82,7 @@ filefield[disabled="true"] .fileFieldIcon {
 }
 
 .fileFieldLabel {
-    -moz-appearance: none;
+    appearance: none;
     background-color: transparent;
     border: none;
     padding: 1px 0px 0px;

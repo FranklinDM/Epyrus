@@ -866,7 +866,7 @@ agenda-richlist-item[status="CANCELLED"] .agenda-container-box {
 }
 
 tab[calview] {
-    -moz-appearance: none;
+    appearance: none;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
     margin-top: 0px;
@@ -907,13 +907,13 @@ tab[calview] > .tab-middle {
 
 .view-navigation-button {
     -moz-user-focus: normal;
-    -moz-appearance: toolbarbutton;
+    appearance: toolbarbutton;
     min-width: 22px;
 }
 
 .today-navigation-button {
     -moz-user-focus: normal;
-    -moz-appearance: toolbarbutton;
+    appearance: toolbarbutton;
     margin-inline-start: 2px;
     margin-inline-end: 2px;
     color: ButtonText;

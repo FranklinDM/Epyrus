@@ -17,7 +17,7 @@
 
 .mail-toolbox,
 .contentTabToolbox {
-  -moz-appearance: none;
+  appearance: none;
 }
 
 .mail-toolbox::after,
@@ -30,7 +30,7 @@
 
 .mail-toolbox > toolbar,
 .contentTabToolbox > toolbar {
-  -moz-appearance: none;
+  appearance: none;
 }
 
 .mail-toolbox > toolbar {

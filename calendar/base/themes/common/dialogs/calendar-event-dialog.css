@@ -249,7 +249,7 @@ daypicker-monthday {
  *-------------------------------------------------------------------*/
 
 .listbox-noborder {
-    -moz-appearance: none;
+    appearance: none;
     margin: 0px 0px;
     border: 1px solid var(--eventBorderColor);
 }

@@ -11,7 +11,7 @@
 /* attachment list styles */
 
 attachmentlist {
-  -moz-appearance: listbox;
+  appearance: listbox;
   -moz-user-focus: normal;
 }
 

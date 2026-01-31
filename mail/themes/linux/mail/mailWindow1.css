@@ -31,7 +31,7 @@ menu > #folderLocationPopup > menuitem > .menu-iconic-left {
 }
 
 #mailContent {
-  -moz-appearance: toolbox;
+  appearance: toolbox;
   background-color: -moz-Dialog;
 }
 
@@ -73,7 +73,7 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
 /* ..... splitter adjustments ..... */
 
 #attachment-splitter {
-  -moz-appearance: none;
+  appearance: none;
   border-bottom: 1px solid ThreeDShadow;
   /* splitter grip area */
   height: 5px;
@@ -108,7 +108,7 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
 /* ..... status bar adjustments ..... */
 
 #quotaMeter {
-  -moz-appearance: none;
+  appearance: none;
 }
 
 #threadTree > treechildren::-moz-tree-row(odd) {
@@ -144,5 +144,5 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
 /* ..... tabs ..... */
 
 #tabpanelcontainer {
-  -moz-appearance: none;
+  appearance: none;
 }

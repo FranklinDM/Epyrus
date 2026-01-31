@@ -85,12 +85,12 @@ menulist > menupopup > menuitem > .menu-iconic-left {
 /* Quota meter in Folder Properties */
 
 #quotaPercentageBar {
-  -moz-appearance: none;
+  appearance: none;
   border: 1px solid ThreeDShadow;
 }
 
 #quotaPercentageBar > .progress-bar {
-  -moz-appearance: none;
+  appearance: none;
   background-color: #88AAFF;
   opacity: .5;
 }
