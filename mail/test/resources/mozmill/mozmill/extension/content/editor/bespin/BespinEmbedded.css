@@ -3,7 +3,7 @@
     position: absolute;
     cursor: default;
     line-height: normal;
-    -moz-user-select: none;
+    user-select: none;
     -webkit-user-select: none;
 }
 
