@@ -275,12 +275,19 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
     }
   }
 
-  @media (-moz-os-version: windows-win10) {
-    /* Draw XUL caption buttons and background on Win10 */
+  @media (-moz-os-version: windows-win10),
+         (-moz-os-version: windows-win11) {
+    /* Draw XUL caption buttons and background on Win10/11 */
     @media (-moz-windows-accent-color-applies: 0) {
       /* Default styling for when no accent color is applied */
       #messengerWindow:not(:-moz-window-inactive):not(:-moz-lwtheme) {
         background-color: white;
+      }
+      @media (-moz-os-version: windows-win11) {
+        #main-window:not(:-moz-window-inactive):not(:-moz-lwtheme) {
+          /* Windows 11 defaults to RGB 243 */
+          background-color: rgb(243,243,243);
+        }
       }
       
       :root:not(:-moz-window-inactive):not(:-moz-lwtheme) {
@@ -614,7 +621,8 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
   }
 
   @media (-moz-os-version: windows-win8),
-         (-moz-os-version: windows-win10) {
+         (-moz-os-version: windows-win10),
+         (-moz-os-version: windows-win11) {
     /* Fade text stylings on window inactivity */
     :root:not(:-moz-lwtheme):-moz-window-inactive {
       --window-text-color: rgba(0, 0, 0, 0.5);
@@ -687,7 +695,8 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
     }
   }
 
-  @media (-moz-os-version: windows-win10) {
+  @media (-moz-os-version: windows-win10),
+         (-moz-os-version: windows-win11) {
     #folderTree {
       background-color: #fafafa;
     }
@@ -773,7 +782,8 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
 }
 
 @media (-moz-windows-default-theme) and (-moz-os-version: windows-win8),
-       (-moz-windows-default-theme) and (-moz-os-version: windows-win10) {
+       (-moz-windows-default-theme) and (-moz-os-version: windows-win10),
+       (-moz-windows-default-theme) and (-moz-os-version: windows-win11) {
   #folderPane-toolbar {
     border-bottom-color: #c2c2c2;
   }
@@ -788,7 +798,8 @@ treechildren::-moz-tree-cell-text(imapdeleted) {
   }
 }
 
-@media (-moz-windows-default-theme) and (-moz-os-version: windows-win10) {
+@media (-moz-windows-default-theme) and (-moz-os-version: windows-win10),
+       (-moz-windows-default-theme) and (-moz-os-version: windows-win11) {
   #viewPickerPopup menu[_moz-menuactive="true"],
   #viewPickerPopup menuitem[_moz-menuactive="true"] {
     background-color: #91c9f7;

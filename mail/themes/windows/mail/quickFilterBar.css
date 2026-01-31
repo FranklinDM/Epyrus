@@ -20,7 +20,8 @@
 }
 
 @media (-moz-os-version: windows-win8),
-       (-moz-os-version: windows-win10) {
+       (-moz-os-version: windows-win10),
+       (-moz-os-version: windows-win11) {
   #qfb-qs-textbox {
     margin-top: 5px;
     margin-bottom: 5px;

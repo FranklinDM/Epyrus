@@ -67,7 +67,8 @@
     }
 
     @media (-moz-os-version: windows-win8),
-           (-moz-os-version: windows-win10) {
+           (-moz-os-version: windows-win10),
+           (-moz-os-version: windows-win11) {
         .calendar-task-tree > treechildren::-moz-tree-row(inprogress, selected, focus) {
             background: linear-gradient(rgba(0, 128, 0, .5), rgba(0, 128, 0, .5));
         }

@@ -205,7 +205,8 @@ toolbox > toolbar:last-of-type {
   }
 }
 
-@media (-moz-windows-default-theme) and (-moz-os-version: windows-win10) {
+@media (-moz-windows-default-theme) and (-moz-os-version: windows-win10),
+       (-moz-windows-default-theme) and (-moz-os-version: windows-win11) {
   #dirTree {
     background-color: #fafafa;
   }

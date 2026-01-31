@@ -6,7 +6,7 @@
   content: attr(title);
   line-height: 50px;
   max-height: 50px;
-  overflow: -moz-hidden-unscrollable;
+  overflow: clip;
   pointer-events: none;
   position: fixed;
   word-wrap: break-word;
@@ -21,7 +21,8 @@
 }
 
 /* Win10 doesn't respond to inactive caption, so dim it instead */
-@media (-moz-os-version: windows-win10) {
+@media (-moz-os-version: windows-win10),
+       (-moz-os-version: windows-win11) {
   #messengerWindow:-moz-window-inactive::after {
     opacity: 0.5;
   }
@@ -143,7 +144,8 @@
       }
     }
 
-    @media (-moz-os-version: windows-win10) {    
+    @media (-moz-os-version: windows-win10),
+           (-moz-os-version: windows-win11) {    
       #messengerWindow::after {
         text-align: left;
       }
