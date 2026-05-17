@@ -170,7 +170,8 @@ attachmentlist:focus > attachmentitem[selected="true"] .attachmentcell-icon {
 }
 
 @media (-moz-windows-default-theme) and (-moz-os-version: windows-win8),
-       (-moz-windows-default-theme) and (-moz-os-version: windows-win10) {
+       (-moz-windows-default-theme) and (-moz-os-version: windows-win10),
+       (-moz-windows-default-theme) and (-moz-os-version: windows-win11) {
   attachmentitem {
     padding: 1px;
     border-width: 1px;

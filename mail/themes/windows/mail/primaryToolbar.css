@@ -48,7 +48,8 @@
   border-bottom-width: 0;
 }
 
-@media (-moz-os-version: windows-win10) {
+@media (-moz-os-version: windows-win10),
+       (-moz-os-version: windows-win11) {
   @media (-moz-windows-default-theme) and (-moz-windows-default-theme) {
     #tabs-toolbar:not(:-moz-lwtheme) {
       background-image: none;
@@ -910,7 +911,8 @@ toolbar[iconsize="large"]:not([mode="text"]) .badgeButton-badge {
 }
 
 @media (-moz-os-version: windows-win8),
-       (-moz-os-version: windows-win10) {
+       (-moz-os-version: windows-win10),
+       (-moz-os-version: windows-win11) {
   #appmenuSecondaryPane {
     --appMenu-bg-color: -moz-dialog;
     --appMenu-bg-box-shadow: ThreeDShadow;
