@@ -5,7 +5,7 @@
 
 import png
 import sys
-import StringIO
+from io import BytesIO
 import struct
 import ctypes
 
@@ -35,15 +35,15 @@ def main(infile, left, top, size, outfile):
     pixels = list(img.asRGBA()[2])
     # Take the subarray out. This is the ugliest but probably most efficient way
     # to do it
-    outpixels = [[0] * (size * COLS_PP) for x in xrange(size)]
-    for row in xrange(size):
-        for col in xrange(size * COLS_PP):
+    outpixels = [[0] * (size * COLS_PP) for x in range(size)]
+    for row in range(size):
+        for col in range(size * COLS_PP):
             outpixels[row][col] = pixels[top + row][left * COLS_PP + col]
 
     # Set up a 32bpp RGBA PNG.
-    writer = png.Writer(size=(size, size), bitdepth=8, alpha=True)
+    writer = png.Writer(width=size, height=size, bitdepth=8, greyscale=False, alpha=True)
     # Write to a memory buffer
-    outpng = StringIO.StringIO()
+    outpng = BytesIO()
     writer.write(outpng, outpixels)
     outpngbuf = outpng.getvalue()
     outpng.close()
