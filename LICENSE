@@ -1,4 +1,4 @@
-Please see the file toolkit/content/license.html in the platform directory 
+Please see the file toolkit/content/license.html in the UXP platform submodule 
 for the copyright licensing conditions attached to this codebase, including 
 copies of the licenses concerned.
 
@@ -6,7 +6,8 @@ You are not granted rights or licenses to the intellectual property or trademark
 of the Mozilla Foundation, Jeremy Andrews, or any other party, including
 without limitation the Epyrus name or logo.
 
-Source code of Epyrus is entirely under the Mozilla Public License; only the
+Epyrus source code not in the platform submodule is under the 
+Mozilla Public License 2.0 unless otherwise specified; only the 
 Epyrus branding is copyright Jeremy Andrews. Hermopolis branding is public
 domain for unbranded builds, and can be used by anyone for any purpose.
 
