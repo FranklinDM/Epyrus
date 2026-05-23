@@ -6,7 +6,12 @@ You are not granted rights or licenses to the intellectual property or trademark
 of the Mozilla Foundation, Jeremy Andrews, or any other party, including
 without limitation the Epyrus name or logo.
 
-The Epyrus name, logo, and associated branding are the exclusive property of Jeremy Andrews. These branding elements are NOT licensed under the Mozilla Public License 2.0. Any disputes arising from or relating to Epyrus branding, trademarks, or associated non-code assets are governed by the laws of the State of Delaware, U.S.A., excluding its conflict-of-law provisions. You agree that such disputes will be resolved exclusively in the state or federal courts located in Delaware.
+The Epyrus name, logo, and associated branding are the exclusive property of Jeremy Andrews.
+These branding elements are NOT licensed under the Mozilla Public License 2.0. 
+Any disputes arising from or relating to Epyrus branding, trademarks, or associated non-code 
+assets are governed by the laws of the State of Delaware, U.S.A., excluding its conflict-of-law 
+provisions. You agree that such disputes will be resolved exclusively in the state or
+federal courts located in Delaware.
 
 Epyrus source code not in the UXP platform submodule is under the 
 Mozilla Public License 2.0 unless otherwise specified; only the 
