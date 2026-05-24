@@ -57,6 +57,7 @@ messenger.jar:
     content/messenger/aboutDialog.js                (content/aboutDialog.js)
 *   content/messenger/aboutRights.xhtml             (content/aboutRights.xhtml)
 *   content/messenger/systemIntegrationDialog.xul   (content/systemIntegrationDialog.xul)
+*   content/messenger/aboutPrivacy.xhtml            (content/aboutPrivacy.xhtml)
     content/messenger/systemIntegrationDialog.js    (content/systemIntegrationDialog.js)
     content/messenger/folderPane.js                 (content/folderPane.js)
     content/messenger/msgSelectOffline.xul          (content/msgSelectOffline.xul)

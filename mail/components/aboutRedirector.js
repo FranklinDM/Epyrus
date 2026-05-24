@@ -20,6 +20,9 @@ AboutRedirector.prototype = {
     "rights": {url: "chrome://messenger/content/aboutRights.xhtml",
                flags: (Ci.nsIAboutModule.ALLOW_SCRIPT |
                        Ci.nsIAboutModule.URI_SAFE_FOR_UNTRUSTED_CONTENT)},
+    "privacy": {url: "chrome://messenger/content/aboutPrivacy.xhtml",
+               flags: (Ci.nsIAboutModule.ALLOW_SCRIPT |
+                       Ci.nsIAboutModule.URI_SAFE_FOR_UNTRUSTED_CONTENT)},
     "support": {url: "chrome://messenger/content/about-support/aboutSupport.xhtml",
                 flags: Ci.nsIAboutModule.ALLOW_SCRIPT},
     "preferences": {url: "chrome://messenger/content/preferences/aboutPreferences.xul",
