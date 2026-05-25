@@ -11,11 +11,15 @@ These branding elements are NOT licensed under the Mozilla Public License 2.0.
 Any disputes arising from or relating to Epyrus branding, trademarks, or associated non-code 
 assets are governed by the laws of the State of Delaware, U.S.A., excluding its conflict-of-law 
 provisions. You agree that such disputes will be resolved exclusively in the state or
-federal courts located in Delaware.
+federal courts located in Delaware. If any portion of these terms is held to be invalid or 
+unenforceable, the remaining portions will remain in full force and effect.
 
 Epyrus source code not in the UXP platform submodule is under the 
 Mozilla Public License 2.0 unless otherwise specified; only the 
 Epyrus branding is copyright Jeremy Andrews. Hermopolis branding is public
 domain for unbranded builds, and can be used by anyone for any purpose.
+
+The Epyrus branding is located in other-licenses/branding, while the
+Hermopolis branding is located in mail/branding/aurora.
 
 TODO: Binary Redist license? Haven't decided on that yet...
